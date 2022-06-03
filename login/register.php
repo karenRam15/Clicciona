@@ -79,10 +79,22 @@
 				<form method="POST">
 					<div class="container-fluid">
 		          	<div class="row">
-			            <div class="col-lg-12">
+			          	 <div class="col-lg-12">
 			              <div class="form-floating mb-3">
 			                <input type="text" class="form-control" id="name" name="name" placeholder="Nombre">
-			                  <label for="floatingInput">Nombre</label>
+			                  <label for="floatingInput">Primer nombre</label>
+			              </div> 
+			            </div>
+			            <div class="col-lg-12">
+			              <div class="form-floating mb-3">
+			                <input type="text" class="form-control" id="name2" name="name2" placeholder="Nombre">
+			                  <label for="floatingInput">Segundo Nombre (opcional) </label>
+			              </div> 
+			            </div>
+			            <div class="col-lg-12">
+			              <div class="form-floating mb-3">
+			                <input type="text" class="form-control" id="name3" name="name3" placeholder="Nombre">
+			                  <label for="floatingInput">Tercer Nombre (opcional)</label>
 			              </div> 
 			            </div>
 						<div class="col-lg-12">
@@ -153,20 +165,16 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-		var apellido_p = $('#apellido_p').val();
-		var apellido_m = $('#apellido_m').val();
-		var email = $('#email').val();
-		var pass = $('#password').val();
-		var passc = $('#confirm_password').val();
-		var tipo_usuario = $('#tipo_usuario').val();
 		$('#submit_btn').click(function(){
-			if($('#name').val()=="" || $('#apellido_p').val()=="" || $('#apellido_m').val()=="" || $('#email').val()=="" || $('#pass').val()==""|| $('#passc').val()=="" || $('#tipo_usuario').val()==""){
+			if($('#name').val()=="" || $('#name2').val()=="" || $('#name3').val()=="" || $('#apellido_p').val()=="" || $('#apellido_m').val()=="" || $('#email').val()=="" || $('#pass').val()==""|| $('#passc').val()=="" || $('#tipo_usuario').val()==""){
 				$('#liveToast').toast('show');
 			}else{
 				if ($('#password').val() != $('#confirm_password').val()) {
 					$('#contrasenas').toast('show');
 				}else{
-					var cadena = "nombre="+$('#name').val()+
+					var cadena = "primer_nombre="+$('#name').val()+
+					"&segundo_nombre="+$('#name2').val()+
+					"&tercer_nombre="+$('#name3').val()+
 					"&apellido_p="+$('#apellido_p').val()+
 					"&apellido_m="+$('#apellido_m').val()+
 					"&email="+$('#email').val()+
