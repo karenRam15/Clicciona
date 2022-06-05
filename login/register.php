@@ -115,7 +115,7 @@
 			                  <label for="floatingInput">Correo</label>
 			              </div> 
 			            </div>
-						<div class="col-lg-12">
+					<div class="col-lg-12">
 			              <div class="form-floating mb-3">
 			                <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" maxlength="8">
 			                  <label for="floatingInput">Contraseña</label>
@@ -163,6 +163,7 @@
 				</div>
 			</div>
 		</div>
+		<button id="enviar" name="enviar">Enviar</button>
 	</div>
 	<script type="text/javascript">
 		$('#submit_btn').click(function(){
@@ -199,6 +200,26 @@
 					});
 				}
 			}
+		});
+		$('#enviar').click(function(){
+			$.ajax({
+				url: 'enviar.php',
+				type: 'POST',
+			})
+			.done(function(r) {
+				if (r==1) {
+					console.log("success");
+				}else{
+					console.log("error");
+				}
+			})
+			.fail(function() {
+				console.log("error");
+			})
+			.always(function() {
+				console.log("complete");
+			});
+			
 		});
 	</script>
   </body>
