@@ -163,8 +163,8 @@
 				</div>
 			</div>
 		</div>
-		<button id="enviar" name="enviar">Enviar</button>
 	</div>
+
 	<script type="text/javascript">
 		$('#submit_btn').click(function(){
 			if($('#name').val()=="" || $('#name2').val()=="" || $('#name3').val()=="" || $('#apellido_p').val()=="" || $('#apellido_m').val()=="" || $('#email').val()=="" || $('#pass').val()==""|| $('#passc').val()=="" || $('#tipo_usuario').val()==""){
@@ -189,6 +189,29 @@
 					.done(function(r) {
 						 if (r==1) {
 						 	$('#user_succes').toast('show');
+						 	$.ajax({
+								url: 'enviar.php',
+								type: 'POST',
+								data: "correo="+$('#email').val()+"&nombre="+$('#primer_nombre').val(),
+							})
+							.done(function(r) {
+								if (r==1) {
+									console.log("Todo correcto");
+								}else if (r==2) {
+									console.log("Error al ingresar el numero");
+								}else if (r==0) {
+									console.log("Error al enviar el correo");
+								}else{
+									console.log("error");
+								}
+							})
+							.fail(function() {
+								console.log("error");
+							})
+							.always(function() {
+								console.log("complete");
+							});
+			
 						 }else if (r==2) {
 						 	$('#user_register').toast('show');
 						 }else{
@@ -200,26 +223,6 @@
 					});
 				}
 			}
-		});
-		$('#enviar').click(function(){
-			$.ajax({
-				url: 'enviar.php',
-				type: 'POST',
-			})
-			.done(function(r) {
-				if (r==1) {
-					console.log("success");
-				}else{
-					console.log("error");
-				}
-			})
-			.fail(function() {
-				console.log("error");
-			})
-			.always(function() {
-				console.log("complete");
-			});
-			
 		});
 	</script>
   </body>
