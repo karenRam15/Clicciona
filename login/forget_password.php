@@ -1,15 +1,3 @@
-<?php require_once 'config.php'; ?>
-<?php 
-	if(!empty($_POST)){
-		try {
-			$user_obj = new Cl_User();
-			$data = $user_obj->forgetPassword( $_POST );
-			if($data)$success = PASSWORD_RESET_SUCCESS;
-		} catch (Exception $e) {
-			$error = $e->getMessage();
-		}
-	}
-?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,34 +10,25 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/login.css" rel="stylesheet">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
   <body>
 	<div class="container">
-		<?php require_once 'templates/ads.php';?>
 		<div class="login-form">
 			<div class="form-header">
-			<img src="../img/cliccionaIcon.png" width="70" height="70" alt="icon">
+			<!--<img src="../img/cliccionaIcon.png" width="70" height="70" alt="icon">-->
 			</div>
-			<form action="<?php echo $_SERVER['PHP_SELF']; ?>" id="forgetpassword-form" method="post"  class="form-register" role="form">
+			<form id="forgetpassword-form" method="POST" class="form-register" role="form">
 				<div>
 					<input id="email" name="email" type="email" class="form-control" placeholder="Correo electrónico">  
 					<span class="help-block"></span>
 				</div>
-				<button class="btn btn-block bt-login" type="submit" id="submit_btn" data-loading-text="Restableciendo contraseña....">Restablecer Contraseña</button>
+				<button class="btn btn-block bt-login" id="submit_btn">Restablecer Contraseña</button>
 			</form>
 			<div class="form-footer">
 				<div class="row">
 					<div class="col-xs-6 col-sm-6 col-md-6">
 						<i class="fa fa-lock"></i>
 						<a href="index.php">  Iniciar sesión  </a>
-					
 					</div>
 					
 					<div class="col-xs-6 col-sm-6 col-md-6">
@@ -60,13 +39,36 @@
 			</div>
 		</div>
 	</div>
-	<!-- /container -->
-
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.validate.min.js"></script>
     <script src="js/forgetpassword.js"></script>
+    <script type="text/javascript">
+    	 $('#submit_btn').click(function(){
+    	 	$.ajax({
+    	 		url: 'correo_recuperacion_cuenta.php',
+    	 		type: 'POST',
+    	 		data: "correo="+$('#email').val(),
+    	 	})
+    	 	.done(function(r) {
+    	 		if (r==1) {
+    	 			console.log("Correo enviado");
+    	 		}else if (r==5) {
+    	 			alert("Correo no registrado");
+    	 		}else{
+    	 			console.log("Correo no enviado");
+    	 		}
+    	 	})
+    	 	.fail(function() {
+    	 		console.log("error");
+    	 	})
+    	 	.always(function() {
+    	 		console.log("complete");
+    	 	});
+    	 	
+    	 });
+    </script>
   </body>
 </html>

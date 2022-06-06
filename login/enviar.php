@@ -14,7 +14,7 @@ $mail = new PHPMailer(true);
 $num_confirmacion = rand(100000,999999);
 $sql ="UPDATE usuarios SET validacion_correo='$num_confirmacion' WHERE correo='$correo'";
 $query = mysqli_query($con, $sql);
-$ruta1 = "http://localhost/Clicciona/login/check_account.php?c='$correo'&num='$num_confirmacion'";
+$ruta1 = "http://localhost/Clicciona/login/check_account.php?c=$correo&num=$num_confirmacion";
 if ($query) {
  try {
     //Server settings

@@ -1,10 +1,34 @@
+<?php 
+require_once "Cl/DBclass.php";
+if (isset($_GET['c'])&& $_GET['c']!=""&&isset($_GET['n'])&&$_GET['n']!="") {
+	$correo = $_GET['c'];
+	$num_confirmacion = $_GET['n'];
+	$sql = "SELECT * FROM usuarios WHERE correo = '$correo' AND reset_password='$num_confirmacion'";
+	$query = mysqli_query($con, $sql);
+	if (mysqli_num_rows($query)==0) {
+		?>
+		<script type="text/javascript">
+			alert("Tu contraseña ya fue restablecida.");
+		</script>
+		<?php 
+			header('Location: index.php');
+	}
+}else{
+	?>
+		<script type="text/javascript">
+			alert("No se pudo reestablecer tu contraseña.");
+		</script>
+		<?php 
+			header('Location: index.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Formulario de registro de usuarios</title>
+    <title>Formulario de recuperacion de contraseña</title>
 
     <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
     <!-- Bootstrap -->
@@ -79,46 +103,16 @@
 				<form method="POST">
 					<div class="container-fluid">
 		          	<div class="row">
-			          	 <div class="col-lg-12">
+									<div class="col-lg-12">
 			              <div class="form-floating mb-3">
-			                <input type="text" class="form-control" id="name" name="name" placeholder="Nombre">
-			                  <label for="floatingInput">Primer nombre</label>
-			              </div> 
-			            </div>
-			            <div class="col-lg-12">
-			              <div class="form-floating mb-3">
-			                <input type="text" class="form-control" id="name2" name="name2" placeholder="Nombre">
-			                  <label for="floatingInput">Segundo Nombre (opcional) </label>
-			              </div> 
-			            </div>
-			            <div class="col-lg-12">
-			              <div class="form-floating mb-3">
-			                <input type="text" class="form-control" id="name3" name="name3" placeholder="Nombre">
-			                  <label for="floatingInput">Tercer Nombre (opcional)</label>
-			              </div> 
-			            </div>
-						<div class="col-lg-12">
-			              <div class="form-floating mb-3">
-			                <input type="text" class="form-control" id="apellido_p" name="apellido_p" placeholder="Apellido paterno">
-			                  <label for="floatingInput">Apellido paterno</label>
-			              </div> 
-			            </div>
-						<div class="col-lg-12">
-			              <div class="form-floating mb-3">
-			                <input type="text" class="form-control" id="apellido_m" name="apellido_m" placeholder="Apellido materno">
-			                  <label for="floatingInput">Apellido materno</label>
-			              </div> 
-			            </div>
-						<div class="col-lg-12">
-			              <div class="form-floating mb-3">
-			                <input type="email" class="form-control" id="email" name="email" placeholder="Correo">
+			                <input type="email" class="form-control" id="email" name="email" placeholder="Correo" value="<?php echo $_GET['c'];?>" readonly>
 			                  <label for="floatingInput">Correo</label>
 			              </div> 
 			            </div>
-					<div class="col-lg-12">
+									<div class="col-lg-12">
 			              <div class="form-floating mb-3">
 			                <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" maxlength="8">
-			                  <label for="floatingInput">Contraseña</label>
+			                  <label for="floatingInput">Ingresa tu nueva contraseña</label>
 			              </div> 
 			            </div>
 						<div class="col-lg-12">
@@ -127,26 +121,16 @@
 			                  <label for="floatingInput">Confirmar contraseña</label>
 			              </div> 
 			            </div>
-						<div class="col-lg-12">
-							<div class="form-floating mb-3">
-								<select class="form-select" id="tipo_usuario" name="tipo_usuario" aria-label="Floating label select example">
-									<option value="">Elige el tipo de usuario</option>
-									<option value="0">Egresados</option> 
-									<option value="1">Contratante</option>
-								</select>
-								<label for="floatingSelect">Tipo de usuario</label>
-							</div>
-						</div>
 		        	</div>
 					</div>
 		       	</form>
 		       	<div class="container">
 		       		<div class="row">
-		       			<div class="col-lg-4"></div>
-						<div class="col-lg-4">
-						<button class="btn btn-block bt-login" id="submit_btn" name="submit_btn">Registrarse</button>
+		       			<div class="col-lg-2"></div>
+						<div class="col-lg-8">
+						<button class="btn btn-block bt-login" id="submit_btn" name="submit_btn">Restablecer contraseña</button>
 						</div>
-						<div class="col-lg-4"></div>	
+						<div class="col-lg-2"></div>	
 		       		</div>
 		       	</div>
 	       	</div>
@@ -154,7 +138,7 @@
 				<div class="row">
 					<div class="col-xs-6 col-sm-6 col-md-6">
 						<i class="fa fa-lock"></i>
-						<a href="forget_password.php">¿Olvidaste tu contraseña? </a>
+						<a href="register.php">Registrarse </a>
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6">
 						<i class="fa fa-check"></i>
