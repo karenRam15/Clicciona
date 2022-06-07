@@ -8,18 +8,18 @@ if (isset($_GET['c'])&& $_GET['c']!=""&&isset($_GET['n'])&&$_GET['n']!="") {
 	if (mysqli_num_rows($query)==0) {
 		?>
 		<script type="text/javascript">
-			alert("Tu contraseña ya fue restablecida.");
+			alert("Este token ya fue utilizado para reestablecer tu contraseña.");
+			window.location = "index.php";
 		</script>
 		<?php 
-			header('Location: index.php');
 	}
 }else{
 	?>
 		<script type="text/javascript">
 			alert("No se pudo reestablecer tu contraseña.");
+			window.location = "index.php";
 		</script>
 		<?php 
-			header('Location: index.php');
 }
 ?>
 <!DOCTYPE html>
@@ -33,69 +33,16 @@ if (isset($_GET['c'])&& $_GET['c']!=""&&isset($_GET['n'])&&$_GET['n']!="") {
     <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
     <!-- Bootstrap -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/login.css" rel="stylesheet">
     	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   </head>
   <body>
-	<div class="toast-container position-fixed bottom-0 end-0 p-3">
-		<div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-			<div class="toast-header">
-			<strong class="me-auto">Clicciona</strong>
-			<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-			</div>
-			<div class="toast-body">
-			Ingresa todos los datos.
-			</div>
-		</div>
-	</div>
-	<div class="toast-container position-fixed bottom-0 end-0 p-3">
-		<div id="contrasenas" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-			<div class="toast-header">
-			<strong class="me-auto">Clicciona</strong>
-			<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-			</div>
-			<div class="toast-body">
-			Las contraseñas no coinciden.
-			</div>
-		</div>
-	</div>
-	<div class="toast-container position-fixed bottom-0 end-0 p-3">
-		<div id="user_succes" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-			<div class="toast-header">
-			<strong class="me-auto">Clicciona</strong>
-			<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-			</div>
-			<div class="toast-body">
-			Usuario registrado.
-			</div>
-		</div>
-	</div>
-	<div class="toast-container position-fixed bottom-0 end-0 p-3">
-		<div id="user_failed" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-			<div class="toast-header">
-			<strong class="me-auto">Clicciona</strong>
-			<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-			</div>
-			<div class="toast-body">
-			Usuario no registrado.
-			</div>
-		</div>
-	</div>
-	<div class="toast-container position-fixed bottom-0 end-0 p-3">
-		<div id="user_register" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-			<div class="toast-header">
-			<strong class="me-auto">Clicciona</strong>
-			<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-			</div>
-			<div class="toast-body">
-			El correo ya esta registrado
-			</div>
-		</div>
-	</div>
 	<div class="container">
 		<div class="login-form">
 			<div class="form-header">
@@ -115,7 +62,7 @@ if (isset($_GET['c'])&& $_GET['c']!=""&&isset($_GET['n'])&&$_GET['n']!="") {
 			                  <label for="floatingInput">Ingresa tu nueva contraseña</label>
 			              </div> 
 			            </div>
-						<div class="col-lg-12">
+									<div class="col-lg-12">
 			              <div class="form-floating mb-3">
 			                <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirmar contraseña" maxlength="8">
 			                  <label for="floatingInput">Confirmar contraseña</label>
@@ -151,55 +98,27 @@ if (isset($_GET['c'])&& $_GET['c']!=""&&isset($_GET['n'])&&$_GET['n']!="") {
 
 	<script type="text/javascript">
 		$('#submit_btn').click(function(){
-			if($('#name').val()=="" || $('#name2').val()=="" || $('#name3').val()=="" || $('#apellido_p').val()=="" || $('#apellido_m').val()=="" || $('#email').val()=="" || $('#pass').val()==""|| $('#passc').val()=="" || $('#tipo_usuario').val()==""){
-				$('#liveToast').toast('show');
+			if($('#email').val()=="" || $('#pass').val()==""|| $('#passc').val()==""){
+				Toastify({text: "Los campos no deben estar vacios.", duration: 3000}).showToast();
 			}else{
 				if ($('#password').val() != $('#confirm_password').val()) {
-					$('#contrasenas').toast('show');
+					Toastify({text: "Las contraseñas no coinciden.", duration: 3000}).showToast();
 				}else{
-					var cadena = "primer_nombre="+$('#name').val()+
-					"&segundo_nombre="+$('#name2').val()+
-					"&tercer_nombre="+$('#name3').val()+
-					"&apellido_p="+$('#apellido_p').val()+
-					"&apellido_m="+$('#apellido_m').val()+
-					"&email="+$('#email').val()+
-					"&pass="+$('#password').val()+
-					"&tipo_usuario="+$('#tipo_usuario').val();
+					var cadena = "email="+$('#email').val()+
+					"&pass="+$('#password').val();
 					$.ajax({
-						url: 'insert_user.php',
+						url: 'update_password.php',
 						type: 'POST',
 						data: cadena,
 					})
 					.done(function(r) {
 						 if (r==1) {
-						 	$('#user_succes').toast('show');
-						 	$.ajax({
-								url: 'enviar.php',
-								type: 'POST',
-								data: "correo="+$('#email').val()+"&nombre="+$('#name').val(),
-							})
-							.done(function(r) {
-								if (r==1) {
-									console.log("Todo correcto");
-								}else if (r==2) {
-									console.log("Error al ingresar el numero");
-								}else if (r==0) {
-									console.log("Error al enviar el correo");
-								}else{
-									console.log("error");
-								}
-							})
-							.fail(function() {
-								console.log("error");
-							})
-							.always(function() {
-								console.log("complete");
-							});
-			
-						 }else if (r==2) {
-						 	$('#user_register').toast('show');
+						 	Toastify({text: "La contraseña a sido actualizada exitosamente.", duration: 3000}).showToast();
+						 	Window.location="index.php";
 						 }else{
-						 	$('#user_failed').toast('show');
+						 	Toastify({text: "Las contraseña no fue cambiada.", duration: 3000,style: {
+    							background: "linear-gradient(to right, #00b09b, #96c93d)",
+  						}}).showToast();
 						 }
 					})
 					.fail(function(r) {

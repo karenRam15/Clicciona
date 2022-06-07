@@ -22,13 +22,13 @@ if ($query) {
     $mail->isSMTP();                                            //Send using SMTP
     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'enrique_rr@tesch.edu.mx';                     //SMTP username
-    $mail->Password   = 'F4m1l14.R4m0s';                               //SMTP password
+    $mail->Username   = 'kike.ramos.resendiz@gmail.com';                     //SMTP username
+    $mail->Password   = 'bgvbiwkjbseiuxzq';                               //SMTP password
     $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
     $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
-    $mail->setFrom('enrique_rr@tesch.edu.mx', 'Clicciona');
+    $mail->setFrom('kike.ramos.resendiz@gmail.com', 'Clicciona');
     $mail->addAddress($correo, 'Enrique');     //Add a recipient              
     //Attachments
     // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments

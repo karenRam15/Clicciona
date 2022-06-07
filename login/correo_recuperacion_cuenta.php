@@ -1,7 +1,9 @@
 <?php 
 require_once "Cl/DBclass.php";
 $correo = $_POST['correo'];
+
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 require '../phpmiler/src/Exception.php';
@@ -31,21 +33,18 @@ if (mysqli_num_rows(mysqli_query($con, $sql3))>0) {
 				if ($query) {
 				 try {
 				    //Server settings
-				    //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+				    $mail->SMTPDebug = true;                      //Enable verbose debug output
 				    $mail->isSMTP();                                            //Send using SMTP
 				    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
 				    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-				    $mail->Username   = 'enrique_rr@tesch.edu.mx';                     //SMTP username
-				    $mail->Password   = 'F4m1l14.R4m0s';                               //SMTP password
+				    $mail->Username   = 'kike.ramos.resendiz@gmail.com';                     //SMTP username
+				    $mail->Password   = 'bgvbiwkjbseiuxzq';                               //SMTP password
 				    $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
 				    $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
 				    //Recipients
-				    $mail->setFrom('enrique_rr@tesch.edu.mx', 'Clicciona');
-				    $mail->addAddress($correo, $nombre);     //Add a recipient              
-				    //Attachments
-				    // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-				    //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+				    $mail->setFrom('kike.ramos.resendiz@gmail.com', 'Clicciona');
+				    $mail->addAddress('hybridsh98sk@gmail.com', 'Clicciona'); 
 
 				    //Content
 				    $mail->isHTML(true);                                  //Set email format to HTML
