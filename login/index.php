@@ -1,25 +1,3 @@
-<?php 
-ob_start();
-session_start();
-require_once 'config.php'; 
-?>
-<?php 
-	if( !empty( $_POST )){
-		try {
-			$user_obj = new Cl_User();
-			$data = $user_obj->login( $_POST );
-			if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']){
-				header('Location: home.php');
-			}
-		} catch (Exception $e) {
-			$error = $e->getMessage();
-		}
-	}
-	//print_r($_SESSION);
-	if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']){
-		header('Location: home.php');
-	}
-?>
 <!DOCTYPE html>
 <html lang="en">
   <head>

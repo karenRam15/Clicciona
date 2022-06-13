@@ -2,77 +2,215 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Clicciona</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <!--Bootstrap Icons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <title>Clicciona</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-  <!--Bootstrap Icons-->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
-  <!--Font Awesome -->
-  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+    <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
-  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
-
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <?php 
+    require_once "dependencias/dependencias_cdn.php";
+    ?>     
 </head>
 
 <body>
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top ">
-    <div class="container d-flex align-items-center">
-
-      <h1 class="logo mr-auto"><a href="index.php">Clicciona</a></h1>
-  
-
-      <nav class="nav-menu d-none d-lg-block">
-        <ul>
-          <li class="active"><a href="index.php">Inicio</a></li>
-              <li class="drop-down"><a href="">Profesionistas</a>
-            <ul>
-              <li><a href="#">Paquetes</a></li>
-            </ul>
-          </li>
-          
-          <li><a href="#">Oportunidades</a></li>
-          <li><a href="#">Aprende Más</a></li>
-          <li><a href="universidades.php">Universidades</a></li>
-          <li><a href="coworkings.php">Coworks</a></li>
-             <li class="drop-down"><a href="">Servicios</a>
-            <ul>
-              <li><a href="#">Servicios Adicionales</a></li>
-              <li><a href="#">Servicios Business</a></li>
-
-            </ul>
-          </li>
-
-      </nav><!-- .nav-menu -->
-
-      <a href="login/index.php" class="get-started-btn scrollto">Acceso</a>
-
-    </div>
+    <div id="barra"></div>
   </header><!-- End Header -->
+
+  <!-- Modal para Inicio de Sesion -->
+  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="acceso_modal" class="modal fade">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <img src="login/img/user.png" class="img-fluid" alt="icon" style="
+                      width: 30%;
+                      display: block;
+                      margin-left: auto;
+                      margin-right: auto;">
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-mb-12 ">
+                <input name="email" id="email" type="email" class="form-control-lg" placeholder="Correo electrónico" autofocus>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-mb-12">
+                <input name="password" id="password" type="password" class="form-control-lg" placeholder="Contraseña"> 
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4"></div>
+              <div class="col-md-4">
+                <button class="btn" type="submit" id="login" style=" background-color: #1abc9c;
+                      color: #09052b;
+                      padding-bottom: 10px;
+                      padding-top: 10px;
+                      transition: background-color 300ms linear 0s;">Iniciar sesión</button>
+              </div>
+              <div class="col-md-4"></div>
+            </div>
+          </div>
+        </div>
+        <div class="form-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-7 col-sm-7 col-md-7">
+                <i class="fa fa-lock"></i>
+                <a href="#" id="forget_password" name="forget_password" class="nav-link">¿Olvidó su contraseña?</a>
+              </div>
+              <div class="col-xs-5 col-sm-5 col-md-5">
+                <i class="fa fa-check"></i>
+                <a href="#" id="registrarse1" name="registrarse1" class="nav-link"> Registrarse </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para resetear contraseña-->
+  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="forget_password_modal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">¿Olvidaste tu contraseña?</h4>
+          </div>
+          <div class="modal-body">
+              <div class="container">
+                <div class="row">
+                  <p>Ingresa tu correo electronico para resetear tu contraseña.</p>
+                  <input type="text" placeholder="example@gmail.com" autocomplete="off" class="form-control placeholder-no-fix col-lg-12">
+                  <p style="color: red;">*Se enviara un token a tu correo registrado con las instrucciones para resetear tu contraseña.*</p>
+                </div>
+              </div>
+            </div>
+          <div class="modal-footer">
+            <button data-dismiss="modal" class="btn btn-default" type="button" id="cancel_reset" name="cancel_reset">Cancelar</button>
+            <button class="btn" style=" background-color: #1abc9c;
+              color: white;
+              padding-bottom: 10px;
+              padding-top: 10px;
+              transition: background-color 300ms linear 0s;">Recuperar</button>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <!-- Modal para registrarse-->
+  <div class="modal fade" id="registrarse_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title text-center" id="staticBackdropLabel" style="color: black;">  Registro de cuenta Cliccliona</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="name_register" name="name_register" placeholder="Nombre">
+                <label for="floatingInput">Primer nombre</label>
+              </div> 
+            </div>
+            <div class="col-lg-12">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="name2_register" name="name2_register" placeholder="Nombre">
+                <label for="floatingInput">Segundo Nombre (opcional) </label>
+              </div> 
+            </div>
+            <div class="col-lg-12">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="name3_register" name="name3_register" placeholder="Nombre">
+                <label for="floatingInput">Tercer Nombre (opcional)</label>
+              </div> 
+            </div>
+            <div class="col-lg-12">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="apellido_p_register" name="apellido_p_register" placeholder="Apellido paterno">
+                <label for="floatingInput">Apellido paterno</label>
+              </div> 
+            </div>
+            <div class="col-lg-12">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="apellido_m_register" name="apellido_m_register" placeholder="Apellido materno">
+                <label for="floatingInput">Apellido materno</label>
+              </div> 
+            </div>
+            <div class="col-lg-12">
+              <div class="form-floating mb-3">
+                <input type="email" id="email_register" name="email_register" class="form-control" placeholder="Correo">
+                <label for="floatingInput">Correo</label>
+              </div> 
+            </div>
+            <div class="col-lg-12">
+              <div class="form-floating mb-3">
+                <input type="password" id="password_register" name="password_register" class="form-control" placeholder="Contraseña" maxlength="8">
+                <label for="floatingInput">Contraseña</label>
+              </div> 
+            </div>
+            <div class="col-lg-12">
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="confirm_password_register" name="confirm_password_register" placeholder="Confirmar contraseña" maxlength="8">
+                <label for="floatingInput">Confirmar contraseña</label>
+              </div> 
+            </div>
+            <div class="col-lg-12">
+              <div class="form-floating mb-3">
+                <select class="form-select" id="tipo_usuario_register" name="tipo_usuario_register" aria-label="Floating label select example">
+                  <option value="">Elige el tipo de usuario</option>
+                  <option value="0">Egresados</option> 
+                  <option value="1">Contratante</option>
+                </select>
+                <label for="floatingSelect">Tipo de usuario</label>
+              </div>
+            </div>
+            <hr>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+              <button type="button" class="btn" data-bs-dismiss="modal" style="background: #1abc9c;">Close</button>
+              <button type="button" class="btn" id="btn_register" name="btn_register" style="background: #09052b; color: white;">Registrarse</button>
+            </div>
+            <div class="col-lg-3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
-
     <div class="container">
       <div class="row">
         <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
@@ -87,59 +225,15 @@
         </div>
       </div>
     </div>
-
   </section><!-- End Hero -->
 
   <main id="main">
-
-    <!-- ======= Cliens Section ======= -->
-<!--
-    <section id="cliens" class="cliens section-bg">
-      <div class="container">
-
-        <div class="row" data-aos="zoom-in">
-
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
-          </div>
-
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
-          </div>
-
-        </div>
-
-      </div>
-
-    </section> 
-
-                            End Cliens Section 
-  -->
-
-                              <!-- ======= About Us Section ======= -->
+    <!-- ======= About Us Section ======= -->
     <section id="about" class="about">
       <div class="container" data-aos="fade-up">
-
         <div class="section-title">
           <h2>Nosotros</h2>
         </div>
-
         <div class="row content">
           <div class="col-lg-6">
             <p>
@@ -156,11 +250,8 @@
 
       </div>
     </section>
-                                        <!-- End About Us Section -->
-
-
-
-                        <!-- ======= Frequently Asked Questions Section ======= -->
+    <!-- End About Us Section -->
+    <!-- ======= Frequently Asked Questions Section ======= -->
 
     <section id="faq" class="faq section-bg">
       <div class="container" data-aos="fade-up">
@@ -215,8 +306,6 @@
 
       </div>
     </section>
-
-                          <!-- End Frequently Asked Questions Section -->
 
     <!-- ======= Why Us Section ======= -->
     <section id="why-us" class="why-us section-bg">
@@ -296,8 +385,6 @@
       </div>
     </section><!-- End Why Us Section -->
 
-  
-
     <!-- ======= Services Section ======= -->
     <section id="services" class="services section-bg">
       <div class="container" data-aos="fade-up">
@@ -359,10 +446,6 @@
 
       </div>
     </section><!-- End Services Section -->
-
-
-
-
 
     <!-- ======= Pricing Section ======= -->
     <section id="pricing" class="pricing">
@@ -451,19 +534,12 @@
               <a href="#" class="buy-btn">Empezar</a>
             </div>
           </div>
-
-       
-
         </div>
 
       </div>
     </section><!-- End Pricing Section -->
 
-    
-
-
-
-                            <!-- ======= textclicciina ======= -->
+    <!-- ======= textclicciina ======= -->
     <section id="cta" class="cta">
       <div class="container" data-aos="zoom-in">
 
@@ -479,11 +555,7 @@
 
       </div>
     </section>
-                                    <!-- textclicciina fin -->
-
-
-
-
+    <!-- textclicciina fin -->
 
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
@@ -519,7 +591,7 @@
             </div>
 
           </div>
-
+          <!--
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
             <form action="forms/contact.php" method="post" role="form" class="php-email-form">
               <div class="form-row">
@@ -554,7 +626,7 @@
           </div>
 
         </div>
-
+        -->
       </div>
     </section><!-- End Contact Section -->
 
@@ -562,9 +634,6 @@
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
-
-  
-
     <div class="footer-top">
       <div class="container">
         <div class="row">
@@ -1220,148 +1289,225 @@
         </body>
     </div>
   </div>
-</div>
+  </div>
 
-<!--Quejas y sugerencias -->
-<li data-toggle="modal" data-target=".bd-example-modal-lg-8"><i class="bx bx-chevron-right"></i> <a class="py-1 px-0 px-lg-1" href="#footer">Quejas y sugerencias</a></li>
-<div class="modal fade bd-example-modal-lg-8" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content" style="padding: 0 18px; border: solid 15px #1abc9c;">
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-          .modal{
-            border-radius: 5px;
-          }
-       .modal-content{
-         width: 100%;
-         position:relative;
-         border-radius: 10px;
-         text-align: center;
-       }
+  <!--Quejas y sugerencias -->
+  <li data-toggle="modal" data-target=".bd-example-modal-lg-8"><i class="bx bx-chevron-right"></i> <a class="py-1 px-0 px-lg-1" href="#footer">Quejas y sugerencias</a></li>
+  <div class="modal fade bd-example-modal-lg-8" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content" style="padding: 0 18px; border: solid 15px #1abc9c;">
+        <head>
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <style>
+            .modal{
+              border-radius: 5px;
+            }
+         .modal-content{
+           width: 100%;
+           position:relative;
+           border-radius: 10px;
+           text-align: center;
+         }
 
-       .modal-content form{
-         background-color: #09052b;
-         padding: 10px 20px 0px 20px;
-         margin-top: 20px;
-         border-radius: 5px;
-         box-sizing: border-box;
-         margin: 20px 10px 20px 10px;
-       }
+         .modal-content form{
+           background-color: #09052b;
+           padding: 10px 20px 0px 20px;
+           margin-top: 20px;
+           border-radius: 5px;
+           box-sizing: border-box;
+           margin: 20px 10px 20px 10px;
+         }
 
-       .modal-content input, textarea{
-         width: 70%;
-         margin-bottom: 20px;
-         padding: 7px;
-         box-sizing: border-box;
-         font-size: 17px;
-         border: 3px;
-         border-radius: 5px;
-         line-height: 1.5;
-       }
-      .modal-content textarea{
-        max-height: 100px;
-        min-height: 130px;
-      }
-      .modal-content h5{
-        padding-left: 50px;
-        color: #fff;
+         .modal-content input, textarea{
+           width: 70%;
+           margin-bottom: 20px;
+           padding: 7px;
+           box-sizing: border-box;
+           font-size: 17px;
+           border: 3px;
+           border-radius: 5px;
+           line-height: 1.5;
+         }
+        .modal-content textarea{
+          max-height: 100px;
+          min-height: 130px;
+        }
+        .modal-content h5{
+          padding-left: 50px;
+          color: #fff;
+        
+         }
+
+         .modal-content h2{
+          padding-left: 30px;
+          color: #fff;
+               }
+
+          .modal-content h6{
+          color: #fff;
+               }
+           
+
+          </style>
+        </head>
+        <body>
+        <button class="close" data-dismiss='modal' >&times;</button>
+        <form action="">
+       <h2>Quejas y sugerencias</h2>
+       <h5>Llena el siguiente formulario</h5>
+       <input type="text" name="NombreCompleto" placeholder="Nombre completo">
+       <input type="text" name="NombreMarca" placeholder="Nombre de marca">
+       <input type="text" name="CorreoElectronico" placeholder="Correo electronico">
+       <input type="text" name="NumeroContacto" placeholder="Número de contacto"> 
+       <input type="text" name="Ubicacion" placeholder="Ubicación geográfica"> 
+       <textarea name="Mensaje" placeholder="Escriba aqui su mensaje"></textarea>
+       <h6>¿Puede adjuntar una captura de pantalla del error?</h6>
+       <input type="file">
+       <input type="button" value="ENVIAR" id="botonEnviar">
+      </form>
       
-       }
+      </body>
 
-       .modal-content h2{
-        padding-left: 30px;
-        color: #fff;
-             }
-
-        .modal-content h6{
-        color: #fff;
-             }
-         
-
-        </style>
-      </head>
-      <body>
-      <button class="close" data-dismiss='modal' >&times;</button>
-      <form action="">
-     <h2>Quejas y sugerencias</h2>
-     <h5>Llena el siguiente formulario</h5>
-     <input type="text" name="NombreCompleto" placeholder="Nombre completo">
-     <input type="text" name="NombreMarca" placeholder="Nombre de marca">
-     <input type="text" name="CorreoElectronico" placeholder="Correo electronico">
-     <input type="text" name="NumeroContacto" placeholder="Número de contacto"> 
-     <input type="text" name="Ubicacion" placeholder="Ubicación geográfica"> 
-     <textarea name="Mensaje" placeholder="Escriba aqui su mensaje"></textarea>
-     <h6>¿Puede adjuntar una captura de pantalla del error?</h6>
-     <input type="file">
-     <input type="button" value="ENVIAR" id="botonEnviar">
-    </form>
-    
-    </body>
-
+      </div>
     </div>
   </div>
-</div>
 
-<!--Ventana NOSOTROS -->
-<li data-toggle="modal" data-target=".bd-example-modal-lg-9"><i class="bx bx-chevron-right"></i> <a class="py-1 px-0 px-lg-1" href="#footer">Nosotros</a></li>
-<div class="modal fade bd-example-modal-lg-9" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                          <div class="modal-dialog modal-lg">
-                            <div class="modal-content" style="padding: 0 18px; border: solid 7px #1abc9c;">
-                            <button class="close" data-dismiss='modal' >&times;</button>
-                              <h1 style="color:black; text-align: center;" >Nosotros</h1>
-                              <p style="color: black;">En México existe una desigualdad en oportunidades de crecimiento en él ámbito profesional qué estanca y 
-                                restringe la visión de éxito. Somos una empresa enfocada en la prestación de servicios con la misión de potenciar el crecimiento
-                                 de profesionistas; facilitamos él espacio para ser un vehículo de transformación. </p>
+  <!--Ventana NOSOTROS -->
+  <li data-toggle="modal" data-target=".bd-example-modal-lg-9"><i class="bx bx-chevron-right"></i> <a class="py-1 px-0 px-lg-1" href="#footer">Nosotros</a></li>
+  <div class="modal fade bd-example-modal-lg-9" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                              <div class="modal-content" style="padding: 0 18px; border: solid 7px #1abc9c;">
+                              <button class="close" data-dismiss='modal' >&times;</button>
+                                <h1 style="color:black; text-align: center;" >Nosotros</h1>
+                                <p style="color: black;">En México existe una desigualdad en oportunidades de crecimiento en él ámbito profesional qué estanca y 
+                                  restringe la visión de éxito. Somos una empresa enfocada en la prestación de servicios con la misión de potenciar el crecimiento
+                                   de profesionistas; facilitamos él espacio para ser un vehículo de transformación. </p>
 
-                                 <p style="color: black; font-weight: bold;">Para nosotros es un placer contribuir al crecimiento de los profesionistas mexicanos ¡¡GRACIAS por creer en lo hecho en México, 
-                                 ¡¡GRACIAS por elegirnos y GRACIAS por darnos tú voto de confianza!!.</p>
+                                   <p style="color: black; font-weight: bold;">Para nosotros es un placer contribuir al crecimiento de los profesionistas mexicanos ¡¡GRACIAS por creer en lo hecho en México, 
+                                   ¡¡GRACIAS por elegirnos y GRACIAS por darnos tú voto de confianza!!.</p>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                       </div>
+                         </div>
 
-          <div class="col-lg-3 col-md-6 footer-links">
-            
-            <p>CLICCIONA, es la única plataforma dedicada a crear él ecosistema que potencia tú éxito profesional, convirtiéndose en la herramienta que en un clic te permite comparar y elegir desde profesionales freelancer, hasta grandes empresas de servicios, de forma SEGURA Y AMIGABLE.</p>
-            <div class="social-links mt-3">
-              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            <div class="col-lg-3 col-md-6 footer-links">
+              
+              <p>CLICCIONA, es la única plataforma dedicada a crear él ecosistema que potencia tú éxito profesional, convirtiéndose en la herramienta que en un clic te permite comparar y elegir desde profesionales freelancer, hasta grandes empresas de servicios, de forma SEGURA Y AMIGABLE.</p>
+              <div class="social-links mt-3">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+              </div>
             </div>
-          </div>
 
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="container footer-bottom clearfix">
-      
-      <div class="credits">
-   
-      &copy; Copyright <strong><span>Clicciona</span></strong>
+      <div class="container footer-bottom clearfix">
+        
+        <div class="credits">
+     
+        &copy; Copyright <strong><span>Clicciona</span></strong>
+        </div>
       </div>
-    </div>
-  </footer><!-- End Footer -->
+    </footer><!-- End Footer -->
 
-  <a href="#" class="back-to-top"><i class="ri-arrow-up-line"></i></a>
-  <div id="preloader"></div>
+    <a href="#" class="back-to-top"><i class="ri-arrow-up-line"></i></a>
+    <div id="preloader"></div>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/jquery/jquery.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/venobox/venobox.min.js"></script>
-  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/venobox/venobox.min.js"></script>
+    <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
-
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('#barra').load('components/barra.php');
+      });
+      $('#acceso').click(function() {
+         $('#acceso_modal').modal('show');
+      });
+      $('#forget_password').click(function() {
+        $('#acceso_modal').modal('hide');
+        $('#forget_password_modal').modal('show');
+      });
+      $('#registrarse1').click(function() {
+        $('#acceso_modal').modal('hide');
+        $('#registrarse_modal').modal('show');
+      });
+      $('#cancel_reset').click(function() {
+        $('#forget_password_modal').modal('hide');
+        $('#acceso_modal').modal('show');
+      });
+      $('#login').click(function(){
+      if($('#name').val()=="" || $('#name2').val()=="" || $('#name3').val()=="" || $('#apellido_p').val()=="" || $('#apellido_m').val()=="" || $('#email').val()=="" || $('#pass').val()==""|| $('#passc').val()=="" || $('#tipo_usuario').val()==""){
+        $('#liveToast').toast('show');
+      }else{
+        if ($('#password').val() != $('#confirm_password').val()) {
+          $('#contrasenas').toast('show');
+        }else{
+          var cadena = "primer_nombre="+$('#name').val()+
+          "&segundo_nombre="+$('#name2').val()+
+          "&tercer_nombre="+$('#name3').val()+
+          "&apellido_p="+$('#apellido_p').val()+
+          "&apellido_m="+$('#apellido_m').val()+
+          "&email="+$('#email').val()+
+          "&pass="+$('#password').val()+
+          "&tipo_usuario="+$('#tipo_usuario').val();
+          $.ajax({
+            url: 'insert_user.php',
+            type: 'POST',
+            data: cadena,
+          })
+          .done(function(r) {
+             if (r==1) {
+              $('#user_succes').toast('show');
+              $.ajax({
+                url: 'enviar.php',
+                type: 'POST',
+                data: "correo="+$('#email').val()+"&nombre="+$('#name').val(),
+              })
+              .done(function(r) {
+                if (r==1) {
+                  console.log("Todo correcto");
+                }else if (r==2) {
+                  console.log("Error al ingresar el numero");
+                }else if (r==0) {
+                  console.log("Error al enviar el correo");
+                }else{
+                  console.log("error");
+                }
+              })
+              .fail(function() {
+                console.log("error");
+              })
+              .always(function() {
+                console.log("complete");
+              });
+      
+             }else if (r==2) {
+              $('#user_register').toast('show');
+             }else{
+              $('#user_failed').toast('show');
+             }
+          })
+          .fail(function(r) {
+            console.log(r);
+          });
+        }
+      }
+    });
+    </script>
 </body>
 </html>
