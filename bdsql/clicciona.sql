@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-06-2022 a las 03:20:19
+-- Tiempo de generación: 14-06-2022 a las 22:32:00
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 7.4.29
 
@@ -24,6 +24,19 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `messages`
+--
+
+CREATE TABLE `messages` (
+  `id_message` int(11) NOT NULL,
+  `incoming_message` int(255) NOT NULL,
+  `outgoing_message` int(255) NOT NULL,
+  `message` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -39,23 +52,27 @@ CREATE TABLE `usuarios` (
   `tipo_usuario` int(1) NOT NULL,
   `plan_contratado` int(1) NOT NULL,
   `validacion_correo` int(1) NOT NULL,
-  `reset_password` int(6) NOT NULL
+  `reset_password` int(6) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `img` longblob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `primer_nombre`, `segundo_nombre`, `tercer_nombre`, `apellido_p`, `apellido_m`, `correo`, `password`, `tipo_usuario`, `plan_contratado`, `validacion_correo`, `reset_password`) VALUES
-(1, 'Karen', 'Yazmin', 'Andrade', 'Ramirez', 'Espinosa', 'hybrsh98sk@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 0, 0, 1, 1),
-(8, 'Karen', 'Jazmine', 'Felipa', 'Ramirez', 'Espinoza', 'karen_re@tesch.edu.mx', '81dc9bdb52d04dc20036dbd8313ed055', 1, 0, 1, 1),
-(9, 'Karen', 'Jazmine', '', 'Ramirez', 'Espinoza', 'enrique_rr@tesch.edu.mx', '81dc9bdb52d04dc20036dbd8313ed055', 1, 0, 1, 1),
-(10, 'Karen', 'Jazmine', 'Felipa', 'Ramirez', 'Espinoza', 'kike.ramos.resendiz@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 1, 0, 1, 1),
-(13, 'Enrique', 'Enrique Ramos', 'Enrique', 'Ramos', 'Resendiz', 'hybridsh98sk@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 0, 0, 1, 1);
+INSERT INTO `usuarios` (`id_usuario`, `primer_nombre`, `segundo_nombre`, `tercer_nombre`, `apellido_p`, `apellido_m`, `correo`, `password`, `tipo_usuario`, `plan_contratado`, `validacion_correo`, `reset_password`, `status`, `img`) VALUES
+(1, 'karen', 'Yazmin', 'Andrade', 'Ramirez', 'Espinosa', 'doherty15yaz@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 0, 0, 0, 0, 0, '');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`id_message`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -68,10 +85,16 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_usuario` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

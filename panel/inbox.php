@@ -132,7 +132,7 @@
                   <span class="from">Zac Snider</span>
                   <span class="time">Just now</span>
                   </span>
-                  <span class="message">
+                  <span class="message"> 
                   Hi mate, how is everything?
                   </span>
                   </a>
@@ -369,7 +369,7 @@
             <section class="panel">
               <div class="panel-body">
                 <a href="mail_compose.html" class="btn btn-compose">
-                  <i class="fa fa-pencil"></i>   Enviar correo
+                  <i class="fa fa-pencil"></i>  Compose Mail 
                   </a>
                 <ul class="nav nav-pills nav-stacked mail-nav">
                   <li class="active"><a href="inbox.html"> <i class="fa fa-inbox"></i> Inbox  <span class="label label-theme pull-right inbox-notification">3</span></a></li>
@@ -387,19 +387,31 @@
                   <li>
                     <h4>Friends Online</h4>
                   </li>
+              </header>
+                <div class="users-list">
                   <?php 
-                    require_once "../../login/Cl/DBclass.php";
-                    $sql = mysqli_query($conn, "SELECT * FROM usuarios ");
+                    require_once "../login/Cl/DBclass.php";
+                    $sql = mysqli_query($con, "SELECT * FROM usuarios");
                     if(mysqli_num_rows($sql) > 0){
                       $row = mysqli_fetch_assoc($sql);
+                      ?>
+                       <li>
+                          <a href="#">
+                            <?php echo $row['img']; ?> <?php echo $row['primer nombre']." ".$row['apellido_p']; ?>
+                            <p>
+                              <?php 
+                                if($row['status']){
+                                  echo "Activo";
+                                }else{
+                                  echo "Offline";
+                                }
+                              ?>
+                            </p>
+                            </a>
+                        </li>
+                      <?php
                     }
                  ?>
-                  <li>
-                    <a href="#">
-                        <img src="img/friends/fr-02.jpg" class="img-circle" width="20">Joshua
-                        <p>Offline</p>
-                      </a>
-                  </li>
                 </ul>
                 <a href="#"> + Add More</a>
                 <div class="inbox-body text-center inbox-action">

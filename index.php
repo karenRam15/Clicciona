@@ -132,18 +132,19 @@
       <div class="modal-body">
         <div class="container">
           <div class="row">
-            <div class="col-lg-12">
+            <form enctype="multipart/form-data" type="POST" name="formulario_register" id="formulario_register" class="form-group">
+              <div class="col-lg-12 mb-3">
+                <label for="formFile" class="form-label">Selecciona una Imagen con la que te veran los demas.</label>
+                <input class="form-control" type="file" id="imagen_register">
+              </div> 
               <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="name_register" name="name_register" placeholder="Nombre">
                 <label for="floatingInput">Primer nombre</label>
               </div> 
-            </div>
-            <div class="col-lg-12">
               <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="name2_register" name="name2_register" placeholder="Nombre">
                 <label for="floatingInput">Segundo Nombre (opcional) </label>
               </div> 
-            </div>
             <div class="col-lg-12">
               <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="name3_register" name="name3_register" placeholder="Nombre">
@@ -153,13 +154,13 @@
             <div class="col-lg-12">
               <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="apellido_p_register" name="apellido_p_register" placeholder="Apellido paterno">
-                <label for="floatingInput">Apellido paterno</label>
+                <label for="floatingInput">Apellido Paterno</label>
               </div> 
             </div>
             <div class="col-lg-12">
               <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="apellido_m_register" name="apellido_m_register" placeholder="Apellido materno">
-                <label for="floatingInput">Apellido materno</label>
+                <label for="floatingInput">Apellido Materno</label>
               </div> 
             </div>
             <div class="col-lg-12">
@@ -190,6 +191,7 @@
                 <label for="floatingSelect">Tipo de usuario</label>
               </div>
             </div>
+            </form>
             <hr>
           </div>
         </div>
@@ -200,7 +202,7 @@
             <div class="col-lg-3"></div>
             <div class="col-lg-6">
               <button type="button" class="btn" data-bs-dismiss="modal" style="background: #1abc9c;">Close</button>
-              <button type="button" class="btn" id="btn_register" name="btn_register" style="background: #09052b; color: white;">Registrarse</button>
+              <button type="submit" class="btn" id="btn_register" name="btn_register" style="background: #09052b; color: white;">Registrarse</button>
             </div>
             <div class="col-lg-3"></div>
           </div>
@@ -1565,7 +1567,8 @@
           $('#email_register').val()=="" || 
           $('#pass_register').val()==""|| 
           $('#passc_register').val()=="" || 
-          $('#tipo_usuario_register').val()==""){
+          $('#tipo_usuario_register').val()==""||
+          $('#imagen_register').val()==""){
           Toastify({text: "Ingresa todos los datos.", duration: 5000}).showToast();
         }else{
           if ($('#password_register').val() != $('#confirm_password_register').val()) {
@@ -1578,11 +1581,15 @@
             "&apellido_m="+$('#apellido_m_register').val()+
             "&email="+$('#email_register').val()+
             "&pass="+$('#password_register').val()+
+            "&imagen="+$('#imagen_register').val()+
             "&tipo_usuario="+$('#tipo_usuario_register').val();
+            var Form = new FormData($('#formulario_register')[0]);
             $.ajax({
               url: 'login/insert_user.php',
               type: 'POST',
-              data: cadena,
+              data: Form,
+              processData: false,
+              contentType: false,
             })
             .done(function(r) {
                if (r==1) {
