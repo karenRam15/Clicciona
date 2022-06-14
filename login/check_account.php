@@ -9,7 +9,7 @@ if ($query2) {
 	?>
 	<script type="text/javascript">
 		alert("Cuenta verificada.");
-		window.location="index.php";
+		window.location="../index.php";
 	</script>
 <?php 
 }else{

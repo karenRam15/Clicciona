@@ -9,7 +9,7 @@ if (isset($_GET['c'])&& $_GET['c']!=""&&isset($_GET['n'])&&$_GET['n']!="") {
 		?>
 		<script type="text/javascript">
 			alert("Este token ya fue utilizado para reestablecer tu contraseña.");
-			window.location = "index.php";
+			window.location = "../index.php";
 		</script>
 		<?php 
 	}

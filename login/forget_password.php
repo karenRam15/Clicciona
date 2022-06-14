@@ -46,29 +46,7 @@
     <script src="js/jquery.validate.min.js"></script>
     <script src="js/forgetpassword.js"></script>
     <script type="text/javascript">
-    	 $('#submit_btn').click(function(){
-    	 	$.ajax({
-    	 		url: 'correo_recuperacion_cuenta.php',
-    	 		type: 'POST',
-    	 		data: "correo="+$('#email').val(),
-    	 	})
-    	 	.done(function(r) {
-    	 		if (r==1) {
-    	 			console.log("Correo enviado");
-    	 		}else if (r==5) {
-    	 			alert("Correo no registrado");
-    	 		}else{
-    	 			console.log("Correo no enviado");
-    	 		}
-    	 	})
-    	 	.fail(function() {
-    	 		console.log("error");
-    	 	})
-    	 	.always(function() {
-    	 		console.log("complete");
-    	 	});
-    	 	
-    	 });
+    	
     </script>
   </body>
 </html>

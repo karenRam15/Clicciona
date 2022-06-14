@@ -13,7 +13,8 @@ require '../phpmiler/src/SMTP.php';
 $mail = new PHPMailer(true);
 $num_confirmacion = rand(100000,999999);
 $sql3 = "SELECT * FROM usuarios WHERE correo = '$correo'";
-if (mysqli_num_rows(mysqli_query($con, $sql3))>0) {
+$query= mysqli_query($con, $sql3);
+if (mysqli_num_rows($query)>0) {
 	$sql2 ="UPDATE usuarios SET reset_password='$num_confirmacion' WHERE correo='$correo'";
 	$query2 = mysqli_query($con, $sql2);
 	if ($query2) {
@@ -33,7 +34,7 @@ if (mysqli_num_rows(mysqli_query($con, $sql3))>0) {
 				if ($query) {
 				 try {
 				    //Server settings
-				    $mail->SMTPDebug = true;                      //Enable verbose debug output
+				    //$mail->SMTPDebug = true;                      //Enable verbose debug output
 				    $mail->isSMTP();                                            //Send using SMTP
 				    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
 				    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
