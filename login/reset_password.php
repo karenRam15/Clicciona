@@ -49,8 +49,8 @@ if (isset($_GET['c'])&& $_GET['c']!=""&&isset($_GET['n'])&&$_GET['n']!="") {
 				<img src="img/user.png" class="img-thumbnail" width="100px">
 				<form method="POST">
 					<div class="container-fluid">
-		          	<div class="row">
-									<div class="col-lg-12">
+		        <div class="row">
+							<div class="col-lg-12">
 			              <div class="form-floating mb-3">
 			                <input type="email" class="form-control" id="email" name="email" placeholder="Correo" value="<?php echo $_GET['c'];?>" readonly>
 			                  <label for="floatingInput">Correo</label>
@@ -114,7 +114,7 @@ if (isset($_GET['c'])&& $_GET['c']!=""&&isset($_GET['n'])&&$_GET['n']!="") {
 					.done(function(r) {
 						 if (r==1) {
 						 	Toastify({text: "La contraseña a sido actualizada exitosamente.", duration: 3000}).showToast();
-						 	Window.location="index.php";
+						 	window.location="../index.php";
 						 }else{
 						 	Toastify({text: "Las contraseña no fue cambiada.", duration: 3000,style: {
     							background: "linear-gradient(to right, #00b09b, #96c93d)",

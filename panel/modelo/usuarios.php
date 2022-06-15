@@ -1,9 +1,9 @@
 <?php
     session_start();
-    include_once "config.php";
-    $outgoing_id = $_SESSION['unique_id'];
-    $sql = "SELECT * FROM users WHERE NOT unique_id = {$outgoing_id} ORDER BY user_id DESC";
-    $query = mysqli_query($conn, $sql);
+    include_once "../../login/Cl/DBclass.php";
+    $outgoing_id = $_SESSION['user_id'];
+    $sql = "SELECT * FROM usuarios WHERE NOT id_usuario = {$outgoing_id} ORDER BY id_usuario DESC";
+    $query = mysqli_query($con, $sql);
     $output = "";
     if(mysqli_num_rows($query) == 0){
         $output .= "No hay usuarios disponibles para chatear.";

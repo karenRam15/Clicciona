@@ -1,7 +1,7 @@
 <?php 
   session_start();
-  include_once "../modelo/config.php";
-  if(!isset($_SESSION['unique_id'])){
+  include_once "../../login/Cl/DBclass.php";
+  if(!isset($_SESSION['user_id'])){
     header("location: login.php");
   }
 ?>
@@ -12,14 +12,14 @@
       <header>
         <div class="content">
           <?php 
-            $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
+            $sql = mysqli_query($con, "SELECT * FROM usuarios WHERE id_usuario = {$_SESSION['user_id']}");
             if(mysqli_num_rows($sql) > 0){
               $row = mysqli_fetch_assoc($sql);
             }
           ?>
-          <img src="../modelo/images/<?php echo $row['img']; ?>" alt="">
+          <img src="vistas/imagen.php?id=<?php echo $row['id_usuario']; ?>" width="20">
           <div class="details">
-            <span><?php echo $row['fname']. " " . $row['lname'] ?></span>
+            <span><?php echo $row['primer_nombre']. " " . $row['apellido_p'] ?></span>
             <p><?php echo $row['status']; ?></p>
           </div>
         </div>
@@ -36,7 +36,7 @@
     </section>
   </div>
 
-  <script src="../js/usuarios.js"></script>
+  <script src="js/usuarios.js"></script>
 
 </body>
 </html>

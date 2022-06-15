@@ -1,7 +1,7 @@
 <?php 
   session_start();
-  include_once "../modelo/config.php";
-  if(!isset($_SESSION['unique_id'])){
+  include_once "../../login/Cl/DBclass.php";
+  if(!isset($_SESSION['user_id'])){
     header("location: login.php");
   }
 ?>
@@ -11,8 +11,8 @@
     <section class="chat-area">
       <header>
         <?php 
-          $user_id = mysqli_real_escape_string($conn, $_GET['user_id']);
-          $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$user_id}");
+          $user_id = $_SESSION['user_id'];
+          $sql = mysqli_query($con, "SELECT * FROM usuarios WHERE id_usuario = '$user_id'");
           if(mysqli_num_rows($sql) > 0){
             $row = mysqli_fetch_assoc($sql);
           }else{
@@ -20,9 +20,9 @@
           }
         ?>
         <a href="usuarios.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
-        <img src="../modelo/images/<?php echo $row['img']; ?>" alt="">
+        <img src="vistas/imagen.php?id=<?php echo $row['id_usuario']; ?>" alt="">
         <div class="details">
-          <span><?php echo $row['fname']. " " . $row['lname'] ?></span>
+          <span><?php echo $row['primer_nombre']. " " . $row['apellido_p'] ?></span>
           <p><?php echo $row['status']; ?></p>
         </div>
       </header>
@@ -37,7 +37,7 @@
     </section>
   </div>
 
-  <script src="../js/chat.js"></script>
+  <script src="js/chat.js"></script>
 
 </body>
 </html>

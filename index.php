@@ -65,7 +65,7 @@
             <div class="row">
               <div class="col-md-4"></div>
               <div class="col-md-4">
-                <button class="btn" type="submit" id="login" style=" background-color: #1abc9c;
+                <button class="btn" type="submit" id="login" name="login" style=" background-color: #1abc9c;
                       color: #09052b;
                       padding-bottom: 10px;
                       padding-top: 10px;
@@ -123,94 +123,49 @@
 
   <!-- Modal para registrarse-->
   <div class="modal fade" id="registrarse_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title text-center" id="staticBackdropLabel" style="color: black;">  Registro de cuenta Cliccliona</h3>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="container">
-          <div class="row">
-            <form enctype="multipart/form-data" type="POST" name="formulario_register" id="formulario_register" class="form-group">
-              <div class="col-lg-12 mb-3">
-                <label for="formFile" class="form-label">Selecciona una Imagen con la que te veran los demas.</label>
-                <input class="form-control" type="file" id="imagen_register">
-              </div> 
-              <div class="form-floating mb-3">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title text-center" id="staticBackdropLabel" style="color: black;">  Registro de cuenta Cliccliona</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+              <form name="formulario_register" id="formulario_register" class="form-group" style="background-color: #E2E2E2;">
+                <input type="file" class="form-control" id="imagen_register" name="imagen_register">
                 <input type="text" class="form-control" id="name_register" name="name_register" placeholder="Nombre">
-                <label for="floatingInput">Primer nombre</label>
-              </div> 
-              <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="name2_register" name="name2_register" placeholder="Nombre">
-                <label for="floatingInput">Segundo Nombre (opcional) </label>
-              </div> 
-            <div class="col-lg-12">
-              <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="name3_register" name="name3_register" placeholder="Nombre">
-                <label for="floatingInput">Tercer Nombre (opcional)</label>
-              </div> 
-            </div>
-            <div class="col-lg-12">
-              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="name2_register" name="name2_register" placeholder="Segundo Nombre">
+                <input type="text" class="form-control" id="name3_register" name="name3_register" placeholder=" Tercer Nombre">
                 <input type="text" class="form-control" id="apellido_p_register" name="apellido_p_register" placeholder="Apellido paterno">
-                <label for="floatingInput">Apellido Paterno</label>
-              </div> 
-            </div>
-            <div class="col-lg-12">
-              <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="apellido_m_register" name="apellido_m_register" placeholder="Apellido materno">
-                <label for="floatingInput">Apellido Materno</label>
-              </div> 
-            </div>
-            <div class="col-lg-12">
-              <div class="form-floating mb-3">
                 <input type="email" id="email_register" name="email_register" class="form-control" placeholder="Correo">
-                <label for="floatingInput">Correo</label>
-              </div> 
-            </div>
-            <div class="col-lg-12">
-              <div class="form-floating mb-3">
                 <input type="password" id="password_register" name="password_register" class="form-control" placeholder="Contraseña" maxlength="8">
-                <label for="floatingInput">Contraseña</label>
-              </div> 
-            </div>
-            <div class="col-lg-12">
-              <div class="form-floating mb-3">
                 <input type="password" class="form-control" id="confirm_password_register" name="confirm_password_register" placeholder="Confirmar contraseña" maxlength="8">
-                <label for="floatingInput">Confirmar contraseña</label>
-              </div> 
-            </div>
-            <div class="col-lg-12">
-              <div class="form-floating mb-3">
                 <select class="form-select" id="tipo_usuario_register" name="tipo_usuario_register" aria-label="Floating label select example">
                   <option value="">Elige el tipo de usuario</option>
                   <option value="0">Egresados</option> 
                   <option value="1">Contratante</option>
                 </select>
-                <label for="floatingSelect">Tipo de usuario</label>
-              </div>
+                <br>
+              </form>
+              <hr>
             </div>
-            </form>
-            <hr>
-          </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-3"></div>
-            <div class="col-lg-6">
-              <button type="button" class="btn" data-bs-dismiss="modal" style="background: #1abc9c;">Close</button>
-              <button type="submit" class="btn" id="btn_register" name="btn_register" style="background: #09052b; color: white;">Registrarse</button>
+        <div class="modal-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-3"></div>
+              <div class="col-lg-6">
+                <button type="button" class="btn" data-bs-dismiss="modal" style="background: #1abc9c;">Close</button>
+                <button class="btn" id="btn_register" name="btn_register" style="background: #09052b; color: white;">Registrarse</button>
+              </div>
+              <div class="col-lg-3"></div>
             </div>
-            <div class="col-lg-3"></div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
@@ -1524,6 +1479,9 @@
             if(r==1){
               $('#barra').load('components/barra.php');
               $('#acceso_modal').modal('hide');
+              $('#email').val("");
+              $('#password').val("");
+              Toastify({text: "Iniciaste sesión.", duration: 3000}).showToast();
             }else{
               Toastify({text: "Correo y/o contraseña incorrectos.", duration: 3000}).showToast();
             }
@@ -1574,15 +1532,6 @@
           if ($('#password_register').val() != $('#confirm_password_register').val()) {
             Toastify({text: "Las contraseñas no coinciden", duration: 5000}).showToast();
           }else{
-            var cadena = "primer_nombre="+$('#name_register').val()+
-            "&segundo_nombre="+$('#name2_register').val()+
-            "&tercer_nombre="+$('#name3_register').val()+
-            "&apellido_p="+$('#apellido_p_register').val()+
-            "&apellido_m="+$('#apellido_m_register').val()+
-            "&email="+$('#email_register').val()+
-            "&pass="+$('#password_register').val()+
-            "&imagen="+$('#imagen_register').val()+
-            "&tipo_usuario="+$('#tipo_usuario_register').val();
             var Form = new FormData($('#formulario_register')[0]);
             $.ajax({
               url: 'login/insert_user.php',
@@ -1609,6 +1558,7 @@
                     $('#pass_register').val(""); 
                     $('#passc_register').val(""); 
                     $('#tipo_usuario_register').val("");
+                    cerrar_moda('#formulario_register');
                   }else if (r==2) {
                     console.log("Error al ingresar el numero");
                   }else if (r==0) {

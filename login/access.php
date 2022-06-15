@@ -7,9 +7,10 @@ $sql = "SELECT * FROM usuarios WHERE correo = '$correo' AND password = '$passwor
 $query = mysqli_query($con, $sql);
 if (mysqli_num_rows($query)>0) {
 	while ($fila = mysqli_fetch_array($query)) {
-		$_SESSION['user_name'] = $fila['primer_nombre'];
+		$_SESSION['user_name'] = $fila['primer_nombre']." ".$fila['apellido_p'];
 		$_SESSION['user_sesion'] = true;
 		$_SESSION['user_id'] = $fila['id_usuario'];
+		$_SESSION['user_tipo'] = $fila['tipo_usuario'];
 	}
 	echo "1";
 }else{

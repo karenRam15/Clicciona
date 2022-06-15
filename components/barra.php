@@ -24,7 +24,7 @@
         ?>
         <li class="drop-down"><a href="#" class="nav-link active"><?php echo $_SESSION['user_name']; ?></a>
             <ul>
-              <li><a href="#" class="nav-link active">Panel de control</a></li>
+              <li><a href="panel/index.php" class="nav-link active">Panel de control</a></li>
               <li><a href="#" class="nav-link active" id="cerrar_s" name="cerrar_s">Cerrar Sesion</a></li>
             </ul>
           </li>
