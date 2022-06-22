@@ -131,21 +131,14 @@
         </div>
         <div class="modal-body">
           <div class="container">
-              <form name="formulario_register" id="formulario_register" class="form-group" style="background-color: #E2E2E2;">
-                <input type="file" class="form-control" id="imagen_register" name="imagen_register">
-                <input type="text" class="form-control" id="name_register" name="name_register" placeholder="Nombre">
-                <input type="text" class="form-control" id="name2_register" name="name2_register" placeholder="Segundo Nombre">
-                <input type="text" class="form-control" id="name3_register" name="name3_register" placeholder=" Tercer Nombre">
-                <input type="text" class="form-control" id="apellido_p_register" name="apellido_p_register" placeholder="Apellido paterno">
-                <input type="text" class="form-control" id="apellido_m_register" name="apellido_m_register" placeholder="Apellido materno">
-                <input type="email" id="email_register" name="email_register" class="form-control" placeholder="Correo">
-                <input type="password" id="password_register" name="password_register" class="form-control" placeholder="Contraseña" maxlength="8">
-                <input type="password" class="form-control" id="confirm_password_register" name="confirm_password_register" placeholder="Confirmar contraseña" maxlength="8">
+              <form name="formulario_register" id="formulario_register" style="background-color: #E2E2E2;">
                 <select class="form-select" id="tipo_usuario_register" name="tipo_usuario_register" aria-label="Floating label select example">
                   <option value="">Elige el tipo de usuario</option>
-                  <option value="0">Egresados</option> 
-                  <option value="1">Contratante</option>
+                  <option value="0">Profesionista</option> 
+                  <option value="1">Empresa</option>
                 </select>
+                <br>
+                <div id="campos"></div>
                 <br>
               </form>
               <hr>
@@ -1584,6 +1577,27 @@
               console.log(r);
             });
           }
+        }
+      });
+      $('#tipo_usuario_register').change(function(){
+        if ($('#tipo_usuario_register').val()==""){
+          $('#campos').empty();
+        }else{
+          $.ajax({
+            url: 'php/sesiones.php',
+            type: 'POST',
+            data: "funcion=1&parametro="+$('#tipo_usuario_register').val(),
+          })
+          .done(function(r) {
+            if (r==1) {
+              $('#campos').load('components/elementos.php');
+            }else{
+              console.log("Error");
+            }
+          })
+          .fail(function() {
+            console.log("error");
+          });
         }
       });
     </script>
