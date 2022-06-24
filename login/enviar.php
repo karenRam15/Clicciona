@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "Cl/DBclass.php";
 $correo = $_POST['correo'];
 $nombre = $_POST['nombre'];
@@ -12,9 +13,16 @@ require '../phpmiler/src/SMTP.php';
 $mail = new PHPMailer(true);
 
 $num_confirmacion = rand(100000,999999);
-$sql ="UPDATE usuarios SET validacion_correo='$num_confirmacion' WHERE correo='$correo'";
+if (isset($_SESSION['user_type_document'])) {
+    if ($_SESSION['user_type_document']=="1") {
+        $sql ="UPDATE empresas SET validacion_correo_e='$num_confirmacion' WHERE correo_e='$correo'";
+    }else if ($_SESSION['user_type_document']=="0"){
+        $sql ="UPDATE profesionistas SET validacion_correo_p='$num_confirmacion' WHERE correo_p='$correo'";
+    }
+}
+$tipo = $_SESSION['user_type_document'];
 $query = mysqli_query($con, $sql);
-$ruta1 = "http://localhost/Clicciona/login/check_account.php?c=$correo&num=$num_confirmacion";
+$ruta1 = "http://localhost/Clicciona/login/check_account.php?c=$correo&num=$num_confirmacion&tipo=$tipo";
 if ($query) {
  try {
     //Server settings

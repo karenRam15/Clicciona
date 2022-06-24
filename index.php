@@ -130,15 +130,15 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="container">
-              <form name="formulario_register" id="formulario_register" style="background-color: #E2E2E2;">
+          <div class="container" style="background-color: #E2E2E2;">
+            <br>
                 <select class="form-select" id="tipo_usuario_register" name="tipo_usuario_register" aria-label="Floating label select example">
                   <option value="">Elige el tipo de usuario</option>
                   <option value="0">Profesionista</option> 
                   <option value="1">Empresa</option>
                 </select>
                 <br>
-                <div id="campos"></div>
+                <div id="campos" class="row"></div>
                 <br>
               </form>
               <hr>
@@ -150,7 +150,6 @@
               <div class="col-lg-3"></div>
               <div class="col-lg-6">
                 <button type="button" class="btn" data-bs-dismiss="modal" style="background: #1abc9c;">Close</button>
-                <button class="btn" id="btn_register" name="btn_register" style="background: #09052b; color: white;">Registrarse</button>
               </div>
               <div class="col-lg-3"></div>
             </div>
@@ -1510,74 +1509,6 @@
         .always(function() {
           console.log("complete");
         });
-      });
-      $('#btn_register').click(function(){
-        if($('#name_register').val()=="" ||  
-          $('#apellido_p_register').val()=="" || 
-          $('#apellido_m_register').val()=="" || 
-          $('#email_register').val()=="" || 
-          $('#pass_register').val()==""|| 
-          $('#passc_register').val()=="" || 
-          $('#tipo_usuario_register').val()==""||
-          $('#imagen_register').val()==""){
-          Toastify({text: "Ingresa todos los datos.", duration: 5000}).showToast();
-        }else{
-          if ($('#password_register').val() != $('#confirm_password_register').val()) {
-            Toastify({text: "Las contraseñas no coinciden", duration: 5000}).showToast();
-          }else{
-            var Form = new FormData($('#formulario_register')[0]);
-            $.ajax({
-              url: 'login/insert_user.php',
-              type: 'POST',
-              data: Form,
-              processData: false,
-              contentType: false,
-            })
-            .done(function(r) {
-               if (r==1) {
-                $('#user_succes').toast('show');
-                $.ajax({
-                  url: 'login/enviar.php',
-                  type: 'POST',
-                  data: "correo="+$('#email_register').val()+"&nombre="+$('#name_register').val(),
-                })
-                .done(function(r) {
-                  if (r==1) {
-                    Toastify({text:"Se envio un token a tu correo para confirmar tu correo.", duration: 5000}).showToast();
-                    $('#name_register').val("");  
-                    $('#apellido_p_register').val(""); 
-                    $('#apellido_m_register').val(""); 
-                    $('#email_register').val(""); 
-                    $('#pass_register').val(""); 
-                    $('#passc_register').val(""); 
-                    $('#tipo_usuario_register').val("");
-                    cerrar_moda('#formulario_register');
-                  }else if (r==2) {
-                    console.log("Error al ingresar el numero");
-                  }else if (r==0) {
-                    console.log("Error al enviar el correo");
-                  }else{
-                    console.log("error");
-                  }
-                })
-                .fail(function() {
-                  console.log("error");
-                })
-                .always(function() {
-                  console.log("complete");
-                });
-        
-               }else if (r==2) {
-                Toastify({text: "El correo ya esta registrado.", duration: 5000}).showToast();
-               }else{
-                Toastify({text: "Error al registrar.", duration: 5000}).showToast();
-               }
-            })
-            .fail(function(r) {
-              console.log(r);
-            });
-          }
-        }
       });
       $('#tipo_usuario_register').change(function(){
         if ($('#tipo_usuario_register').val()==""){
