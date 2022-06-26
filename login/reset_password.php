@@ -1,9 +1,14 @@
 <?php 
 require_once "Cl/DBclass.php";
-if (isset($_GET['c'])&& $_GET['c']!=""&&isset($_GET['n'])&&$_GET['n']!="") {
+if (isset($_GET['c'])&& $_GET['c']!=""&&isset($_GET['n'])&&$_GET['n']!=""&&isset($_GET['tipo'])) {
 	$correo = $_GET['c'];
 	$num_confirmacion = $_GET['n'];
-	$sql = "SELECT * FROM usuarios WHERE correo = '$correo' AND reset_password='$num_confirmacion'";
+	$tipo = $_GET['tipo'];
+	if ($tipo=="1") {
+		$sql = "SELECT * FROM empresas WHERE correo_e = '$correo' AND reset_pass_e='$num_confirmacion'";
+	}else if ($tipo=="0") {
+		$sql = "SELECT * FROM profesionistas WHERE correo_p = '$correo' AND reset_pass_p='$num_confirmacion'";
+	}
 	$query = mysqli_query($con, $sql);
 	if (mysqli_num_rows($query)==0) {
 		?>
@@ -51,6 +56,7 @@ if (isset($_GET['c'])&& $_GET['c']!=""&&isset($_GET['n'])&&$_GET['n']!="") {
 					<div class="container-fluid">
 		        <div class="row">
 							<div class="col-lg-12">
+									<input type="hidden" name="tipo" id="tipo" value="<?php echo $_GET['tipo'] ?>">
 			              <div class="form-floating mb-3">
 			                <input type="email" class="form-control" id="email" name="email" placeholder="Correo" value="<?php echo $_GET['c'];?>" readonly>
 			                  <label for="floatingInput">Correo</label>
@@ -83,11 +89,11 @@ if (isset($_GET['c'])&& $_GET['c']!=""&&isset($_GET['n'])&&$_GET['n']!="") {
 	       	</div>
 			<div class="form-footer">
 				<div class="row">
-					<div class="col-xs-6 col-sm-6 col-md-6">
+					<div class="col-lg-6">
 						<i class="fa fa-lock"></i>
 						<a href="register.php">Registrarse </a>
 					</div>
-					<div class="col-xs-6 col-sm-6 col-md-6">
+					<div class="col-lg-6">
 						<i class="fa fa-check"></i>
 						<a href="index.php">Iniciar sesión</a>
 					</div>
@@ -105,7 +111,8 @@ if (isset($_GET['c'])&& $_GET['c']!=""&&isset($_GET['n'])&&$_GET['n']!="") {
 					Toastify({text: "Las contraseñas no coinciden.", duration: 3000}).showToast();
 				}else{
 					var cadena = "email="+$('#email').val()+
-					"&pass="+$('#password').val();
+					"&pass="+$('#password').val()+
+					"&tipo="+ $('#tipo').val();
 					$.ajax({
 						url: 'update_password.php',
 						type: 'POST',

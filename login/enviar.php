@@ -13,6 +13,7 @@ require '../phpmiler/src/SMTP.php';
 $mail = new PHPMailer(true);
 
 $num_confirmacion = rand(100000,999999);
+$sql="";
 if (isset($_SESSION['user_type_document'])) {
     if ($_SESSION['user_type_document']=="1") {
         $sql ="UPDATE empresas SET validacion_correo_e='$num_confirmacion' WHERE correo_e='$correo'";
@@ -46,7 +47,7 @@ if ($query) {
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'Confirmacion de cuenta';
     $mail->Body    = "Hola $nombre.<br>
-    Gracias por crear una cuenta con Clicciona, verifica tu cuenta dando click en el siguiente enlace:<a href='$ruta1'>$num_confirmacion</a>";
+    Gracias por crear una cuenta con Clicciona, verifica tu cuenta dando click en el siguiente enlace:<a href='$ruta1'>Click</a>";
     $mail->send();
     echo '1';
 } catch (Exception $e) {

@@ -1400,64 +1400,6 @@
         $('#forget_password_modal').modal('hide');
         $('#acceso_modal').modal('show');
       });
-      $('#submit_btn').click(function(){
-        if($('#name').val()=="" || $('#name2').val()=="" || $('#name3').val()=="" || $('#apellido_p').val()=="" || $('#apellido_m').val()=="" || $('#email').val()=="" || $('#pass').val()==""|| $('#passc').val()=="" || $('#tipo_usuario').val()==""){
-          $('#liveToast').toast('show');
-        }else{
-          if ($('#password').val() != $('#confirm_password').val()) {
-            $('#contrasenas').toast('show');
-          }else{
-            var cadena = "primer_nombre="+$('#name').val()+
-            "&segundo_nombre="+$('#name2').val()+
-            "&tercer_nombre="+$('#name3').val()+
-            "&apellido_p="+$('#apellido_p').val()+
-            "&apellido_m="+$('#apellido_m').val()+
-            "&email="+$('#email').val()+
-            "&pass="+$('#password').val()+
-            "&tipo_usuario="+$('#tipo_usuario').val();
-            $.ajax({
-              url: 'insert_user.php',
-              type: 'POST',
-              data: cadena,
-            })
-            .done(function(r) {
-               if (r==1) {
-                $('#user_succes').toast('show');
-                $.ajax({
-                  url: 'enviar.php',
-                  type: 'POST',
-                  data: "correo="+$('#email').val()+"&nombre="+$('#name').val(),
-                })
-                .done(function(r) {
-                  if (r==1) {
-                    console.log("Todo correcto");
-                  }else if (r==2) {
-                    console.log("Error al ingresar el numero");
-                  }else if (r==0) {
-                    console.log("Error al enviar el correo");
-                  }else{
-                    console.log("error");
-                  }
-                })
-                .fail(function() {
-                  console.log("error");
-                })
-                .always(function() {
-                  console.log("complete");
-                });
-        
-               }else if (r==2) {
-                $('#user_register').toast('show');
-               }else{
-                $('#user_failed').toast('show');
-               }
-            })
-            .fail(function(r) {
-              console.log(r);
-            });
-          }
-        }
-      });
       $('#login').click(function() {
         if ($('#email').val()=="" || $('#password')=="") {
           Toastify({text: "Ingresa tus credenciales correctamente.", duration: 3000}).showToast();
@@ -1480,9 +1422,6 @@
           })
           .fail(function() {
             console.log("error");
-          })
-          .always(function() {
-            console.log("complete");
           });
           
         }

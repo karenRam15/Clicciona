@@ -13,9 +13,9 @@ if (isset($_SESSION['user_type_document'])) {
 			<input type="text" class="form-control placeholder-no-fix col-lg-12" placeholder="Tercer nombre del titutar(Opcional)" id="tercer_nombre_encargado" name="tercer_nombre_encargado">
 			<input type="text" class="form-control placeholder-no-fix col-lg-12" placeholder="Apellido Paterno del titutar" id="apellido_p_encargado" name="apellido_p_encargado">
 			<input type="text" class="form-control placeholder-no-fix col-lg-12" placeholder="Apellido Materno del titutar" id="apellido_m_encargado" name="apellido_m_encargado">
-			<input type="text" class="form-control placeholder-no-fix col-lg-12" placeholder="Correo de contacto" id="correo_empresa" name="correo_empresa">
+			<input type="text" class="form-control placeholder-no-fix col-lg-12" placeholder="Correo empresarial" id="correo_empresa" name="correo_empresa">
 			<input type="text" class="form-control placeholder-no-fix col-lg-12" placeholder="Contraseña" id="password_empresa" name="password_empresa">
-			<input type="text" class="form-control placeholder-no-fix col-lg-12" placeholder="Confirmar contraseña" id="confirm_password_empresa" name="confirm_password">
+			<input type="text" class="form-control placeholder-no-fix col-lg-12" placeholder="Confirmar contraseña" id="confirm_password_empresa" name="confirm_password_empresa">
 		<?php 
 	}else if ($_SESSION['user_type_document']=="0") {
 		?>
@@ -80,17 +80,18 @@ if (isset($_SESSION['user_type_document'])) {
 	   	$('#btn_register').click(function(){
 	        if($('#nombre_empresa').val()=="" ||  
 		        $('#primer_nombre_encargado').val()=="" || 
+		        $('#segundo_nombre_encargado').val()=="" ||
+		        $('#tercer_nombre_encargado').val()=="" ||
 		        $('#apellido_p_encargado').val()=="" || 
 		        $('#apellido_m_encargado').val()=="" || 
 		        $('#correo_empresa').val()=="" || 
-		        $('#password_empresa').val()==""|| 
+		        $('#password_empresa').val()=="" ||
 		        $('#confirm_password_empresa').val()==""){
 		        Toastify({text: "Ingresa todos los datos.", duration: 5000}).showToast();
 		    }else{
 		        if ($('#password_empresa').val() == $('#confirm_password_empresa').val()) {
 		        	var Form = new FormData($('#formulario_register')[0]);
 			        console.log(Form);
-			            /*
 			            $.ajax({
 			              url: 'login/insert_user.php',
 			              type: 'POST',
@@ -100,23 +101,24 @@ if (isset($_SESSION['user_type_document'])) {
 			            })
 			            .done(function(r) {
 			               if (r==1) {
-			                $('#user_succes').toast('show');
 			                $.ajax({
 			                  url: 'login/enviar.php',
 			                  type: 'POST',
-			                  data: "correo="+$('#email_register').val()+"&nombre="+$('#name_register').val(),
+			                  data: "correo="+$('#correo_empresa').val()+"&nombre="+$('#primer_nombre_encargado').val(),
 			                })
 			                .done(function(r) {
 			                  if (r==1) {
 			                    Toastify({text:"Se envio un token a tu correo para confirmar tu correo.", duration: 5000}).showToast();
-			                    $('#name_register').val("");  
-			                    $('#apellido_p_register').val(""); 
-			                    $('#apellido_m_register').val(""); 
-			                    $('#email_register').val(""); 
-			                    $('#pass_register').val(""); 
-			                    $('#passc_register').val(""); 
-			                    $('#tipo_usuario_register').val("");
-			                    cerrar_moda('#formulario_register');
+			                    $('#nombre_empresa').val("");
+			                    $('#primer_nombre_encargado').val("");
+			                    $('#segundo_nombre_encargado').val(""); 
+			                    $('#tercer_nombre_encargado').val(""); 
+			                    $('#apellido_p_encargado').val(""); 
+			                    $('#apellido_m_encargado').val(""); 
+			                    $('#correo_empresa').val(""); 
+			                    $('#password_empresa').val(""); 
+			                    $('#confirm_password_empresa').val(""); 
+			                    cerrar_modal('#registrarse_modal');
 			                  }else if (r==2) {
 			                    console.log("Error al ingresar el numero");
 			                  }else if (r==0) {
@@ -141,7 +143,6 @@ if (isset($_SESSION['user_type_document'])) {
 			            .fail(function(r) {
 			              console.log(r);
 			            });
-			            */
 		   		}else{
 		            Toastify({text: "Las contraseñas no coinciden", duration: 5000}).showToast();
 			    }
@@ -196,7 +197,7 @@ if (isset($_SESSION['user_type_document'])) {
 				                    $('#password_empresa').val(""); 
 				                    $('#passc_register').val(""); 
 				                    $('#confirm_password_empresa').val("");
-				                    cerrar_modal('#formulario_register');
+				                    cerrar_modal('#registrarse_modal');
 				                  }else if (r==2) {
 				                    console.log("Error al ingresar el numero");
 				                  }else if (r==0) {
