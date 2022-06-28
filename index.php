@@ -122,26 +122,33 @@
   </div>
 
   <!-- Modal para registrarse-->
-  <div class="modal fade" id="registrarse_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
+  <div class="modal fade" id="registrarse_modal" name="registrarse_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
-          <h3 class="modal-title text-center" id="staticBackdropLabel" style="color: black;">  Registro de cuenta Cliccliona</h3>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h3 class="modal-title text-center" id="staticBackdropLabel" style="color: black;">  Registro de cuenta Clicciona</h3>
         </div>
         <div class="modal-body">
-          <div class="container" style="background-color: #E2E2E2;">
-            <br>
-                <select class="form-select" id="tipo_usuario_register" name="tipo_usuario_register" aria-label="Floating label select example">
-                  <option value="">Elige el tipo de usuario</option>
-                  <option value="0">Profesionista</option> 
-                  <option value="1">Empresa</option>
-                </select>
+          <div class="container-fluid" style="background-color: #E2E2E2;">
+            <div class="row">
+              <div class="col-mb-12">
                 <br>
-                <div id="campos" class="row"></div>
+                <div class="form-floating">
+                  <select class="form-select" id="tipo_usuario_register" name="tipo_usuario_register" aria-label="Floating label select example">
+                    <option value="">Opciones...</option>
+                    <option value="0">Profesionista</option> 
+                    <option value="1">Empresa</option>
+                  </select>
+                  <label for="floatingSelect">Metodo de registro</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-mb-12">
+                <div id="campos"></div>
+              </div>
+            </div>
                 <br>
-              </form>
-              <hr>
             </div>
         </div>
         <div class="modal-footer">
@@ -1365,7 +1372,7 @@
       </div>
     </footer><!-- End Footer -->
 
-    <a href="#" class="back-to-top"><i class="ri-arrow-up-line"></i></a>
+    
     <div id="preloader"></div>
 
     <!-- Vendor JS Files -->
@@ -1402,7 +1409,7 @@
       });
       $('#login').click(function() {
         if ($('#email').val()=="" || $('#password')=="") {
-          Toastify({text: "Ingresa tus credenciales correctamente.", duration: 3000}).showToast();
+          Toastify({text: "Ingresa tus credenciales correctamente.", duration: 3000, gravity: "bottom", position: "right"}).showToast();
         }else{
           $.ajax({
             url: 'login/access.php',
@@ -1415,9 +1422,9 @@
               $('#acceso_modal').modal('hide');
               $('#email').val("");
               $('#password').val("");
-              Toastify({text: "Iniciaste sesión.", duration: 3000}).showToast();
+              Toastify({text: "Iniciaste sesión.", duration: 3000, gravity: "bottom", position: "right"}).showToast();
             }else{
-              Toastify({text: "Correo y/o contraseña incorrectos.", duration: 3000}).showToast();
+              Toastify({text: "Correo y/o contraseña incorrectos.", duration: 3000, gravity: "bottom", position: "right"}).showToast();
             }
           })
           .fail(function() {
@@ -1434,7 +1441,7 @@
         })
         .done(function(r) {
           if (r==1) {
-            Toastify({text: "El correo se envio exitosamente.", duration: 5000}).showToast();
+            Toastify({text: "El correo se envio exitosamente.", duration: 3000, gravity: "bottom", position: "right"}).showToast();
             $('#email_reset_password').val("");
           }else if (r==5) {
             Toastify({text: "Correo no registrado.", duration: 3000}).showToast();

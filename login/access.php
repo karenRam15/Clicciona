@@ -18,8 +18,8 @@ if (mysqli_num_rows($query)>0) {
 	$sql2 = "SELECT * FROM empresas WHERE correo_e = '$correo' AND password_e = '$password' AND validacion_correo_e='1'";
 	$query2 = mysqli_query($con, $sql2);
 	if (mysqli_num_rows($query2)>0) {
-		while ($fila = mysqli_fetch_array($query)) {
-			$_SESSION['user_name'] = $fila['primer_nombre_encargado']." ".$fila['apellido_p_encargado'];
+		while ($fila = mysqli_fetch_array($query2)) {
+			$_SESSION['user_name'] = $fila['primer_nom_e']." ".$fila['apellidoP_e'];
 			$_SESSION['user_sesion'] = true;
 			$_SESSION['user_correo'] = $fila['correo_e'];
 			$_SESSION['user_tipo'] = 1;

@@ -1,8 +1,13 @@
 <?php
 session_start();
 require_once "Cl/DBclass.php";
-$sql = "SELECT * FROM empresas WHERE correo_e='$correo_empresa'";
-$sql = "SELECT * FROM profesionistas WHERE correo_p='$correo_empresa'";
+if (isset($_POST['correo_empresa'])) {
+    $correo = $_POST['correo_empresa'];
+}else if (isset($_POST['email_profesionista'])) {
+    $correo = $_POST['email_profesionista'];
+}
+$sql = "SELECT * FROM empresas WHERE correo_e='$correo'";
+$sql = "SELECT * FROM profesionistas WHERE correo_p='$correo'";
 $query = mysqli_query($con, $sql);
 $query3 = mysqli_query($con, $sql);
 if(mysqli_num_rows($query)>0){
@@ -29,12 +34,12 @@ if(mysqli_num_rows($query)>0){
                 }
                 $apellido_p_encargado = $_POST['apellido_p_encargado'];
                 $apellido_m_encargado = $_POST['apellido_m_encargado'];
-                $correo_empresa = $_POST['correo_empresa'];
+                $correo = $_POST['correo_empresa'];
                 $pass_empresa =  md5($_POST['password_empresa'], false);
-                $sql2 = "INSERT INTO empresas VALUES ('$correo_empresa', '$primer_nombre_encargado', '$segundo_nombre_encargado', '$tercer_nombre_encargado', '$apellido_p_encargado', '$apellido_m_encargado', '$pass_empresa', '0', NULL, NULL, NULL, NULL, NULL,NULL, '0', '0', '$imagen_empresa')";
+                $sql2 = "INSERT INTO empresas VALUES ('$correo', '$primer_nombre_encargado', '$segundo_nombre_encargado', '$tercer_nombre_encargado', '$apellido_p_encargado', '$apellido_m_encargado', '$pass_empresa', '0', NULL, NULL, NULL, NULL, NULL,NULL, '0', '0', '$imagen_empresa')";
                 $query2 = mysqli_query($con, $sql2);
                 if($query2){
-                    $sql3 = "INSERT INTO documentos_e VALUES ('$correo_empresa', NULL, false, NULL, false, NULL, false, NULL, false, NULL,false,NULL,false)";
+                    $sql3 = "INSERT INTO documentos_e VALUES ('$correo', NULL, false, NULL, false, NULL, false, NULL, false, NULL,false,NULL,false)";
                     $query3=mysqli_query($con, $sql3);
                     if ($query3) {
                         echo "1";   
@@ -44,7 +49,6 @@ if(mysqli_num_rows($query)>0){
                 }else{
                     echo "0";
                 }
-            }
             }else if ($_SESSION['user_type_document']=="0") {
                 $imagen = $_FILES['imagen_profesionista']['tmp_name'];
                 $imagen_profesionista = addslashes(file_get_contents($imagen));
@@ -81,5 +85,5 @@ if(mysqli_num_rows($query)>0){
                 }
             }
         }
-    }
+    }   
 }

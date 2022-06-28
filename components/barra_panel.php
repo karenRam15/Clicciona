@@ -11,7 +11,7 @@
       </div>
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
-          <li><a class="logout" href="login.html">Logout</a></li>
+          <li><a class="logout" href="#" id="salir" name="salir">Logout</a></li>
         </ul>
       </div>
     </header>
@@ -22,7 +22,7 @@
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-          <p class="centered"><a href="profile.html"><img src="vistas/imagen.php?id=<?php echo $_SESSION['user_id']; ?>" class="img-circle" width="80"></a></p>
+          <p class="centered"><a href="profile.html"><img src="vistas/imagen.php?id=<?php echo $_SESSION['user_correo']; ?>" class="img-circle" width="80"></a></p>
           <h5 class="centered"><?php echo $_SESSION['user_name'] ?></h5>
           <li class="sub-menu">
             <a href="blank.php">
@@ -54,3 +54,25 @@
       </div>
     </aside>
     <!--sidebar end-->
+    <script type="text/javascript">
+       $('#salir').click(function(){
+        $.ajax({
+          url: '../login/logout.php',
+          type: 'POST'
+        })
+        .done(function(r) {
+          if (r==1) {
+            window.location = "../index.php";
+          }else{
+            console.log("Error");
+          }
+        })
+        .fail(function() {
+          console.log("error");
+        })
+        .always(function() {
+          console.log("complete");
+        });
+        
+       });
+    </script>
