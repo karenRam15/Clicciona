@@ -2,7 +2,7 @@
 session_start();
 require_once "../login/Cl/DBclass.php";
 ?>
-<form name="formulario_register" class="form-inline" id="formulario_register" style="background-color: #E2E2E2;">
+<form name="formulario_register" class="form-group" id="formulario_register" style="background-color: #E2E2E2;">
 	<div class="mb-2">
 		<?php 
 		if (isset($_SESSION['user_type_document'])) {
@@ -11,7 +11,7 @@ require_once "../login/Cl/DBclass.php";
 						<input accept="image/png,image/jpeg" type="file" class="form-control" id="imagen_empresa" name="imagen_empresa">
 						<div class="form-floating">
 							<input type="text" class="form-control" id="nombre_empresa" name="nombre_empresa" placeholder="Nombre de la empresa">
-							<label for="floatingInput">Nombre de la Empresa</label>
+							<label for="nombre_empresa">Nombre de la Empresa</label>
 						</div>
 						<div class="form-floating">
 							<input type="text" class="form-control" id="primer_nombre_encargado" name="primer_nombre_encargado" placeholder="Nombre(s)">
@@ -74,19 +74,19 @@ require_once "../login/Cl/DBclass.php";
 						</div>
 						<div class="form-floating">
 							<input type="text" class="form-control" id="primer_nombre_profesionista" name="primer_nombre_profesionista" placeholder="Nombre(s)">
-							<label for="floatingInput">Nombre(s)</label>
+							<label for="primer_nombre_profesionista">Nombre(s)</label>
 						</div>
 						<div class="form-floating">
 							<input type="text" class="form-control" id="apellido_p_profesionista" name="apellido_p_profesionista" placeholder="Apellido Paterno">
-							<label for="floatingInput">Apellido Paterno </label>
+							<label for="apellido_p_profesionista">Apellido Paterno </label>
 						</div>
 						<div class="form-floating">
 							<input type="text" class="form-control" id="apellido_m_profesionista" name="apellido_m_profesionista" placeholder="Apellido Materno">
-							<label for="floatingInput">Apellido Materno</label>
+							<label for="apellido_m_profesionista">Apellido Materno</label>
 						</div>
 						<div class="form-floating">
 							<input type="email" class="form-control" id="email_profesionista" name="email_profesionista" placeholder="Correo Electronico">
-							<label for="floatingInput">Correo Electronico</label>
+							<label for="email_profesionista">Correo Electronico</label>
 						</div>
 					   	<div class="form-floating">
 						    <select name="estado_profesionista" class="form-control" id="estado_profesionista">
@@ -127,9 +127,18 @@ require_once "../login/Cl/DBclass.php";
 					      	<label for="floatingSelect">Estado de Procedencia</label>
 					      	<br>
 						</div>
-						<input type="text" class="form-control" id="localidad_profesionista" name="localidad_profesionista" placeholder="Localidad">
-					    <input type="password" id="password_profesionista" name="password_profesionista" class="form-control" placeholder="Contraseña" maxlength="8">
-					    <input type="text" class="form-control" id="confirm_password_profesionista" name="confirm_password_profesionista" placeholder="Confirmar contraseña" maxlength="8">
+						<div class="form-floating mb-3">
+							<input type="text" class="form-control" id="localidad_profesionista" name="localidad_profesionista" placeholder="Localidad">
+							<label for="localidad_profesionista">Localidad</label>
+						</div>
+						<div class="form-floating">
+							<input type="password" class="form-control" id="password_profesionista" name="password_profesionista" placeholder="Contraseña" maxlength="8" minlength="6">
+							<label for="password_profesionista">Contraseña</label>
+						</div>
+						<div class="form-floating">
+							<input type="email" class="form-control" id="confirm_password_profesionista" name="confirm_password_profesionista" placeholder="Confirmación de contraseña">
+							<label for="confirm_password_profesionista">Confirmación de contraseña</label>
+						</div>
 					<?php 
 				}
 		}
