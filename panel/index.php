@@ -332,7 +332,7 @@ if (mysqli_num_rows($query)>0) {
                   <div class="col-md-6 profile-text">
                     <h3><?php echo $_SESSION['user_name'];?></h3>
                     <h6>Main Administrator</h6>
-                    <p><?php echo $fila['Servicio']; ?></p>
+                    <p><?php echo $fila['servicio_giro_e']; ?></p>
                     <br>
                   </div>
                   <div class="col-md-6 centered">
@@ -541,88 +541,248 @@ if (mysqli_num_rows($query)>0) {
                     <!-- /tab-pane -->
                     <div id="edit" class="tab-pane">
                       <div class="row">
-                        <div class="col-lg-8 col-lg-offset-2 detailed">
-                          <h4 class="mb">Personal Information</h4>
-                          <form role="form" class="form-horizontal">
-                            <div class="form-group">
-                              <label class="col-lg-2 control-label"> Avatar</label>
-                              <div class="col-lg-6">
-                                <input type="file" id="exampleInputFile" class="file-pos">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label class="col-lg-2 control-label">Company</label>
-                              <div class="col-lg-6">
-                                <input type="text" placeholder=" " id="c-name" class="form-control">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label class="col-lg-2 control-label">Lives In</label>
-                              <div class="col-lg-6">
-                                <input type="text" placeholder=" " id="lives-in" class="form-control">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label class="col-lg-2 control-label">Country</label>
-                              <div class="col-lg-6">
-                                <input type="text" placeholder=" " id="country" class="form-control">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label class="col-lg-2 control-label">Description</label>
-                              <div class="col-lg-10">
-                                <textarea rows="10" cols="30" class="form-control" id="" name=""></textarea>
-                              </div>
-                            </div>
-                          </form>
-                        </div>
-                        <div class="col-lg-8 col-lg-offset-2 detailed mt">
-                          <h4 class="mb">Contact Information</h4>
-                          <form role="form" class="form-horizontal">
-                            <div class="form-group">
-                              <label class="col-lg-2 control-label">Address 1</label>
-                              <div class="col-lg-6">
-                                <input type="text" placeholder=" " id="addr1" class="form-control">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label class="col-lg-2 control-label">Address 2</label>
-                              <div class="col-lg-6">
-                                <input type="text" placeholder=" " id="addr2" class="form-control">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label class="col-lg-2 control-label">Phone</label>
-                              <div class="col-lg-6">
-                                <input type="text" placeholder=" " id="phone" class="form-control">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label class="col-lg-2 control-label">Cell</label>
-                              <div class="col-lg-6">
-                                <input type="text" placeholder=" " id="cell" class="form-control">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label class="col-lg-2 control-label">Email</label>
-                              <div class="col-lg-6">
-                                <input type="text" placeholder=" " id="email" class="form-control">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label class="col-lg-2 control-label">Skype</label>
-                              <div class="col-lg-6">
-                                <input type="text" placeholder=" " id="skype" class="form-control">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <div class="col-lg-offset-2 col-lg-10">
-                                <button class="btn btn-theme" type="submit">Save</button>
-                                <button class="btn btn-theme04" type="button">Cancel</button>
-                              </div>
-                            </div>
-                          </form>
-                        </div>
+                        <?php 
+                                  if ($fila['plan_contratado_e']=="1") {
+                                    ?>
+                                    <div class="col-lg-6 detailed">
+                                        <h4 class="mb">Información Personal</h4>
+                                                <form role="form" class="form-horizontal">
+                                            <div class="container-fluid">
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" class="form-control" id="floatingInput" placeholder="Nombre(s)" value="<?php echo $fila['nombres_e']; ?>">
+                                                    <label for="floatingInput">Nombre(s)</label>
+                                                </div>
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" class="form-control" id="apellido_p" placeholder="Apellido Paterno" value="<?php echo $fila['apellidoP_e']; ?>">
+                                                    <label for="apellido_e">Apellido Paterno</label>
+                                                </div>
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" class="form-control" id="apellido_m" placeholder="Apellido Materno" value="<?php echo $fila['apellidoM_e']; ?>">
+                                                    <label for="apellido_m">Apellido Materno</label>
+                                                </div>
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" class="form-control" id="num_contact" placeholder="Numero de Contacto" value="<?php if($fila['numero_contacto_e']==NULL){
+                                                        }else{
+                                                     echo $fila['numero_contacto_p']; }?>">
+                                                    <label for="num_contact">Numero de Contacto</label>
+                                                </div>
+                                                <div class="form-floating">
+                                                    <textarea class="form-control" placeholder="Servicio" id="servicio_empresa"><?php echo $fila['servicio_giro_e']; ?></textarea>
+                                                    <label for="servicio_empresa">Servicio</label>
+                                                </div>
+                                                <button class="btn col-md-4 col-md-offset-4" style="background: #09052b; color: white;" id="guardar_datos" name="guardar_datos">Guardar Datos</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-lg-6 detailed">
+                                        <div class="row">
+                                            <h4 class="mb">Contrata una membresia</h4>
+                                            <div class="col-sm-6">
+                                              <div class="card" style="width: 18rem;">
+                                                  <div class="card-body">
+                                                    <h4 class="card-title">Básico $999 por 30 días</h4>
+                                                    <p>Beneficios:</p>
+                                                      <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item">Link de Redes</li>
+                                                        <li class="list-group-item">Beneficios de tu servicio</li>
+                                                        <li class="list-group-item">Foto de portada</li>
+                                                        <li class="list-group-item">Y mas...</li>
+                                                      </ul>
+                                                    <button class="btn" style="background: #09052b; color: white;">Comprar</button>
+                                                  </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                              <div class="card" style="width: 18rem;">
+                                                  <div class="card-body">
+                                                    <h4 class="card-title">Premium - $1999.90 por 30 dias</h4>
+                                                    <p>Beneficios:</p>
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item">Tarjetas digitales</li>
+                                                        <li class="list-group-item">Acceso a reserva de citas</li>
+                                                        <li class="list-group-item">Agregar 3 imagenes</li>
+                                                        <li class="list-group-item">Y mas...</li>
+                                                    </ul>
+                                                    <button class="btn" style="background: #09052b; color: white;">Comprar</button>
+                                                  </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php
+                                  }else if ($fila['plan_contratado_e']=="2") {
+                                    ?>
+                                    <div class="col-lg-6 detailed">
+                                        <h4 class="mb">Información Personal</h4>
+                                                <form role="form" class="form-horizontal">
+                                            <div class="container-fluid">
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" class="form-control" id="floatingInput" placeholder="Nombre(s)" value="<?php echo $fila['nombres_e']; ?>">
+                                                    <label for="floatingInput">Nombre(s)</label>
+                                                </div>
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" class="form-control" id="apellido_p" placeholder="Apellido Paterno" value="<?php echo $fila['apellidoP_e']; ?>">
+                                                    <label for="apellido_e">Apellido Paterno</label>
+                                                </div>
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" class="form-control" id="apellido_m" placeholder="Apellido Materno" value="<?php echo $fila['apellidoM_e']; ?>">
+                                                    <label for="apellido_m">Apellido Materno</label>
+                                                </div>
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" class="form-control" id="num_contact" placeholder="Numero de Contacto" value="<?php if($fila['numero_contacto_e']==NULL){
+                                                        }else{
+                                                     echo $fila['numero_contacto_e']; }?>">
+                                                    <label for="num_contact">Numero de Contacto</label>
+                                                </div>
+                                                <div class="form-floating">
+                                                    <textarea class="form-control" placeholder="Servicio" id="servicio_empresa"><?php echo $fila['servicio_giro_e']; ?></textarea>
+                                                    <label for="servicio_empresa">Servicio</label>
+                                                </div>
+                                                <button class="btn col-md-4 col-md-offset-4" style="background: #09052b; color: white;" id="guardar_datos" name="guardar_datos">Guardar Datos</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-lg-6 detailed">
+                                        <div class="row">
+                                            <h4 class="mb">Contrata una membresia</h4>
+                                            <div class="col-sm-8 col-sm-offset-4">
+                                              <div class="card" style="width: 18rem;">
+                                                  <div class="card-body">
+                                                    <h4 class="card-title">Premium - $1999.90 por 30 dias</h4>
+                                                    <p>Beneficios:</p>
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item">Tarjetas digitales</li>
+                                                        <li class="list-group-item">Acceso a reserva de citas</li>
+                                                        <li class="list-group-item">Agregar 3 imagenes</li>
+                                                        <li class="list-group-item">Y mas...</li>
+                                                    </ul>
+                                                    <button class="btn" style="background: #09052b; color: white;">Comprar</button>
+                                                  </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php
+                                  }else if ($fila['plan_contratado_e']=="0") {
+                                    ?>
+                                    <div class="col-lg-6 detailed">
+                                        <h4 class="mb">Información Personal</h4>
+                                                <form role="form" class="form-horizontal">
+                                            <div class="container-fluid">
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" class="form-control" id="floatingInput" placeholder="Nombre(s)" value="<?php echo $fila['nombres_e']; ?>">
+                                                    <label for="floatingInput">Nombre(s)</label>
+                                                </div>
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" class="form-control" id="apellido_p" placeholder="Apellido Paterno" value="<?php echo $fila['apellidoP_e']; ?>">
+                                                    <label for="apellido_p">Apellido Paterno</label>
+                                                </div>
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" class="form-control" id="apellido_m" placeholder="Apellido Materno" value="<?php echo $fila['apellidoM_e']; ?>">
+                                                    <label for="apellido_m">Apellido Materno</label>
+                                                </div>
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" class="form-control" id="num_contact" placeholder="Numero de Contacto" value="<?php if($fila['numero_contacto_e']==NULL){
+                                                        }else{
+                                                     echo $fila['numero_contacto_e']; }?>">
+                                                    <label for="num_contact">Numero de Contacto</label>
+                                                </div>
+                                                <div class="form-floating">
+                                                    <textarea class="form-control" placeholder="Servicio" id="servicio_empresa"><?php echo $fila['servicio_giro_e']; ?></textarea>
+                                                    <label for="servicio_empresa">Servicio</label>
+                                                </div>
+                                                <button class="btn col-md-4 col-md-offset-4" style="background: #09052b; color: white;" id="guardar_datos" name="guardar_datos">Guardar Datos</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-lg-6 detailed">
+                                        <div class="row">
+                                            <h4 class="mb">Contrata una membresia</h4>
+                                            <div class="col-sm-6">
+                                                <div class="card" style="width: 18rem;">
+                                                    <div class="card-body">
+                                                        <h4 class="card-title">Litte $500.00 por 30 dias</h4>
+                                                        <p>Beneficios:</p>
+                                                        <ul class="list-group list-group-flush">
+                                                            <li class="list-group-item">Link de Redes</li>
+                                                            <li class="list-group-item">Costo de Honorarios</li>
+                                                            <li class="list-group-item">Experiencia</li>
+                                                            <li class="list-group-item">Y mas...</li>
+                                                        </ul>
+                                                        <button class="btn" style="background: #09052b; color: white;">Comprar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                              <div class="card" style="width: 18rem;">
+                                                  <div class="card-body">
+                                                    <h4 class="card-title">Básico $999 por 30 días</h4>
+                                                    <p>Beneficios:</p>
+                                                      <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item">Link de Redes</li>
+                                                        <li class="list-group-item">Beneficios de tu servicio</li>
+                                                        <li class="list-group-item">Foto de portada</li>
+                                                        <li class="list-group-item">Y mas...</li>
+                                                      </ul>
+                                                    <button class="btn" style="background: #09052b; color: white;">Comprar</button>
+                                                  </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <br>
+                                                <br>
+                                              <div class="card" style="width: 18rem;">
+                                                  <div class="card-body">
+                                                    <h4 class="card-title">Premium - $1999.90 por 30 dias</h4>
+                                                    <p>Beneficios:</p>
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item">Tarjetas digitales</li>
+                                                        <li class="list-group-item">Acceso a reserva de citas</li>
+                                                        <li class="list-group-item">Agregar 3 imagenes</li>
+                                                        <li class="list-group-item">Y mas...</li>
+                                                    </ul>
+                                                    <button class="btn" style="background: #09052b; color: white;">Comprar</button>
+                                                  </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php
+                                  }else{
+                                    ?>
+                                    <div class="col-lg-8 col-md-offset-2 detailed">
+                                        <h4 class="mb">Información Personal</h4>
+                                                <form role="form" class="form-horizontal">
+                                            <div class="container-fluid">
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" class="form-control" id="floatingInput" placeholder="Nombre(s)" value="<?php echo $fila['nombres_e']; ?>">
+                                                    <label for="floatingInput">Nombre(s)</label>
+                                                </div>
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" class="form-control" id="apellido_p" placeholder="Apellido Paterno" value="<?php echo $fila['apellidoP_e']; ?>">
+                                                    <label for="apellido_p">Apellido Paterno</label>
+                                                </div>
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" class="form-control" id="apellido_m" placeholder="Apellido Materno" value="<?php echo $fila['apellidoM_e']; ?>">
+                                                    <label for="apellido_m">Apellido Materno</label>
+                                                </div>
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" class="form-control" id="num_contact" placeholder="Numero de Contacto" value="<?php if($fila['numero_contacto_e']==NULL){
+                                                        }else{
+                                                     echo $fila['numero_contacto_e']; }?>">
+                                                    <label for="num_contact">Numero de Contacto</label>
+                                                </div>
+                                                <div class="form-floating">
+                                                    <textarea class="form-control" placeholder="Servicio" id="servici_empresa"><?php echo $fila['servicio_giro_e']; ?></textarea>
+                                                    <label for="servicio_empresa">Servicio</label>
+                                                </div>
+                                                <button class="btn col-md-4 col-md-offset-4" style="background: #09052b; color: white;" id="guardar_datos" name="guardar_datos">Guardar Datos</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <?php 
+                                  }
+                                ?> 
                         <!-- /col-lg-8 -->
                       </div>
                       <!-- /row -->
@@ -642,31 +802,6 @@ if (mysqli_num_rows($query)>0) {
         <!-- /wrapper -->
       </section>
       <!-- /MAIN CONTENT -->
-      <!--main content end-->
-        <!-- Modal -->
-        <div class="modal fade" id="modal_documentos" name="modal_documentos" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Subir documentos faltantes</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <p>Con respecto a tu plan contratado deberas subir los siguientes documentos para poder continuar.</p>
-                <form id="documentos_faltantes" name="documentos_faltantes">
-                    <div class="input-group input-group-lg">
-                      <span class="input-group-text" id="inputGroup-sizing-lg">Large</span>
-                      <input type="file" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
-                    </div>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Understood</button>
-              </div>
-            </div>
-          </div>
-        </div>
     </section>
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="lib/jquery/jquery.min.js"></script>
@@ -1025,7 +1160,7 @@ if (mysqli_num_rows($query)>0) {
                                                 </div>
                                                 <div class="form-floating mb-3">
                                                     <input type="text" class="form-control" id="apellido_p" placeholder="Apellido Paterno" value="<?php echo $fila['apellidoP_p']; ?>">
-                                                    <label for="apellido_p">Apellido Paterno</label>
+                                                    <label for="apellido_e">Apellido Paterno</label>
                                                 </div>
                                                 <div class="form-floating mb-3">
                                                     <input type="text" class="form-control" id="apellido_m" placeholder="Apellido Materno" value="<?php echo $fila['apellidoM_p']; ?>">
