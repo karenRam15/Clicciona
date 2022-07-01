@@ -145,7 +145,7 @@ require_once "../login/Cl/DBclass.php";
 		?>
 	</div>
 </form>
-<button class="btn " id="btn_register" name="btn_register" style="background: #09052b; color: white;">Registrarse</button>
+<button class="btn" id="btn_register" name="btn_register" style="background: #09052b; color: white;">Registrarse</button>
     <?php 
     if ($_SESSION['user_type_document']=="1") {
     ?>
@@ -186,9 +186,7 @@ require_once "../login/Cl/DBclass.php";
 				                  if (r==1) {
 				                    Toastify({text:"Se envio un token a tu correo para confirmar tu correo.", duration: 5000}).showToast();
 				                    $('#nombre_empresa').val("");
-				                    $('#primer_nombre_encargado').val("");
-				                    $('#segundo_nombre_encargado').val(""); 
-				                    $('#tercer_nombre_encargado').val(""); 
+				                    $('#primer_nombre_encargado').val(""); 
 				                    $('#apellido_p_encargado').val(""); 
 				                    $('#apellido_m_encargado').val(""); 
 				                    $('#correo_empresa').val(""); 
@@ -270,8 +268,6 @@ require_once "../login/Cl/DBclass.php";
 					                    Toastify({text:"Se envio un token a tu correo para confirmar tu correo.", duration: 5000}).showToast();
 					                    $('#carrera_profesionista').val("");
 										$('#primer_nombre_profesionista').val("");
-										$('#segundo_nombre_profesionista').val("");
-										$('#tercer_nombre_profesionista').val("");
 								        $('#apellido_p_profesionista').val(""); 
 								        $('#apellido_m_profesionista').val("");
 								        $('#email_profesionista').val("");

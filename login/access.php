@@ -8,10 +8,11 @@ $sql = "SELECT * FROM profesionistas WHERE correo_p='$correo' AND password_p='$p
 $query = mysqli_query($con, $sql);
 if (mysqli_num_rows($query)>0) {
 		while ($fila = mysqli_fetch_array($query)) {
-			$_SESSION['user_name'] = $fila['primer_nom_p']." ".$fila['apellidoP_p'];
+			$_SESSION['user_name'] = $fila['nombres_p']." ".$fila['apellidoP_p']." ".$fila['apellidoM_p'];
 			$_SESSION['user_sesion'] = true;
 			$_SESSION['user_correo'] = $fila['correo_p'];
 			$_SESSION['user_tipo'] = 0;
+			$_SESSION['user_plan'] = $fila['plan_contratado_p'];
 		}
 		echo "1";
 }else{
@@ -19,10 +20,11 @@ if (mysqli_num_rows($query)>0) {
 	$query2 = mysqli_query($con, $sql2);
 	if (mysqli_num_rows($query2)>0) {
 		while ($fila = mysqli_fetch_array($query2)) {
-			$_SESSION['user_name'] = $fila['primer_nom_e']." ".$fila['apellidoP_e'];
+			$_SESSION['user_name'] = $fila['nombres_e']." ".$fila['apellidoP_e']." ". $fila['apellidoM_e'];
 			$_SESSION['user_sesion'] = true;
 			$_SESSION['user_correo'] = $fila['correo_e'];
 			$_SESSION['user_tipo'] = 1;
+			$_SESSION['user_plan'] = $fila['plan_contratado_e'];
 		}
 		echo "1";
 	}else{

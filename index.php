@@ -137,7 +137,7 @@
                   <select class="form-select" id="tipo_usuario_register" name="tipo_usuario_register" aria-label="Floating label select example">
                     <option value="">Opciones...</option>
                     <option value="0">Profesionista</option> 
-                    <option value="1">Empresa</option>
+                    <option value="1">Empresa/Contratante</option>
                   </select>
                   <label for="floatingSelect">Metodo de registro</label>
                 </div>
