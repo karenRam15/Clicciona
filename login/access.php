@@ -23,7 +23,11 @@ if (mysqli_num_rows($query)>0) {
 			$_SESSION['user_name'] = $fila['nombres_e']." ".$fila['apellidoP_e']." ". $fila['apellidoM_e'];
 			$_SESSION['user_sesion'] = true;
 			$_SESSION['user_correo'] = $fila['correo_e'];
-			$_SESSION['user_tipo'] = 1;
+			if ($fila['correo_e']=="admin") {
+				$_SESSION['user_tipo'] = 3;	
+			}else{
+				$_SESSION['user_tipo'] = 1;
+			}
 			$_SESSION['user_plan'] = $fila['plan_contratado_e'];
 		}
 		echo "1";
