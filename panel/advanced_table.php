@@ -1,5 +1,8 @@
 <?php 
-session_start();
+session_start(); 
+unset($_SESSION['plan']);
+unset($_SESSION['tipo']);
+unset($_SESSION['profesion']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,7 +60,7 @@ session_start();
         <div id="sidebar" class="nav-collapse ">
           <!-- sidebar menu start-->
           <ul class="sidebar-menu" id="nav-accordion">
-            <p class="centered"><a href="#"><img src="img/ui-sam.jpg" class="img-circle" width="80"></a></p>
+            <p class="centered"><img src="vistas/imagen.php?id=<?php echo $_SESSION['user_correo'];?>" class="img-circle" width="80"></p>
             <h5 class="centered"> <?php echo $_SESSION['user_name'];?></h5>
             <li class="mt">
               <a href="#">
@@ -71,7 +74,7 @@ session_start();
                 <span>Perfil</span>
                 </a>
               <ul class="sub">
-                <li><a href="#">Vista General</a></li>
+                <li><a href="index.php">Vista General</a></li>
               </ul>
             </li>
             <li class="sub-menu">
@@ -206,24 +209,7 @@ session_start();
     $(document).ready(function() {
       $('#tabla').load('../components/tabla_administrador.php');
     });
-    $('#validar').click(function() {
-      $.ajax({
-        url: '',
-        type: 'default GET (Other values: POST)',
-        dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
-        data: {param1: 'value1'},
-      })
-      .done(function() {
-        console.log("success");
-      })
-      .fail(function() {
-        console.log("error");
-      })
-      .always(function() {
-        console.log("complete");
-      });
-      
-    });
+   
   </script>
 </body>
 

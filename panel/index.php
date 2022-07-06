@@ -1442,7 +1442,7 @@ if (mysqli_num_rows($query)>0) {
   }
 }else if ($_SESSION['user_tipo']=="3") {
   ?>
-    <!DOCTYPE html>
+  <!DOCTYPE html>
   <html lang="en">
 
   <head>
@@ -1488,7 +1488,7 @@ if (mysqli_num_rows($query)>0) {
         <div id="sidebar" class="nav-collapse ">
           <!-- sidebar menu start-->
           <ul class="sidebar-menu" id="nav-accordion">
-            <p class="centered"><a href="#"><img src="img/ui-sam.jpg" class="img-circle" width="80"></a></p>
+            <p class="centered"><img src="vistas/imagen.php?id=<?php echo $_SESSION['user_correo'];?>" class="img-circle" width="80"></p>
             <h5 class="centered"> <?php echo $_SESSION['user_name'];?></h5>
             <li class="mt">
               <a href="#">
@@ -1537,7 +1537,7 @@ if (mysqli_num_rows($query)>0) {
                   </div>
                   <div class="col-md-6 centered">
                     <div class="profile-pic">
-                      <p><img src="img/ui-sam.jpg" class="img-circle"></p>
+                      <p><img src="vistas/imagen.php?id=<?php echo $_SESSION['user_correo'];?>" class="img-circle" width="80"></p>
                       <p>
                         <button class="btn btn-theme"><i class="fa fa-check"></i> Follow</button>
                         <button class="btn btn-theme02">Add</button>
