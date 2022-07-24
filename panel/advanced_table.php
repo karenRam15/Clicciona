@@ -34,9 +34,6 @@ unset($_SESSION['profesion']);
 
 <body>
   <section id="container">
-    <!-- **********************************************************************************************************************************************************
-        TOP BAR CONTENT & NOTIFICATIONS
-        *********************************************************************************************************************************************************** -->
     <!--header start-->
     <header class="header black-bg">
       <div class="sidebar-toggle-box">
@@ -84,7 +81,7 @@ unset($_SESSION['profesion']);
                 </a>
               <ul class="sub">
                 <li  class="active"><a href="advanced_table.php">Perfiles por revisar</a></li>
-                <li><a href="advanced_table.php">Perfiles revisados</a></li>
+                <li><a href="basic_table.php">Perfiles revisados</a></li>
               </ul>
             </li>
           </ul>
@@ -100,7 +97,7 @@ unset($_SESSION['profesion']);
     <section id="main-content">
       <section class="wrapper">
         <div class="row mb">
-          <h2 class="col-lg-8 col-md-offset-4">Documentos pendientes de revision</h2>
+          <h2 class="col-lg-12 text-center">Información pendiente de revisión</h2>
           <!-- page start-->
           <div class="container-fluid">
             <div class="col-lg-12">
@@ -190,6 +187,98 @@ unset($_SESSION['profesion']);
     </div>
   </div>
 </div>
+<div class="modal" id="modal_plan_litte"  data-keyboard="false" tabindex="0" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Revision de informacion</h5>
+      </div>
+      <div class="modal-body">
+        <h4 class="text-center"><b>Verifica la informacion(incluyendo la imagen) que ves a continuación, una ves terminado, verificala.</b></h4>
+            <div class="row"> 
+              <img src="vistas/imagen.php?id=<?php echo $_SESSION['user_correo'];?>" width="80" class="img-circle img-fluid" id="img_revision_pg" name="img_revision_pg" style="
+                      width: 20%;
+                      display: block;
+                      margin-left: auto;
+                      margin-right: auto">
+                <br>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-4 col-form-label">Correo Electronico:</label>
+                  <div class="col-sm-8">
+                    <input type="email" class="form-control" id="correo_pl" readonly>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-4 col-form-label">Nombre (s):</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="nombres_pl" readonly>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-4 col-form-label">Apellido Paterno :</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="apellido_p_pl" readonly>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-4 col-form-label">Apellido Materno :</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="apellido_m_pl" readonly>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-4 col-form-label">Numero contacto:</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="numero_contacto_pl" readonly>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-4 col-form-label">Servicio:</label>
+                  <div class="col-sm-8">
+                    <textarea id="servicio_pl" class="form-control" readonly></textarea>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-4 col-form-label">Localidad:</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="localidad_pl" readonly>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-4 col-form-label">Forma de trabajo:</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="forma_trabajo_pl" readonly>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-4 col-form-label">Experiencia:</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="experiencia_pl" readonly>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-4 col-form-label">Costo de honorarios:</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="costo_honorarios_pl" readonly>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+      <div class="modal-footer">
+        <div class="col-sm-8 col-sm-offset-1">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button class="btn btn-warning">Enviar correo</button>
+          <button type="button" class="btn btn-primary" id="validar">Validar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
   <!-- js placed at the end of the document so the pages load faster -->
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

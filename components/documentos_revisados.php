@@ -58,8 +58,6 @@ require_once "../login/Cl/DBclass.php"; ?>
             <th>Apellido Materno</th>
             <th>Tipo de usuario</th>
             <th>Plan Contratado</th>
-            <th>Estado de información</th>
-            <th>Verificar</th>
         </tr>
     </thead>
     <tbody id="datos" name="datos">
@@ -68,13 +66,13 @@ require_once "../login/Cl/DBclass.php"; ?>
 <script type="text/javascript">
     $(document).ready(function(){
         $('#tabla_documentos').DataTable();
-        $('#datos').load('../components/datos.php');
+        $('#datos').load('../components/datos_revisados.php');
         $('#div_carrera_profesionista').prop('hidden', true);
     });
     function revision_documentos(correo, tipo, plan_contratado){
         if (plan_contratado=="0") {
             $.ajax({
-                url: '../php/verificacion_datos.php',
+                url: '../php/verificacion_datos_revisados.php',
                 type: 'POST',
                 data: "correo="+correo+"&tipo="+tipo+"&plan="+plan_contratado,
             })
@@ -92,30 +90,9 @@ require_once "../login/Cl/DBclass.php"; ?>
             });
             abrir_modal('#modal_plan_gratuito');
         }else if (plan_contratado=="1") {
-             $.ajax({
-                url: '../php/verificacion_datos.php',
-                type: 'POST',
-                data: "correo="+correo+"&tipo="+tipo+"&plan="+plan_contratado,
-            })
-            .done(function(r) {
-                let datos = JSON.parse(r);
-                datos.forEach(datos => {
-                    $('#correo_pl').val(correo);
-                    $('#nombres_pl').val(datos.nombres);
-                    $('#apellido_p_pl').val(datos.apellido_p);
-                    $('#apellido_m_pl').val(datos.apellido_m);
-                    $('#numero_contacto_pl').val(datos.numero_contacto)
-                    $('#localidad_pl').val(datos.localidad); 
-                    $('#servicio_pl').val(datos.servicio);
-                    $('#forma_trabajo_pl').val(datos.forma_trabajo);
-                    $('#experiencia_pl').val(datos.experiencia);
-                    $('#costo_honorarios_pl').val(datos.costo_honorarios);
-                });
-            });
             abrir_modal('#modal_plan_litte');
         }else if (plan_contratado==2) {
             abrir_modal('#modal_plan_basico');
-            
         }else if (plan_contratado==3) {
             abrir_modal('#modal_plan_premium');
         }
@@ -128,7 +105,7 @@ require_once "../login/Cl/DBclass.php"; ?>
         })
         .done(function(r) {
             if (r=="1") {
-                $('#datos').load('../components/datos.php');
+                $('#datos').load('../components/datos_revisados.php');
             }else{
                 console.log(r);
             }
@@ -150,7 +127,7 @@ require_once "../login/Cl/DBclass.php"; ?>
         })
         .done(function(r) {
             if (r=="1") {
-                $('#datos').load('../components/datos.php');
+                $('#datos').load('../components/datos_revisados.php');
             }else{
                 console.log(r);
             }

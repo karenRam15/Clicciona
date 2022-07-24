@@ -1611,7 +1611,7 @@ if (mysqli_num_rows($query)>0) {
                             <div class="col-sm-4">
                               <h1><i class="fa fa-money"></i></h1>
                               <h3>$22,980</h3>
-                              <h6>LIFETIME EARNINGS</h6>
+                              <h6>Ganancias Aproximadas</h6>
                             </div>
                             <div class="col-sm-4">
                               <h1><i class="fa fa-trophy"></i></h1>
@@ -1625,7 +1625,7 @@ if (mysqli_num_rows($query)>0) {
                             </div>
                           </div>
                           <!-- /row -->
-                          <h4>My Friends</h4>
+                          <h4>Colaboradores</h4>
                           <div class="row centered mb">
                             <ul class="my-friends">
                               <li>
@@ -1669,28 +1669,28 @@ if (mysqli_num_rows($query)>0) {
                             </div>
                           </div>
                           <!-- /row -->
-                          <h4>Pending Tasks</h4>
+                          <h4>Tareas pendientes</h4>
                           <div class="row centered">
                             <div class="col-md-8 col-md-offset-2">
-                              <h5>Dashboard Update (40%)</h5>
+                              <h5>Revision de Informacion (40%)</h5>
                               <div class="progress">
                                 <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
                                   <span class="sr-only">40% Complete (success)</span>
                                 </div>
                               </div>
-                              <h5>Unanswered Messages (80%)</h5>
+                              <h5>Usuarios con Plan Premium (80%)</h5>
                               <div class="progress">
                                 <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
                                   <span class="sr-only">80% Complete (success)</span>
                                 </div>
                               </div>
-                              <h5>Product Review (60%)</h5>
+                              <h5>Usuarios con Plan Basico (60%)</h5>
                               <div class="progress">
                                 <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
                                   <span class="sr-only">60% Complete (success)</span>
                                 </div>
                               </div>
-                              <h5>Friend Requests (90%)</h5>
+                              <h5>Usuarios con Plan Litte (90%)</h5>
                               <div class="progress">
                                 <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 90%">
                                   <span class="sr-only">90% Complete (success)</span>
