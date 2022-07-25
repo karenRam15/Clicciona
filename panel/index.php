@@ -3,6 +3,49 @@ session_start();
 require_once "../login/Cl/DBclass.php";
 $correo = $_SESSION['user_correo'];
 $sql = "";
+?>
+<div class="modal" id="modal_registro_ine_cedula" data-backdrop="static" data-keyboard="false" tabindex="0" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Revision de informacion</h5>
+      </div>
+      <div class="modal-body">
+        <h4 class="text-center"><b>Debemos verificar tu identidad, para garantizar tu seguridad y la de los demas, para esto deberas ingresar los siguientes datos:</b></h4>
+        <form action="" id="form_data_ine_cedula" name="form_data_ine_cedula">
+            <div class="row">
+                <img src="vistas/imagen.php?id=<?php echo $_SESSION['user_correo'];?>" width="80" class="img-circle img-fluid" id="img_revision_pg" name="img_revision_pg" style="
+                      width: 20%;
+                      display: block;
+                      margin-left: auto;
+                      margin-right: auto">
+            </div>
+            <br>
+            <p>Los documentos deben ser enviados en formato PDF, donde se muestren todos los datos relevantes sin tachaduras y/o rayones, de igual manera la informacion debe ser legible y debe apreciarse de manera clara.</p>
+            <p style="color: red;">*En caso de haber algun problema sera contactado a traves del correo electronico que se registro.*</p>
+            <div class="form-group row">
+              <label for="inputEmail3" class="col-sm-4 col-form-label">Ingresa tu INE:</label>
+              <div class="col-sm-8">
+                <input accept="application/pdf" type="file" class="form-control" id="ine" name="ine">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputEmail3" class="col-sm-4 col-form-label">Cedula:</label>
+              <div class="col-sm-8">
+                <input accept="application/pdf" type="file" class="form-control" id="cedula" name="cedula">
+              </div>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <div class="col-sm-6 col-sm-offset-2">
+          <button type="button" class="btn btn-primary" id="enviar_informacion">Enviar Información</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<?php 
 if ($_SESSION['user_tipo']=="1") {
     $sql = "SELECT * FROM empresas WHERE correo_e='$correo'";
     $query = mysqli_query($con, $sql);
@@ -818,6 +861,8 @@ if (mysqli_num_rows($query)>0) {
 }
 }else if ($_SESSION['user_tipo']=="0") {
     $sql = "SELECT * FROM profesionistas WHERE correo_p='$correo'";
+    $sql_doc = "SELECT check_logo_p,check_foto_portada_p,check_imagen_uno_p,check_imagen_dos_p, check_imagen_tres_p, check_tarjetas_digitales_p,check_ine_p,check_cedula_p FROM documentos_p WHERE correo_p = '$correo'";
+    $query_doc = mysqli_query($con, $sql_doc);
     $query = mysqli_query($con, $sql);
     if (mysqli_num_rows($query)>0) {
       while ($fila = mysqli_fetch_array($query)) {
@@ -1403,17 +1448,52 @@ if (mysqli_num_rows($query)>0) {
           <!-- /MAIN CONTENT -->
         </section>
         <!-- js placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+      <script src="lib/bootstrap/js/bootstrap.min.js"></script>
         <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
-        <script src="lib/jquery.scrollTo.min.js"></script>
-        <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
+      <script src="lib/jquery.scrollTo.min.js"></script>
+      <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
         <!--common script for all pages-->
-        <script src="lib/common-scripts.js"></script>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+      <script src="lib/common-scripts.js"></script>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
         <!--script for this page-->
-        <?php 
+        <script type="text/javascript">
+          $('#enviar_informacion').click(function() {
+            var Form = new FormData($('#form_data_ine_cedula')[0]);
+            $.ajax({
+              url: '../php/insert_data_ine_cedula.php',
+              type: 'POST',
+              data: Form,
+              processData: false,
+              contentType: false,
+            })
+            .done(function(r) {
+              if (r=="1") {
+                Toastify({text: "Tu información sera validada detenidamente y se te notificara via correo electronico, una vez finalizado este proceso.", duration: 10000, gravity: "bottom", position: "right"}).showToast();
+              }else{
+                Toastify({text: "Hubo un error en el servidor:"+r, duration: 10000, gravity: "bottom", position: "right"}).showToast();
+              }
+            }); 
+          });           
+        </script>
+      <?php 
         if ($fila['validacion_documentos_p']=="0") {
+          while ($fila_doc = mysqli_fetch_array($query_doc)) {
+            if ($fila_doc['check_ine_p']=="0" || $fila_doc['check_cedula_p']=="0") {
+              //Ingresar documentos faltantes
+              ?>
+              <script type="text/javascript">
+                $('#modal_registro_ine_cedula').modal('show');
+              </script>
+              <?php 
+            }else if ($fila_doc['check_ine_p']=="1" || $fila_doc['check_cedula_p']=="1") {
+              ?>
+              <script type="text/javascript">
+                Toastify({text: "Debes esperar a que tu documentacion sea validada por nuestro personal para poder acceder a tu perfil, lamentamos la demora.", duration: 10000, gravity: "bottom", position: "right"}).showToast();
+              </script>
+              <?php 
+            }
+          }
             ?>
             <script type="text/javascript">
                 Toastify({text: "Ingresa tus datos faltantes para que sean verificados y se muestre tu perfil.", duration: 10000, gravity: "bottom", position: "right"}).showToast();
@@ -1433,13 +1513,11 @@ if (mysqli_num_rows($query)>0) {
             <?php 
         }
         ?>
-
       </body>
-
       </html>
         <?php 
       }
-  }
+    }
 }else if ($_SESSION['user_tipo']=="3") {
   ?>
   <!DOCTYPE html>
