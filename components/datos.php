@@ -16,11 +16,11 @@ if (isset($_SESSION['plan']) || isset($_SESSION['tipo']) || isset($_SESSION['pro
 				$sql2 = "SELECT * FROM profesionistas WHERE validacion_correo_p='1' AND validacion_documentos_p='1'";
 				plan($sql, $sql2);
 			}else {
-				echo $sql="SELECT * FROM empresas WHERE validacion_correo_e='1' AND validacion_documentos_e='1' AND plan_contratado_e='$plan'";
-				echo $sql2 = "SELECT * FROM profesionistas WHERE validacion_correo_p='1' AND validacion_documentos_p='1' AND plan_contratado_p='$plan'";
+				$sql="SELECT * FROM empresas WHERE validacion_correo_e='1' AND validacion_documentos_e='1' AND plan_contratado_e='$plan'";
+				$sql2 = "SELECT * FROM profesionistas WHERE validacion_correo_p='1' AND validacion_documentos_p='1' AND plan_contratado_p='$plan'";
 				plan($sql, $sql2);
-			} 
-	}else if ($_SESSION['tipo']=="1") {
+			}
+	}else if ($_SESSION['tipo']=="1") { 
 			if ($_SESSION['plan']=="") {
 				$sql="SELECT * FROM empresas WHERE validacion_correo_e='1' AND validacion_documentos_e='1'";
 				tipo_empresas($sql);

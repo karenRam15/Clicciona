@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -166,6 +167,40 @@
     </div>
   </div>
 
+  <!--Modal para ingresar INE y Cedula profesional-->
+  <div class="modal fade" id="modal_registro_ine_cedula" data-backdrop="static" data-keyboard="false" tabindex="0" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Revision de informacion</h5>
+          </div>
+          <div class="modal-body" style="background-color: white;">
+            <h4 class="text-center"><b>Debemos verificar tu identidad, para garantizar tu seguridad y la de los demas, para esto deberas ingresar lo siguiente.</b></h4>
+            <form action="" id="form_data_ine_cedula" name="form_data_ine_cedula" style="background-color:white;">
+                <p>Los documentos deben ser enviados en formato PDF, donde se muestren todos los datos relevantes sin tachaduras y/o rayones, de igual manera la informacion debe ser legible y debe apreciarse de manera clara.</p>
+                <p style="color: red;">*En caso de haber algun problema sera contactado a traves del correo electronico que se registro.*</p>
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-4 col-form-label text-center">Ingresa tu INE:</label>
+                  <div class="col-sm-8">
+                    <input accept="application/pdf" type="file" class="form-control" id="ine" name="ine">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-4 col-form-label text-center">Cedula Profesional:</label>
+                  <div class="col-sm-8">
+                    <input accept="application/pdf" type="file" class="form-control" id="cedula" name="cedula">
+                  </div>
+                </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <div class="col">
+              <button type="button" class="btn btn-primary" id="enviar_informacion">Enviar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
     <div class="container">
@@ -1331,37 +1366,31 @@
 
   <!--Ventana NOSOTROS -->
   <li data-toggle="modal" data-target=".bd-example-modal-lg-9"><i class="bx bx-chevron-right"></i> <a class="py-1 px-0 px-lg-1" href="#footer">Nosotros</a></li>
-  <div class="modal fade bd-example-modal-lg-9" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
-                              <div class="modal-content" style="padding: 0 18px; border: solid 7px #1abc9c;">
-                              <button class="close" data-dismiss='modal' >&times;</button>
-                                <h1 style="color:black; text-align: center;" >Nosotros</h1>
-                                <p style="color: black;">En México existe una desigualdad en oportunidades de crecimiento en él ámbito profesional qué estanca y 
-                                  restringe la visión de éxito. Somos una empresa enfocada en la prestación de servicios con la misión de potenciar el crecimiento
-                                   de profesionistas; facilitamos él espacio para ser un vehículo de transformación. </p>
-
-                                   <p style="color: black; font-weight: bold;">Para nosotros es un placer contribuir al crecimiento de los profesionistas mexicanos ¡¡GRACIAS por creer en lo hecho en México, 
-                                   ¡¡GRACIAS por elegirnos y GRACIAS por darnos tú voto de confianza!!.</p>
-                              </div>
-                            </div>
-                          </div>
-                         </div>
-
-            <div class="col-lg-3 col-md-6 footer-links">
-              
-              <p>CLICCIONA, es la única plataforma dedicada a crear él ecosistema que potencia tú éxito profesional, convirtiéndose en la herramienta que en un clic te permite comparar y elegir desde profesionales freelancer, hasta grandes empresas de servicios, de forma SEGURA Y AMIGABLE.</p>
-              <div class="social-links mt-3">
-                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-              </div>
-            </div>
-
-          </div>
+    <div class="modal fade bd-example-modal-lg-9" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="padding: 0 18px; border: solid 7px #1abc9c;">
+          <button class="close" data-dismiss='modal' >&times;</button>
+          <h1 style="color:black; text-align: center;" >Nosotros</h1>
+          <p style="color: black;">En México existe una desigualdad en oportunidades de crecimiento en él ámbito profesional qué estanca y restringe la visión de éxito. Somos una empresa enfocada en la prestación de servicios con la misión de potenciar el crecimiento de profesionistas; facilitamos él espacio para ser un vehículo de transformación. </p>
+          <p style="color: black; font-weight: bold;">Para nosotros es un placer contribuir al crecimiento de los profesionistas mexicanos ¡¡GRACIAS por creer en lo hecho en México,  ¡¡GRACIAS por elegirnos y GRACIAS por darnos tú voto de confianza!!.</p>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-md-6 footer-links">
+    <p>CLICCIONA, es la única plataforma dedicada a crear él ecosistema que potencia tú éxito profesional, convirtiéndose en la herramienta que en un clic te permite comparar y elegir desde profesionales freelancer, hasta grandes empresas de servicios, de forma SEGURA Y AMIGABLE.</p>
+    <div class="social-links mt-3">
+      <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+      <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+      <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+      <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+      <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+    </div>
+  </div>
+</div>
+</div>
+</div>
 
       <div class="container footer-bottom clearfix">
         
@@ -1386,28 +1415,28 @@
     <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
     <script src="assets/vendor/aos/aos.js"></script>
 
-    <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function() {
-        $('#barra').load('components/barra.php');
-      });
-      $('#acceso').click(function() {
-         $('#acceso_modal').modal('show');
-      });
-      $('#forget_password').click(function() {
-        $('#acceso_modal').modal('hide');
-        $('#forget_password_modal').modal('show');
-      });
-      $('#registrarse1').click(function() {
-        $('#acceso_modal').modal('hide');
-        $('#registrarse_modal').modal('show');
-      });
-      $('#cancel_reset').click(function() {
-        $('#forget_password_modal').modal('hide');
-        $('#acceso_modal').modal('show');
-      });
-      $('#login').click(function() {
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#barra').load('components/barra.php');
+    });
+    $('#acceso').click(function() {
+      $('#acceso_modal').modal('show');
+    });
+    $('#forget_password').click(function() {
+      $('#acceso_modal').modal('hide');
+      $('#forget_password_modal').modal('show');
+    });
+    $('#registrarse1').click(function() {
+      $('#acceso_modal').modal('hide');
+      $('#registrarse_modal').modal('show');
+    });
+    $('#cancel_reset').click(function() {
+      $('#forget_password_modal').modal('hide');
+      $('#acceso_modal').modal('show');
+    });
+    $('#login').click(function() {
         if ($('#email').val()=="" || $('#password')=="") {
           Toastify({text: "Ingresa tus credenciales correctamente.", duration: 3000, gravity: "bottom", position: "right"}).showToast();
         }else{
@@ -1432,8 +1461,8 @@
           });
           
         }
-      });
-      $('#reset_password').click(function(){
+    });
+    $('#reset_password').click(function(){
         $.ajax({
           url: 'login/correo_recuperacion_cuenta.php',
           type: 'POST',
@@ -1455,8 +1484,8 @@
         .always(function() {
           console.log("complete");
         });
-      });
-      $('#tipo_usuario_register').change(function(){
+    });
+    $('#tipo_usuario_register').change(function(){
         if ($('#tipo_usuario_register').val()==""){
           $('#campos').empty();
         }else{
@@ -1476,7 +1505,32 @@
             console.log("error");
           });
         }
-      });
-    </script>
+    });
+    $('#enviar_informacion').click(function() {
+      var ine = $("#ine").val();
+      var extension_ine = ine.substring(ine.lastIndexOf("."));
+      var cedula = $("#cedula").val();
+      var extension_cedula = cedula.substring(cedula.lastIndexOf("."));
+      if(extension_ine != ".pdf" || extension_cedula != ".pdf"){
+        Toastify({text: "Los archivos deben estar en el formato PDF.", duration: 2000,gravity: "bottom", position: "right", style: {background: "linear-gradient(to right, #00b09b, #96c93d)"}}).showToast();
+      }else{
+        var Form = new FormData($('#form_data_ine_cedula')[0]);
+        $.ajax({
+          url: 'php/insert_data_ine_cedula.php',
+          type: 'POST',
+          data: Form,
+          processData: false,
+          contentType: false,
+        })
+        .done(function(r) {
+          if (r=="1") {
+            Toastify({text: "Tu información sera validada detenidamente y se te notificara via correo electronico, una vez finalizado este proceso.", duration: 10000, gravity: "bottom", position: "right"}).showToast();
+          }else{
+            Toastify({text: "Hubo un error en el servidor:"+r, duration: 10000, gravity: "bottom", position: "right"}).showToast();
+          }
+        }); 
+      }
+    }); 
+  </script>
 </body>
 </html>

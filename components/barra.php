@@ -24,7 +24,7 @@
         ?>
         <li class="drop-down"><a href="#" class="nav-link active"><?php echo $_SESSION['user_name']; ?></a>
             <ul>
-              <li><a href="panel/index.php" class="nav-link active">Panel de control</a></li>
+              <li><a href="#" class="nav-link active" id="abrir_panel" name="abrir_panel">Panel de control</a></li>
               <li><a href="#" class="nav-link active" id="cerrar_s" name="cerrar_s">Cerrar Sesion</a></li>
             </ul>
           </li>
@@ -38,6 +38,7 @@
       </nav>
       <!-- .nav-menu -->
     </div>
+
     <script type="text/javascript">
       $('#acceso').click(function() {
         abrir_modal('#acceso_modal');
@@ -56,4 +57,20 @@
           }
         });
       });
+      $('#abrir_panel').click(function() {
+        $.ajax({
+          url: './php/check_status_doc.php',
+          type: 'POST',
+        })
+        .done(function(r) {
+          if (r==0) {
+            abrir_modal('#modal_registro_ine_cedula');
+          }else if (r==1) {
+            Toastify({text: "Tus documentos estan siendo validados por nuestro personal, se te enviara una notificación a tu correo cuando este proceso haya concluido.", duration: 10000, gravity: "bottom", position: "right"}).showToast();
+          }else if (r==2) {
+            window.location = "panel/index.php";
+          }
+        });
+      });
+
     </script>
