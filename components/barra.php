@@ -25,7 +25,7 @@
         <li class="drop-down"><a href="#" class="nav-link active"><?php echo $_SESSION['user_name']; ?></a>
             <ul>
               <li><a href="#" class="nav-link active" id="abrir_panel" name="abrir_panel">Panel de control</a></li>
-              <li><a href="#" class="nav-link active" id="cerrar_s" name="cerrar_s">Cerrar Sesion</a></li>
+              <li><a href="#" class="nav-link active" onclick="cerrar_sesion()">Cerrar Sesion</a></li>
             </ul>
           </li>
         <?php 
@@ -42,20 +42,6 @@
     <script type="text/javascript">
       $('#acceso').click(function() {
         abrir_modal('#acceso_modal');
-      });
-      $('#cerrar_s').click(function(){
-        $.ajax({
-          url: 'login/logout.php',
-          type: 'POST',
-        })
-        .done(function(r) {
-          if (r==1) {
-            $('#barra').load('components/barra.php');
-            Toastify({text: "Tu sesion se a cerrado satisfactoriamente.", duration: 3000}).showToast();
-          }else{
-            Toastify({text: "Error al cerrar sesion.", duration: 3000}).showToast();
-          }
-        });
       });
       $('#abrir_panel').click(function() {
         $.ajax({
