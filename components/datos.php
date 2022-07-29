@@ -78,12 +78,7 @@ function plan($sql,$sql2){
 				 		echo "<p style='color: #FFD700;'><b>Plan Premium</b></p>";
 					}?> </td>
 				<td>
-				  	<div class="progress">
-					  <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
-					</div>
-				</td>
-				<td>
-					<button class="btn btn-success" onclick="revision_documentos('<?php echo $fila['correo_e'];?>', 1, '<?php echo $fila['plan_contratado_e'];?>')">Revisar</button>
+					<button class="btn btn-success" onclick="revision_documentos('<?php echo $fila['correo_e'];?>', 1, '0')">Revisar</button>
 				</td>
 			</tr>
 		<?php
@@ -108,13 +103,8 @@ function plan($sql,$sql2){
 				 	echo "<p style='color: #FFF000;'><b>Plan Premium</b></p>";
 				 }
 				 ?> </td>
-				 <td>
-				  	<div class="progress">
-					  <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
-					</div>
-				</td>	
 				<td>
-					<button class="btn btn-success" onclick="revision_documentos('<?php echo $profesionistas['correo_p'];?>', 0, '<?php echo $profesionistas['plan_contratado_p'];?>')">Revisar</button>
+					<button class="btn btn-success" onclick="revision_documentos('<?php echo $profesionistas['correo_p'];?>', 0, '0')">Revisar</button>
 				</td
 			</tr>
 			<?php 

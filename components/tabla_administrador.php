@@ -49,7 +49,7 @@ require_once "../login/Cl/DBclass.php"; ?>
 </div>
 <br>
 <br>
-<table class="table table-responsive-lg" id="tabla_documentos" name="tabla_documentos">
+<table class="table table-responsive" id="tabla_documentos" name="tabla_documentos">
     <thead>
         <tr>
             <th>Correo</th>
@@ -58,8 +58,7 @@ require_once "../login/Cl/DBclass.php"; ?>
             <th>Apellido Materno</th>
             <th>Tipo de usuario</th>
             <th>Plan Contratado</th>
-            <th>Estado de información</th>
-            <th>Verificar</th>
+            <th>Revisar</th>
         </tr>
     </thead>
     <tbody id="datos" name="datos">
@@ -73,24 +72,46 @@ require_once "../login/Cl/DBclass.php"; ?>
     });
     function revision_documentos(correo, tipo, plan_contratado){
         if (plan_contratado=="0") {
-            $.ajax({
-                url: '../php/verificacion_datos.php',
-                type: 'POST',
-                data: "correo="+correo+"&tipo="+tipo+"&plan="+plan_contratado,
-            })
-            .done(function(r) {
-                let datos = JSON.parse(r);
-                datos.forEach(datos => {
-                    $('#correo_pg').val(correo);
-                    $('#nombres_pg').val(datos.nombres);
-                    $('#apellido_p_pg').val(datos.apellido_p);
-                    $('#apellido_m_pg').val(datos.apellido_m);
-                    $('#numero_contacto_pg').val(datos.numero_contacto)
-                    $('#localidad_pg').val(datos.localidad); 
-                    $('#servicio_pg').val(datos.servicio);
+            if (tipo=="1") {
+                $.ajax({
+                    url: '../php/verificacion_datos.php',
+                    type: 'POST',
+                    data: "correo="+correo+"&tipo="+tipo+"&plan="+plan_contratado,
+                })
+                .done(function(r) {
+                    let datos = JSON.parse(r);
+                    datos.forEach(datos => {
+                        $('#correo_e_pg').val(correo);
+                        $('#nombres_e_pg').val(datos.nombres);
+                        $('#apellido_p_e_pg').val(datos.apellido_p);
+                        $('#apellido_m_e_pg').val(datos.apellido_m);
+                        $('#numero_contacto_e_pg').val(datos.numero_contacto)
+                        $('#localidad_e_pg').val(datos.localidad); 
+                        $('#servicio_e_pg').text(datos.servicio);
+                    });
                 });
-            });
-            abrir_modal('#modal_plan_gratuito');
+                abrir_modal('#modal_plan_gratuito_e');
+            }else if (tipo=="0") {
+                $.ajax({
+                    url: '../php/verificacion_datos.php',
+                    type: 'POST',
+                    data: "correo="+correo+"&tipo="+tipo+"&plan="+plan_contratado,
+                })
+                .done(function(r) {
+                    let datos = JSON.parse(r);
+                    datos.forEach(datos => {
+                        $('#correo_pg').val(correo);
+                        $('#nombres_pg').val(datos.nombres);
+                        $('#apellido_p_pg').val(datos.apellido_p);
+                        $('#apellido_m_pg').val(datos.apellido_m);
+                        $('#numero_contacto_pg').val(datos.numero_contacto)
+                        $('#localidad_pg').val(datos.localidad); 
+                        $('#servicio_pg').text(datos.servicio);
+                        $('#pdf_pg').prop('src', 'vistas/pdf_p.php?documento=1&correo='+correo);
+                    });
+                });
+                abrir_modal('#modal_plan_gratuito_p');
+            }
         }else if (plan_contratado=="1") {
              $.ajax({
                 url: '../php/verificacion_datos.php',
