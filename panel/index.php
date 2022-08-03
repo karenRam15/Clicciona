@@ -28,10 +28,6 @@ if ($_SESSION['user_tipo']=="1") {
       <!-- Custom styles for this template -->
       <link href="css/style.css" rel="stylesheet">
       <link href="css/style-responsive.css" rel="stylesheet">
-      <!-- DATEPICK -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.css">
 
     </head>
 
@@ -820,7 +816,7 @@ if ($_SESSION['user_tipo']=="1") {
       <?php 
     }
   }
-}else if ($_SESSION['user_tipo']=="0") {
+}else if ($_SESSION['user_tipo']==0) {
     $sql = "SELECT * FROM profesionistas WHERE correo_p='$correo'";
     $sql_doc = "SELECT check_logo_p,check_foto_portada_p,check_imagen_uno_p,check_imagen_dos_p, check_imagen_tres_p, check_tarjetas_digitales_p,check_ine_p,check_cedula_p FROM documentos_p WHERE correo_p = '$correo'";
     $query_doc = mysqli_query($con, $sql_doc);
@@ -1147,7 +1143,92 @@ if ($_SESSION['user_tipo']=="1") {
                         <div id="edit" class="tab-pane">
                           <div class="row">
                                 <?php 
-                                  if ($fila['plan_contratado_p']=="1") {
+                                  if ($fila['plan_contratado_p']=="0") {
+                                    ?>
+                                    <div class="col-lg-6 detailed">
+                                        <h4 class="mb">Información Personal</h4>
+                                                <form role="form" class="form-horizontal">
+                                            <div class="container-fluid">
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" class="form-control" id="floatingInput" placeholder="Nombre(s)" value="<?php echo $fila['nombres_p']; ?>">
+                                                    <label for="floatingInput">Nombre(s)</label>
+                                                </div>
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" class="form-control" id="apellido_p" placeholder="Apellido Paterno" value="<?php echo $fila['apellidoP_p']; ?>">
+                                                    <label for="apellido_p">Apellido Paterno</label>
+                                                </div>
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" class="form-control" id="apellido_m" placeholder="Apellido Materno" value="<?php echo $fila['apellidoM_p']; ?>">
+                                                    <label for="apellido_m">Apellido Materno</label>
+                                                </div>
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" class="form-control" id="num_contact" placeholder="Numero de Contacto" value="<?php if($fila['numero_contacto_p']==NULL){
+                                                        }else{
+                                                     echo $fila['numero_contacto_p']; }?>">
+                                                    <label for="num_contact">Numero de Contacto</label>
+                                                </div>
+                                                <div class="form-floating">
+                                                    <textarea class="form-control" placeholder="Servicio" id="servicio_profesionista"><?php echo $fila['servicio_p']; ?></textarea>
+                                                    <label for="servicio_profesionista">Servicio</label>
+                                                </div>
+                                                <button class="btn col-md-4 col-md-offset-4" style="background: #09052b; color: white;" id="guardar_datos" name="guardar_datos">Guardar Datos</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-lg-6 detailed">
+                                        <div class="row">
+                                            <h4 class="mb">Contrata una membresia</h4>
+                                            <div class="col-sm-6">
+                                                <div class="card" style="width: 18rem;">
+                                                    <div class="card-body">
+                                                        <h4 class="card-title">Litte $500.00 por 30 dias</h4>
+                                                        <p>Beneficios:</p>
+                                                        <ul class="list-group list-group-flush">
+                                                            <li class="list-group-item">Link de Redes</li>
+                                                            <li class="list-group-item">Costo de Honorarios</li>
+                                                            <li class="list-group-item">Experiencia</li>
+                                                            <li class="list-group-item">Y mas...</li>
+                                                        </ul>
+                                                        <button class="btn" style="background: #09052b; color: white;">Comprar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                              <div class="card" style="width: 18rem;">
+                                                  <div class="card-body">
+                                                    <h4 class="card-title">Básico $999 por 30 días</h4>
+                                                    <p>Beneficios:</p>
+                                                      <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item">Link de Redes</li>
+                                                        <li class="list-group-item">Beneficios de tu servicio</li>
+                                                        <li class="list-group-item">Foto de portada</li>
+                                                        <li class="list-group-item">Y mas...</li>
+                                                      </ul>
+                                                    <button class="btn" style="background: #09052b; color: white;">Comprar</button>
+                                                  </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <br>
+                                                <br>
+                                              <div class="card" style="width: 18rem;">
+                                                  <div class="card-body">
+                                                    <h4 class="card-title">Premium - $1999.90 por 30 dias</h4>
+                                                    <p>Beneficios:</p>
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item">Tarjetas digitales</li>
+                                                        <li class="list-group-item">Acceso a reserva de citas</li>
+                                                        <li class="list-group-item">Agregar 3 imagenes</li>
+                                                        <li class="list-group-item">Y mas...</li>
+                                                    </ul>
+                                                    <button class="btn" style="background: #09052b; color: white;">Comprar</button>
+                                                  </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php
+                                  }else if ($fila['plan_contratado_p']=="1") {
                                     ?>
                                     <div class="col-lg-6 detailed">
                                         <h4 class="mb">Información Personal</h4>
@@ -1218,7 +1299,7 @@ if ($_SESSION['user_tipo']=="1") {
                                   }else if ($fila['plan_contratado_p']=="2") {
                                     ?>
                                     <div class="col-lg-6 detailed">
-                                        <h4 class="mb">Información Personal</h4>
+                                        <h4 class="mb">Informacióun Personal</h4>
                                                 <form role="form" class="form-horizontal">
                                             <div class="container-fluid">
                                                 <div class="form-floating mb-3">
@@ -1251,91 +1332,6 @@ if ($_SESSION['user_tipo']=="1") {
                                         <div class="row">
                                             <h4 class="mb">Contrata una membresia</h4>
                                             <div class="col-sm-8 col-sm-offset-4">
-                                              <div class="card" style="width: 18rem;">
-                                                  <div class="card-body">
-                                                    <h4 class="card-title">Premium - $1999.90 por 30 dias</h4>
-                                                    <p>Beneficios:</p>
-                                                    <ul class="list-group list-group-flush">
-                                                        <li class="list-group-item">Tarjetas digitales</li>
-                                                        <li class="list-group-item">Acceso a reserva de citas</li>
-                                                        <li class="list-group-item">Agregar 3 imagenes</li>
-                                                        <li class="list-group-item">Y mas...</li>
-                                                    </ul>
-                                                    <button class="btn" style="background: #09052b; color: white;">Comprar</button>
-                                                  </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <?php
-                                  }else if ($fila['plan_contratado_p']=="0") {
-                                    ?>
-                                    <div class="col-lg-6 detailed">
-                                        <h4 class="mb">Información Personal</h4>
-                                                <form role="form" class="form-horizontal">
-                                            <div class="container-fluid">
-                                                <div class="form-floating mb-3">
-                                                    <input type="text" class="form-control" id="floatingInput" placeholder="Nombre(s)" value="<?php echo $fila['nombres_p']; ?>">
-                                                    <label for="floatingInput">Nombre(s)</label>
-                                                </div>
-                                                <div class="form-floating mb-3">
-                                                    <input type="text" class="form-control" id="apellido_p" placeholder="Apellido Paterno" value="<?php echo $fila['apellidoP_p']; ?>">
-                                                    <label for="apellido_p">Apellido Paterno</label>
-                                                </div>
-                                                <div class="form-floating mb-3">
-                                                    <input type="text" class="form-control" id="apellido_m" placeholder="Apellido Materno" value="<?php echo $fila['apellidoM_p']; ?>">
-                                                    <label for="apellido_m">Apellido Materno</label>
-                                                </div>
-                                                <div class="form-floating mb-3">
-                                                    <input type="text" class="form-control" id="num_contact" placeholder="Numero de Contacto" value="<?php if($fila['numero_contacto_p']==NULL){
-                                                        }else{
-                                                     echo $fila['numero_contacto_p']; }?>">
-                                                    <label for="num_contact">Numero de Contacto</label>
-                                                </div>
-                                                <div class="form-floating">
-                                                    <textarea class="form-control" placeholder="Servicio" id="servicio_profesionista"><?php echo $fila['servicio_p']; ?></textarea>
-                                                    <label for="servicio_profesionista">Servicio</label>
-                                                </div>
-                                                <button class="btn col-md-4 col-md-offset-4" style="background: #09052b; color: white;" id="guardar_datos" name="guardar_datos">Guardar Datos</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="col-lg-6 detailed">
-                                        <div class="row">
-                                            <h4 class="mb">Contrata una membresia</h4>
-                                            <div class="col-sm-6">
-                                                <div class="card" style="width: 18rem;">
-                                                    <div class="card-body">
-                                                        <h4 class="card-title">Litte $500.00 por 30 dias</h4>
-                                                        <p>Beneficios:</p>
-                                                        <ul class="list-group list-group-flush">
-                                                            <li class="list-group-item">Link de Redes</li>
-                                                            <li class="list-group-item">Costo de Honorarios</li>
-                                                            <li class="list-group-item">Experiencia</li>
-                                                            <li class="list-group-item">Y mas...</li>
-                                                        </ul>
-                                                        <button class="btn" style="background: #09052b; color: white;">Comprar</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                              <div class="card" style="width: 18rem;">
-                                                  <div class="card-body">
-                                                    <h4 class="card-title">Básico $999 por 30 días</h4>
-                                                    <p>Beneficios:</p>
-                                                      <ul class="list-group list-group-flush">
-                                                        <li class="list-group-item">Link de Redes</li>
-                                                        <li class="list-group-item">Beneficios de tu servicio</li>
-                                                        <li class="list-group-item">Foto de portada</li>
-                                                        <li class="list-group-item">Y mas...</li>
-                                                      </ul>
-                                                    <button class="btn" style="background: #09052b; color: white;">Comprar</button>
-                                                  </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12">
-                                                <br>
-                                                <br>
                                               <div class="card" style="width: 18rem;">
                                                   <div class="card-body">
                                                     <h4 class="card-title">Premium - $1999.90 por 30 dias</h4>
@@ -1462,7 +1458,7 @@ if ($_SESSION['user_tipo']=="1") {
                                           <form role="form" class="form-horizontal">
                                             <div class="container-fluid">
                                                 <div class="row"> 
-                                                    <img src="vistas/imagen.php?id=<?php echo $_SESSION['user_correo'];?>" width="80" class="img-circle img-fluid" id="imagLog_pb" name="imagLog_pb" style="
+                                                  <img src="vistas/imagen.php?id=<?php echo $_SESSION['user_correo'];?>" width="80" class="img-circle img-fluid" id="imagLog_pb" name="imagLog_pb" style="
                                                     width: 20%;
                                                     display: block;
                                                     margin-left: auto;
@@ -1572,8 +1568,8 @@ if ($_SESSION['user_tipo']=="1") {
                                     </div>
                                     <?php
                                   }else{
-                                    ?>
-                                   <div class="col-lg-10 col-lg-offset-1 detailed">
+                                ?>
+                                    <div class="col-lg-10 col-lg-offset-1 detailed">
                                       <h4 class="mb">Información Profesional</h4>
                                         <form role="form" class="form-horizontal">
                                           <div class="container-fluid">
@@ -1645,7 +1641,7 @@ if ($_SESSION['user_tipo']=="1") {
                                           <p class="text-center">Puedes incluir tres imagenes que muestren tus habilidades respecto a tus actividades o incluso a tu desempeño laboral (estudiantil )</p>
                                             <div class="row">
                                               <div class="col-lg-4">
-                                                <img src="vistas/imagen.php?id=<?php echo $_SESSION['user_correo'];?>" width="80" class="img-circle img-fluid" id="imagLog_pb" name="imagLog_pb" style="
+                                                <img src="vistas/imagen.php?id=<?php echo $_SESSION['user_correo'];?>" width="80" class="img-fluid" id="imagLog_pb" name="imagLog_pb" style="
                                                   width: 50%;
                                                   display: block;
                                                   margin-right: auto;">
@@ -1653,7 +1649,7 @@ if ($_SESSION['user_tipo']=="1") {
                                                   <a href="#"><u>Selecciona una fotografia</u></a>
                                               </div>
                                               <div class="col-lg-4">
-                                                <img src="vistas/imagen.php?id=<?php echo $_SESSION['user_correo'];?>" width="80" class="img-circle img-fluid" id="imagLog_pb" name="imagLog_pb" style="
+                                                <img src="vistas/imagen.php?id=<?php echo $_SESSION['user_correo'];?>" width="80" class="img-fluid" id="imagLog_pb" name="imagLog_pb" style="
                                                   width: 50%;
                                                   display: block;
                                                   margin-right: auto;
@@ -1662,7 +1658,7 @@ if ($_SESSION['user_tipo']=="1") {
                                               <a href="#"><u> Selecciona una fotografia</u></a>
                                             </div>
                                               <div class="col-lg-4">
-                                                <img src="vistas/imagen.php?id=<?php echo $_SESSION['user_correo'];?>" width="80" class="img-circle img-fluid" id="imagLog_pb" name="imagLog_pb" style="
+                                                <img src="vistas/imagen.php?id=<?php echo $_SESSION['user_correo'];?>" width="80" class="img-fluid" id="imagLog_pb" name="imagLog_pb" style="
                                                   width: 50%;
                                                   display: block;
                                                   margin-left: auto;">
@@ -1680,12 +1676,12 @@ if ($_SESSION['user_tipo']=="1") {
                                                 <h5 class="text-center">Reservación para citas</h5>
                                                   <div class="row">
                                                     <div class="col-lg-6">
-                                                      <input type="text" id="start" class="form-control text-left mr-2">
+                                                      <input type="date" id="start" class="form-control text-left mr-2">
                                                       <label class="ml-3 form-control-placeholder" id="start-p" for="start">Fecha de Inicio</label>
                                                       <span class="fa fa-calendar" id="fa-1"></span>
                                                     </div>
                                                       <div class="col-lg-6">
-                                                        <input type="text" id="end" class="form-control text-left ml-2">
+                                                        <input type="date" id="end" class="form-control text-left ml-2">
                                                         <label class="ml-3 form-control-placeholder" id="end-p" for="end">Fecha final</label>
                                                         <span class="fa fa-calendar" id="fa-2"></span>
                                                       </div>
@@ -1698,9 +1694,9 @@ if ($_SESSION['user_tipo']=="1") {
                                         </div>
                                       </form>
                                     </div>
-                                  <?php 
-                                }
-                              ?> 
+                                <?php 
+                                  }
+                                ?> 
                             <!-- /col-lg-8 -->
                           </div>
                             <br>
@@ -1725,7 +1721,7 @@ if ($_SESSION['user_tipo']=="1") {
         <!-- js placed at the end of the document so the pages load faster -->
       <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
       <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-        <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
+      <script type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
       <script src="lib/jquery.scrollTo.min.js"></script>
       <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
         <!--common script for all pages-->
@@ -1733,10 +1729,7 @@ if ($_SESSION['user_tipo']=="1") {
       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
         <!--script for this page-->
         <!-- datepick -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.js"></script>
-
       <script type="text/javascript">
         $(document).ready(function(){
           $('.input-daterange').datepicker({
@@ -2055,7 +2048,7 @@ if ($_SESSION['user_tipo']=="1") {
                     <div id="edit" class="tab-pane">
                       <div class="row">
                         <?php 
-                                  if ($fila['plan_contratado_e']=="1") {
+                          if ($fila['plan_contratado_e']=="1") {
                                     ?>
                                       <div class="col-lg-10 col-lg-offset-1 detailed">
                                         <h4 class="mb">Información Profesional</h4>
@@ -2113,7 +2106,7 @@ if ($_SESSION['user_tipo']=="1") {
                                         </form>
                                     </div>
                                     <?php
-                                  }else if ($fila['plan_contratado_e']=="2") {
+                          }else if ($fila['plan_contratado_e']=="2") {
                                     ?>
                                     <div class="col-lg-10 col-lg-offset-1 detailed">
                                         <h4 class="mb">Información Profesional</h4>
@@ -2194,7 +2187,7 @@ if ($_SESSION['user_tipo']=="1") {
                                         </form>
                                     </div>
                                     <?php
-                                  }else if ($fila['plan_contratado_e']=="0") {
+                          }else if ($fila['plan_contratado_e']=="0") {
                                     ?>
                                      <div class="col-lg-10 col-lg-offset-1 detailed">
                                         <h4 class="mb">Información Profesional</h4>
@@ -2229,7 +2222,7 @@ if ($_SESSION['user_tipo']=="1") {
                                         </form>
                                     </div>
                                     <?php
-                                  }else{
+                          }else{
                                     ?>
                                    <div class="col-lg-10 col-lg-offset-1 detailed">
                                             <h4 class="mb">Información Profesional</h4>
@@ -2351,8 +2344,8 @@ if ($_SESSION['user_tipo']=="1") {
                                         </form>
                                     </div>
                                     <?php 
-                                  }
-                                ?> 
+                          }
+                              ?> 
                         <!-- /col-lg-8 -->
                       </div>
                       <!-- /row -->
