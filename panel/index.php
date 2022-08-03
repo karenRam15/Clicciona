@@ -1508,7 +1508,7 @@ if ($_SESSION['user_tipo']=="1") {
                                                   </div>
                                                   <br>
                                                   <div class="form-floating mb-3">
-                                                    <label for="beneficios_servicio">Beneficios de tú servicio</label>
+                                                    <label for="beneficios_servicio">Beneficios</label>
                                                     <textarea class="form-control" rows="5" style="height:10%;" placeholder="Beneficios de tu servicio" value="<?php echo $fila['beneficios_servicio_p']  ?>"></textarea>
                                                   </div>
                                                 </div>
