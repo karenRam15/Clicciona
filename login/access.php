@@ -2,7 +2,6 @@
 session_start();
 require_once "Cl/DBclass.php";
 $correo = $_POST['email'];
-$_POST['password'];
 $password = md5($_POST['password']);
 $sql = "SELECT * FROM profesionistas WHERE correo_p='$correo' AND password_p='$password' AND validacion_correo_p='1'";
 $query = mysqli_query($con, $sql);
