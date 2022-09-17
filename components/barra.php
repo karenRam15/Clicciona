@@ -24,8 +24,8 @@
         ?>
         <li class="drop-down"><a href="#" class="nav-link active"><?php echo $_SESSION['user_name']; ?></a>
             <ul>
-              <li><a href="panel/index.php" class="nav-link active">Panel de control</a></li>
-              <li><a href="#" class="nav-link active" id="cerrar_s" name="cerrar_s">Cerrar Sesion</a></li>
+              <li><a href="#" class="nav-link active" id="abrir_panel" name="abrir_panel">Panel de control</a></li>
+              <li><a href="#" class="nav-link active" onclick="cerrar_sesion()">Cerrar Sesion</a></li>
             </ul>
           </li>
         <?php 
@@ -38,22 +38,25 @@
       </nav>
       <!-- .nav-menu -->
     </div>
+
     <script type="text/javascript">
       $('#acceso').click(function() {
         abrir_modal('#acceso_modal');
       });
-      $('#cerrar_s').click(function(){
+      $('#abrir_panel').click(function() {
         $.ajax({
-          url: 'login/logout.php',
+          url: './php/check_status_doc.php',
           type: 'POST',
         })
         .done(function(r) {
-          if (r==1) {
-            $('#barra').load('components/barra.php');
-            Toastify({text: "Tu sesion se a cerrado satisfactoriamente.", duration: 3000}).showToast();
-          }else{
-            Toastify({text: "Error al cerrar sesion.", duration: 3000}).showToast();
+          if (r==0) {
+            abrir_modal('#modal_registro_ine_cedula');
+          }else if (r==1) {
+            Toastify({text: "Tus documentos estan siendo validados por nuestro personal, se te enviara una notificación a tu correo cuando este proceso haya concluido.", duration: 10000, gravity: "bottom", position: "right"}).showToast();
+          }else if (r==2) {
+            window.location = "panel/index.php";
           }
         });
       });
+
     </script>

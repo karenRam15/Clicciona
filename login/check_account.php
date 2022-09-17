@@ -18,5 +18,11 @@ if ($query2) {
 	</script>
 <?php 
 }else{
+	?>
+	<script type="text/javascript">
+		alert("La cuenta no se pudo verificar.");
+		window.location="../index.php";
+	</script>
+	<?php 
 	echo "0";
 }
