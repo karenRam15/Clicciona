@@ -1,4 +1,0 @@
-Usar "pricing_table.html"(Extra Pages> Pricing Table) como vista secundaria de planes.
-Incorporar funcion de foto de perfil de "advanced_form_components.html"(Apartado Forms>) al modal de registro.
-Incorporar vista de "chat_room.html"(Chat Room>Chat Room) a chat en vivo. 
-Incorporar vista de "galery.html" (Components>Gallery) para visualizar imagenes guardadas.
