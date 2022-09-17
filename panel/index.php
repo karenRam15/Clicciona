@@ -28,10 +28,7 @@ if ($_SESSION['user_tipo']=="1") {
       <!-- Custom styles for this template -->
       <link href="css/style.css" rel="stylesheet">
       <link href="css/style-responsive.css" rel="stylesheet">
-      <!-- DATEPICK -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.css">
+
 
     </head>
 
@@ -1680,12 +1677,12 @@ if ($_SESSION['user_tipo']=="1") {
                                                 <h5 class="text-center">Reservación para citas</h5>
                                                   <div class="row">
                                                     <div class="col-lg-6">
-                                                      <input type="text" id="start" class="form-control text-left mr-2">
+                                                      <input type="date" id="start" class="form-control text-left mr-2">
                                                       <label class="ml-3 form-control-placeholder" id="start-p" for="start">Fecha de Inicio</label>
                                                       <span class="fa fa-calendar" id="fa-1"></span>
                                                     </div>
                                                       <div class="col-lg-6">
-                                                        <input type="text" id="end" class="form-control text-left ml-2">
+                                                        <input type="date" id="end" class="form-control text-left ml-2">
                                                         <label class="ml-3 form-control-placeholder" id="end-p" for="end">Fecha final</label>
                                                         <span class="fa fa-calendar" id="fa-2"></span>
                                                       </div>
@@ -1732,10 +1729,7 @@ if ($_SESSION['user_tipo']=="1") {
       <script src="lib/common-scripts.js"></script>
       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
         <!--script for this page-->
-        <!-- datepick -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.js"></script>
+     
 
       <script type="text/javascript">
         $(document).ready(function(){
