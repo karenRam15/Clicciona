@@ -11,7 +11,6 @@ if ($_SESSION['user_tipo']=="1") {
     ?>
     <!DOCTYPE html>
     <html lang="en">
-
     <head> 
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,10 +27,7 @@ if ($_SESSION['user_tipo']=="1") {
       <!-- Custom styles for this template -->
       <link href="css/style.css" rel="stylesheet">
       <link href="css/style-responsive.css" rel="stylesheet">
-
-
     </head>
-
     <body>
       <section id="container">
         <header class="header black-bg">
@@ -812,7 +808,6 @@ if ($_SESSION['user_tipo']=="1") {
           });
       </script>
     </body>
-
     </html>
       <?php 
     }
@@ -1728,24 +1723,12 @@ if ($_SESSION['user_tipo']=="1") {
         <!--common script for all pages-->
       <script src="lib/common-scripts.js"></script>
       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-        <!--script for this page-->
-      <script type="text/javascript">
-        $(document).ready(function(){
-          $('.input-daterange').datepicker({
-            format: 'dd-mm-yyyy',
-            autoclose: true,
-            calendarWeeks : true,
-            clearBtn: true,
-            disableTouchKeyboard: true
-          });
-      });
-      </script>
       </body>
       </html>
         <?php 
       }
     }
-}else if ($_SESSION['user_tipo']=="3") {
+}else if ($_SESSION['user_tipo']==3) {
   ?>
   <!DOCTYPE html>
   <html lang="en">
@@ -2009,345 +1992,6 @@ if ($_SESSION['user_tipo']=="1") {
                         <!-- /col-md-6 -->
                       </div>
                       <!-- /OVERVIEW -->
-                    </div>
-                    <!-- /tab-pane -->
-                    <div id="contact" class="tab-pane">
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div id="map"></div>
-                        </div>
-                        <!-- /col-md-6 -->
-                        <div class="col-md-6 detailed">
-                          <h4>Location</h4>
-                          <div class="col-md-8 col-md-offset-2 mt">
-                            <p>
-                              Postal Address<br/> PO BOX 12988, Sutter Ave<br/> Brownsville, New York.
-                            </p>
-                            <br>
-                            <p>
-                              Headquarters<br/> 844 Sutter Ave,<br/> 9003, New York.
-                            </p>
-                          </div>
-                          <h4>Contacts</h4>
-                          <div class="col-md-8 col-md-offset-2 mt">
-                            <p>
-                              Phone: +33 4898-4303<br/> Cell: 48 4389-4393<br/>
-                            </p>
-                            <br>
-                            <p>
-                              Email: hello@dashiotheme.com<br/> Skype: UseDashio<br/> Website: http://Alvarez.is
-                            </p>
-                          </div>
-                        </div>
-                        <!-- /col-md-6 -->
-                      </div>
-                      <!-- /row -->
-                    </div>
-                    <!-- /tab-pane -->
-                    <div id="edit" class="tab-pane">
-                      <div class="row">
-                        <?php 
-                          if ($fila['plan_contratado_e']=="1") {
-                                    ?>
-                                      <div class="col-lg-10 col-lg-offset-1 detailed">
-                                        <h4 class="mb">Información Profesional</h4>
-                                          <form role="form" class="form-horizontal">
-                                            <div class="container-fluid">
-                                                <div class="row"> 
-                                                    <img src="vistas/imagen.php?id=<?php echo $_SESSION['user_correo'];?>" width="80" class="img-circle img-fluid" id="imagLog_pb" name="imagLog_pb" style="
-                                                    width: 20%;
-                                                    display: block;
-                                                    margin-left: auto;
-                                                    margin-right: auto">
-                                                    <br>
-                                                    <button class="btn col-md-4 col-md-offset-4" name="button" style="color: blue;">Seleccione una imagen o logotipo</button>        
-                                                    <br>
-                                                    <br>
-                                                   <div class="form-floating">
-                                                    <label for="servicio_profesionista">Servicio</label>
-                                                    <textarea class="form-control" rows="5" style="height:10%;" placeholder="Servicio" id="servicio_profesionista"><?php echo $fila['servicio_p']; ?></textarea>
-                                                  <br>
-                                                  <div class="form-floating mb-3">
-                                                    <label for="ubicación_geo">Ubicación geografica</label>
-                                                    <input type="text" class="form-control" id="ubicación_geo" placeholder="Ubicación geografica" value="<?php echo $fila['localidad_p']; ?>">
-                                                  </div>
-                                                  <br>
-                                                  <div class="form-floating mb-3">
-                                                  <label for="num_contact">Numero de Contacto</label>
-                                                    <input type="text" class="form-control" id="num_contact" placeholder="Numero de Contacto" value="<?php if($fila['numero_contacto_p']==NULL){
-                                                    }else{
-                                                    echo $fila['numero_contacto_p']; }?>">
-                                                  </div>
-                                                  <br>
-                                                  <div class="form-floating mb-3">
-                                                    <label for="link_redes">Link de Redes</label>
-                                                    <input type="text" class="form-control" id="link_redes" placeholder="Link de Redes" value="<?php echo $fila['link_redes_p']; ?>">
-                                                  </div>
-                                                  <br>
-                                                  <div class="form-floating mb-3">
-                                                    <label for="forma_trabajo">Forma de Trabajo</label>
-                                                    <textarea class="form-control" rows="5" style="height:10%;" placeholder="Forma de Trabajo" id="forma_trabajo"><?php echo $fila['forma_trabajo_p']; ?></textarea>
-                                                  </div>
-                                                  <br>
-                                                  <div class="form-floating mb-3">
-                                                    <label for="experiencia">Experiencia</label>
-                                                    <textarea class="form-control" rows="5" style="height:10%;" placeholder="Experiencia" id="experiencia"><?php echo $fila['experiencia_p']; ?></textarea>
-                                                  </div>
-                                                  <br>
-                                                  <div class="form-floating mb-3">
-                                                    <label for="costo_honorarios">Costo de Honorarios</label>
-                                                    <input type="text" class="form-control" id="costo_honorarios" placeholder="Costo de Honorarios" value="<?php echo $fila['costo_honorarios_p']; ?>">
-                                                  </div>
-                                                </div>
-                                                <br>
-                                                <button class="btn col-md-4 col-md-offset-4" style="background: #09052b; color: white;" id="guardar_datos" name="guardar_datos">Guardar Datos</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <?php
-                          }else if ($fila['plan_contratado_e']=="2") {
-                                    ?>
-                                    <div class="col-lg-10 col-lg-offset-1 detailed">
-                                        <h4 class="mb">Información Profesional</h4>
-                                          <form role="form" class="form-horizontal">
-                                            <div class="container-fluid">
-                                                <div class="row"> 
-                                                    <img src="vistas/imagen.php?id=<?php echo $_SESSION['user_correo'];?>" width="80" class="img-circle img-fluid" id="imagLog_pb" name="imagLog_pb" style="
-                                                    width: 20%;
-                                                    display: block;
-                                                    margin-left: auto;
-                                                    margin-right: auto">
-                                                    <br>
-                                                    <button class="btn col-md-4 col-md-offset-4" name="button" style="color: blue;">Seleccione una imagen o logotipo</button>        
-                                                    <br>
-                                                    <br>
-                                                   <div class="form-floating">
-                                                    <label for="servicio_profesionista">Servicio</label>
-                                                    <textarea class="form-control" rows="5" style="height:10%;" placeholder="Servicio" id="servicio_profesionista"><?php echo $fila['servicio_p']; ?></textarea>
-                                                  <br>
-                                                  <div class="form-floating mb-3">
-                                                    <label for="ubicación_geo">Ubicación geografica</label>
-                                                    <input type="text" class="form-control" id="ubicación_geo" placeholder="Ubicación geografica" value="<?php echo $fila['localidad_p']; ?>">
-                                                  </div>
-                                                  <br>
-                                                  <div class="form-floating mb-3">
-                                                  <label for="num_contact">Numero de Contacto</label>
-                                                    <input type="text" class="form-control" id="num_contact" placeholder="Numero de Contacto" value="<?php if($fila['numero_contacto_p']==NULL){
-                                                    }else{
-                                                    echo $fila['numero_contacto_p']; }?>">
-                                                  </div>
-                                                  <br>
-                                                  <div class="form-floating mb-3">
-                                                    <label for="link_redes">Link de Redes</label>
-                                                    <input type="text" class="form-control" id="link_redes" placeholder="Link de Redes" value="<?php echo $fila['link_redes_p']; ?>">
-                                                  </div>
-                                                  <br>
-                                                  <div class="form-floating mb-3">
-                                                    <label for="forma_trabajo">Forma de Trabajo</label>
-                                                    <textarea class="form-control" rows="5" style="height:10%;" placeholder="Forma de Trabajo" id="forma_trabajo"><?php echo $fila['forma_trabajo_p']; ?></textarea>
-                                                  </div>
-                                                  <br>
-                                                  <div class="form-floating mb-3">
-                                                    <label for="experiencia">Experiencia</label>
-                                                    <textarea class="form-control" rows="5" style="height:10%;" placeholder="Experiencia" id="experiencia"><?php echo $fila['experiencia_p']; ?></textarea>
-                                                  </div>
-                                                  <br>
-                                                  <div class="form-floating mb-3">
-                                                    <label for="costo_honorarios">Costo de Honorarios</label>
-                                                    <input type="text" class="form-control" id="costo_honorarios" placeholder="Costo de Honorarios" value="<?php echo $fila['costo_honorarios_p']; ?>">
-                                                  </div>
-                                                  <br>
-                                                  <div class="form-floating mb-3">
-                                                    <label for="beneficios_servicio">Beneficios de tú servicio</label>
-                                                    <textarea class="form-control" rows="5" style="height:10%;" placeholder="Beneficios de tu servicio" value="<?php echo $fila['beneficios_servicio_p']  ?>"></textarea>
-                                                  </div>
-                                                </div>
-                                                <br>
-                                            </div>
-                                            <div class="container-fluid">
-                                              <div class="row">
-                                                <div class="col-lg-6">
-                                                  <img src="vistas/imagen.php?id=<?php echo $_SESSION['user_correo'];?>" width="80" class="img-circle img-fluid" id="imagLog_pb" name="imagLog_pb" style="
-                                                    width: 40%;
-                                                    display: block;
-                                                    margin-right: auto;">
-                                                  </div>
-                                                  <div class="col-lg-6">
-                                                    <img src="vistas/imagen.php?id=<?php echo $_SESSION['user_correo'];?>" width="80" class="img-circle img-fluid" id="imagLog_pb" name="imagLog_pb" style="
-                                                      width: 40%;
-                                                      display: block;
-                                                      margin-left: auto;">
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <br>
-                                            <button class="btn col-md-4 col-md-offset-4" style="background: #09052b; color: white;" id="guardar_datos" name="guardar_datos">Guardar Datos</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <?php
-                          }else if ($fila['plan_contratado_e']=="0") {
-                                    ?>
-                                     <div class="col-lg-10 col-lg-offset-1 detailed">
-                                        <h4 class="mb">Información Profesional</h4>
-                                          <form role="form" class="form-horizontal">
-                                            <div class="container-fluid">
-                                                <div class="row"> 
-                                                    <img src="vistas/imagen.php?id=<?php echo $_SESSION['user_correo'];?>" width="80" class="img-circle img-fluid" id="imagLog_pb" name="imagLog_pb" style="
-                                                    width: 20%;
-                                                    display: block;
-                                                    margin-left: auto;
-                                                    margin-right: auto">
-                                                    <br>
-                                                    <button class="btn col-md-4 col-md-offset-4" name="button" style="color: blue;">Seleccione una imagen o logotipo</button>        
-                                                    <br>
-                                                    <br>
-                                                   <div class="form-floating">
-                                                    <label for="servicio_profesionista">Servicio</label>
-                                                    <textarea class="form-control" rows="5" style="height:10%;" placeholder="Servicio" id="servicio_profesionista"><?php echo $fila['servicio_p']; ?></textarea>
-                                                  <div class="form-floating mb-3">
-                                                    <label for="ubicación_geo">Ubicación geografica</label>
-                                                    <input type="text" class="form-control" id="ubicación_geo" placeholder="Ubicación geografica" value="<?php echo $fila['localidad_p']; ?>">
-                                                  </div>
-                                                  <div class="form-floating mb-3">
-                                                  <label for="num_contact">Numero de Contacto</label>
-                                                    <input type="text" class="form-control" id="num_contact" placeholder="Numero de Contacto" value="<?php if($fila['numero_contacto_p']==NULL){
-                                                    }else{
-                                                    echo $fila['numero_contacto_p']; }?>">
-                                                  </div>
-                                                </div>
-                                                <br>
-                                                <button class="btn col-md-4 col-md-offset-4" style="background: #09052b; color: white;" id="guardar_datos" name="guardar_datos">Guardar Datos</button>
-                                        </form>
-                                    </div>
-                                    <?php
-                          }else{
-                                    ?>
-                                   <div class="col-lg-10 col-lg-offset-1 detailed">
-                                            <h4 class="mb">Información Profesional</h4>
-                                              <form role="form" class="form-horizontal">
-                                                <div class="container-fluid">
-                                                    <div class="row"> 
-                                                      <div style="position: relative; left: 0; top: 0;">
-                                                        <img src="vistas/imagen.php?id=<?php echo $_SESSION['user_correo'];?>" class="portada" id="imagLog_pb" name="imagLog_pb">
-                                                        <img src="vistas/imagen.php?id=<?php echo $_SESSION['user_correo'];?>"  class="perfil" id="imagLog_pb" name="imagLog_pb">
-                                                      </div>
-                                                        <br>
-                                                        <a class="btn col-md-4 col-md-offset-4" href="#">Selecciona una fotografia</a>
-                                                        <br>
-                                                        <br>
-                                                       <div class="form-floating">
-                                                        <label for="servicio_profesionista">Servicio</label>
-                                                        <textarea class="form-control" rows="5" style="height:10%;" placeholder="Servicio" id="servicio_profesionista"><?php echo $fila['servicio_p']; ?></textarea>
-                                                      <br>
-                                                      <div class="form-floating mb-3">
-                                                        <label for="ubicación_geo">Ubicación geografica</label>
-                                                        <input type="text" class="form-control" id="ubicación_geo" placeholder="Ubicación geografica" value="<?php echo $fila['localidad_p']; ?>">
-                                                      </div>
-                                                      <br>
-                                                      <div class="form-floating mb-3">
-                                                        <label for="ubicación_geo2">Segunda ubicación geografica</label>
-                                                        <input type="text" class="form-control" id="ubicación_geo2" placeholder="Segunda ubicación geografica" value="<?php echo $fila['localidad_p']; ?>">
-                                                      </div>
-                                                      <br>
-                                                      <div class="form-floating mb-3">
-                                                      <label for="num_contact">Numero de Contacto</label>
-                                                        <input type="text" class="form-control" id="num_contact" placeholder="Numero de Contacto" value="<?php if($fila['numero_contacto_p']==NULL){
-                                                        }else{
-                                                        echo $fila['numero_contacto_p']; }?>">
-                                                      </div>
-                                                      <br>
-                                                      <div class="form-floating mb-3">
-                                                        <label for="link_redes">Link de Redes</label>
-                                                        <input type="text" class="form-control" id="link_redes" placeholder="Link de Redes" value="<?php echo $fila['link_redes_p']; ?>">
-                                                      </div>
-                                                      <br>
-                                                      <div class="form-floating mb-3">
-                                                        <label for="forma_trabajo">Forma de Trabajo</label>
-                                                        <textarea class="form-control" rows="5" style="height:10%;" placeholder="Forma de Trabajo" id="forma_trabajo"><?php echo $fila['forma_trabajo_p']; ?></textarea>
-                                                      </div>
-                                                      <br>
-                                                      <div class="form-floating mb-3">
-                                                        <label for="experiencia">Experiencia</label>
-                                                        <textarea class="form-control" rows="5" style="height:10%;" placeholder="Experiencia" id="experiencia"><?php echo $fila['experiencia_p']; ?></textarea>
-                                                      </div>
-                                                      <br>
-                                                      <div class="form-floating mb-3">
-                                                        <label for="costo_honorarios">Costo de Honorarios</label>
-                                                        <input type="text" class="form-control" id="costo_honorarios" placeholder="Costo de Honorarios" value="<?php echo $fila['costo_honorarios_p']; ?>">
-                                                      </div>
-                                                      <br>
-                                                      <div class="form-floating mb-3">
-                                                        <label for="beneficios_servicio">Beneficios de tú servicio</label>
-                                                        <textarea class="form-control" rows="5" style="height:10%;" placeholder="Beneficios de tu servicio" value="<?php echo $fila['beneficios_servicio_p']  ?>"></textarea>
-                                                      </div>
-                                                    </div>
-                                                  <br>
-                                                </div>
-                                                <div class="container-fluid">
-                                                   <h5 class="text-center">Fotografias</h5>
-                                                  <p class="text-center">Puedes incluir tres imagenes que muestren tus habilidades respecto a tus actividades o incluso a tu desempeño laboral (estudiantil )</p>
-                                                  <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <img src="vistas/imagen.php?id=<?php echo $_SESSION['user_correo'];?>" width="80" class="img-circle img-fluid" id="imagLog_pb" name="imagLog_pb" style="
-                                                            width: 50%;
-                                                            display: block;
-                                                            margin-right: auto;">
-                                                            <br>
-                                                            <a href="#">Selecciona una fotografia</a>
-                                                      </div>
-                                                      <div class="col-lg-4">
-                                                        <img src="vistas/imagen.php?id=<?php echo $_SESSION['user_correo'];?>" width="80" class="img-circle img-fluid" id="imagLog_pb" name="imagLog_pb" style="
-                                                          width: 50%;
-                                                          display: block;
-                                                          margin-right: auto;
-                                                          margin-left: auto;">
-                                                        <br>
-                                                        <a href="#">Selecciona una fotografia</a>
-                                                      </div>
-                                                      <div class="col-lg-4">
-                                                        <img src="vistas/imagen.php?id=<?php echo $_SESSION['user_correo'];?>" width="80" class="img-circle img-fluid" id="imagLog_pb" name="imagLog_pb" style="
-                                                          width: 50%;
-                                                          display: block;
-                                                          margin-left: auto;">
-                                                        <br>
-                                                        <a href="#">Selecciona una fotografia</a>
-                                                      </div>
-                                                    </div>
-                                                  <br>
-                                                  <div class="form-floating mb-3">
-                                                    <label for="tarjetas_digitales">Tarjetas Digitales</label>
-                                                    <input type="text" class="form-control" id="tarjetas_digitales" placeholder="Tarjetas Digitales">
-                                                  </div>
-                                                  <br>
-                                                    <div class="container-fluid">
-                                                      <h5 class="text-center">Reservación para citas</h5>
-                                                        <div class="row">
-                                                          <div class="col-lg-6">
-                                                            <input type="text" id="start" class="form-control text-left mr-2">
-                                                            <label class="ml-3 form-control-placeholder" id="start-p" for="start">Fecha de Inicio</label>
-                                                            <span class="fa fa-calendar" id="fa-1"></span>
-                                                          </div>
-                                                          <div class="col-lg-6">
-                                                            <input type="text" id="end" class="form-control text-left ml-2">
-                                                            <label class="ml-3 form-control-placeholder" id="end-p" for="end">Fecha final</label>
-                                                            <span class="fa fa-calendar" id="fa-2"></span>
-                                                          </div>
-                                                        </div>
-                                                      </div>
-                                                    <script src="https://kit.fontawesome.com/d65d90ee50.js" crossorigin="anonymous"></script>
-                                                  </div>
-                                                  <br>
-                                                <button class="btn col-md-4 col-md-offset-4" style="background: #09052b; color: white;" id="guardar_datos" name="guardar_datos">Guardar Datos</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <?php 
-                          }
-                              ?> 
-                        <!-- /col-lg-8 -->
-                      </div>
-                      <!-- /row -->
                     </div>
                     <!-- /tab-pane -->
                   </div>

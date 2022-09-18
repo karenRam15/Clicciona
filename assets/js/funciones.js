@@ -7,12 +7,12 @@ function cerrar_modal(id_modal){
 }
 function cerrar_sesion(){
     $.ajax({
-        url: '../php/logout.php',
+        url: 'php/logout.php',
         type: 'POST',
     })
     .done(function(r) {
         if (r==1) {
-            window.location ="../index.php";
+            window.location ="index.php";
         }else{
             console.log("Error al cerrar sesion.");
         }
