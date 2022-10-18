@@ -8,7 +8,10 @@ require_once "../login/Cl/DBclass.php";
 		if (isset($_SESSION['user_type_document'])) {
 				if ($_SESSION['user_type_document']=="1") {
 					?>
-						<input accept="image/png,image/jpeg" type="file" class="form-control" id="imagen_empresa" name="imagen_empresa">
+						<div class="mb-3">
+						  <label for="imagen_empresa" class="form-label">Imagen de la Empresa</label>
+						  <input class="form-control" type="file" id="imagen_empresa" name="imagen_empresa" accept="image/png,image/jpeg">
+						</div>
 						<div class="form-floating">
 							<input type="text" class="form-control" id="nombre_empresa" name="nombre_empresa" placeholder="Nombre de la empresa">
 							<label for="nombre_empresa">Nombre de la Empresa</label>
@@ -40,11 +43,11 @@ require_once "../login/Cl/DBclass.php";
 					<?php 
 				}else if ($_SESSION['user_type_document']=="0") {
 					?>
-						<div class="input-group mb-3">
-							<label class="input-group-text" for="imagen_profesionista">Fotografia</label>
-							<input accept="image/png,image/jpeg" type="file" class="form-control" id="imagen_profesionista" name="imagen_profesionista">
+						<div class="mb-3">
+						  <label for="imagen_empresa" class="form-label">Fotografia</label>
+						  <input class="form-control" type="file" id="imagen_profesionista" name="imagen_profesionista" accept="image/png,image/jpeg">
 						</div>
-					    <div class="form-floating">
+					  <div class="form-floating">
 						    <select id="carrera_profesionista" name="carrera_profesionista" class="form-select" aria-label="Floating label select example">
 						    	<option value="" disabled selected>Selecciona un Area de trabajo</option>
 						    	<?php 
@@ -151,155 +154,148 @@ require_once "../login/Cl/DBclass.php";
     ?>
     <script type="text/javascript">
 	   	$('#btn_register').click(function(){
-	        if($('#nombre_empresa').val()=="" ||  
-		        $('#primer_nombre_encargado').val()=="" || 
-		        $('#apellido_p_encargado').val()=="" || 
-		        $('#apellido_m_encargado').val()=="" || 
-		        $('#correo_empresa').val()=="" || 
-		        $('#password_empresa').val()=="" ||
-		        $('#confirm_password_empresa').val()==""){
-		        Toastify({text: "Ingresa todos los datos.", duration: 2000, gravity: "bottom", position: "right"}).showToast();
+	      if($('#nombre_empresa').val()=="" ||  
+		      	$('#primer_nombre_encargado').val()=="" || 
+		      	$('#apellido_p_encargado').val()=="" || 
+		      	$('#apellido_m_encargado').val()=="" || 
+		    	  $('#correo_empresa').val()=="" || 
+		  	    $('#password_empresa').val()=="" ||
+		    	  $('#confirm_password_empresa').val()==""){
+		      Toastify({text: "Ingresa todos los datos.", duration: 2000, gravity: "bottom", position: "right"}).showToast();
 		    }else{
 		    	var archivo = $("#imagen_empresa").val();
-				var extensiones = archivo.substring(archivo.lastIndexOf("."));
-		    	if(extensiones != ".jpg" || extensiones != ".png" || extensiones != "jpeg"){
-				    Toastify({text: "La imagen debe tener el formato: .png, .jpg", duration: 2000,gravity: "bottom", position: "right", style: {background: "linear-gradient(to right, #00b09b, #96c93d)"}}).showToast();
-				}else{
-					if ($('#password_empresa').val() == $('#confirm_password_empresa').val()) {
-			        	var Form = new FormData($('#formulario_register')[0]);
-				        console.log(Form);
+					var extensiones = archivo.substring(archivo.lastIndexOf("."));
+		    	if(extensiones===".jpg" || extensiones===".png" || extensiones==="jpeg"){
+		    		if ($('#password_empresa').val() == $('#confirm_password_empresa').val()) {
+			        var Form = new FormData($('#formulario_register')[0]);
+				      console.log(Form);
+				      $.ajax({
+				          url: 'login/insert_user.php',
+				          type: 'POST',
+				          data: Form,
+				          processData: false,
+				          contentType: false,
+				      })
+				      .done(function(r) {
+				          if (r==1) {
 				            $.ajax({
-				              url: 'login/insert_user.php',
+				      	      url: 'login/enviar.php',
 				              type: 'POST',
-				              data: Form,
-				              processData: false,
-				              contentType: false,
+				              data: "correo="+$('#correo_empresa').val()+"&nombre="+$('#primer_nombre_encargado').val(),
 				            })
 				            .done(function(r) {
-				               if (r==1) {
-				                $.ajax({
-				                  url: 'login/enviar.php',
-				                  type: 'POST',
-				                  data: "correo="+$('#correo_empresa').val()+"&nombre="+$('#primer_nombre_encargado').val(),
-				                })
-				                .done(function(r) {
-				                  if (r==1) {
-				                    Toastify({text:"Se envio un token a tu correo para confirmar tu correo.", duration: 5000}).showToast();
-				                    $('#nombre_empresa').val("");
-				                    $('#primer_nombre_encargado').val(""); 
-				                    $('#apellido_p_encargado').val(""); 
-				                    $('#apellido_m_encargado').val(""); 
-				                    $('#correo_empresa').val(""); 
-				                    $('#password_empresa').val(""); 
-				                    $('#confirm_password_empresa').val(""); 
-				                    cerrar_modal('#registrarse_modal');
-				                  }else if (r==2) {
-				                    console.log("Error al ingresar el numero");
-				                  }else if (r==0) {
-				                    console.log("Error al enviar el correo");
-				                  }else{
-				                    console.log("error");
-				                  }
-				                })
-				                .fail(function() {
-				                  console.log("error");
-				                })
-				                .always(function() {
-				                  console.log("complete");
-				                });
-				        
-				               }else if (r==2) {
-				                Toastify({text: "El correo ya esta registrado.", duration: 5000}).showToast();
-				               }else{
-				                Toastify({text: "Error al registrar.", duration: 5000}).showToast();
-				               }
+				              if (r==1) {
+				        	      Toastify({text:"Se envio un token a tu correo para confirmar tu correo.", duration: 5000}).showToast();
+				                $('#nombre_empresa').val("");
+				                $('#primer_nombre_encargado').val(""); 
+				          	    $('#apellido_p_encargado').val(""); 
+				                $('#apellido_m_encargado').val(""); 
+				                $('#correo_empresa').val(""); 
+				                $('#password_empresa').val(""); 
+				                $('#confirm_password_empresa').val(""); 
+				                cerrar_modal('#registrarse_modal');
+				              }else if (r==2) {
+				                console.log("Error al ingresar el numero");
+				              }else if (r==0) {
+				                console.log("Error al enviar el correo");
+				              }else{
+				                console.log("error");
+				              }
 				            })
-				            .fail(function(r) {
-				              console.log(r);
+				            .fail(function() {
+				              console.log("error");
+				            })
+				            .always(function() {
+				              console.log("complete");
 				            });
+				          }else if (r==2) {
+				            Toastify({text: "El correo ya esta registrado.", duration: 5000}).showToast();
+				          }else{
+				            Toastify({text: "Error al registrar.", duration: 5000}).showToast();
+				          }
+				      })
+				      .fail(function(r) {
+				        console.log(r);
+				      });
 			   		}else{
-			            Toastify({text: "Las contraseñas no coinciden", duration: 5000}).showToast();
-				    }
+			       	Toastify({text: "Las contraseñas no coinciden", duration: 5000}).showToast();
+				   	}
+					}else{
+				   	Toastify({text: "La imagen debe tener el formato: .png, .jpg"+extensiones, duration: 2000,gravity: "bottom", position: "right", style: {background: "linear-gradient(to right, #00b09b, #96c93d)"}}).showToast();
+					}
 				}
-			}
-		});
+			});
 		</script>
    	<?php 
     }else if ($_SESSION['user_type_document']=="0"){
     ?>
     <script type="text/javascript">
 		$('#btn_register').click(function(){
-		    if($('#primer_nombre_profesionista').val()=="" ||
-		        $('#apellido_p_profesionista').val()=="" || 
-		        $('#apellido_m_profesionista').val()=="" || 
-		        $('#email_profesionista').val()=="" || 
-		        $('#password_profesionista').val()==""|| 
-		        $('#confirm_password_profesionista').val()=="" || 
-		        $('#estado_profesionista').val()==""||
-		        $('#localidad_profesionista').val()==""||
-		        $('#imagen_profesionista').val()==""){
-		        Toastify({text: "Ingresa todos los datos.", duration: 2000, gravity: "bottom", position: "right"}).showToast();
-		    }else{
-		    	var archivo = $("#imagen_profesionista").val();
+		  if($('#primer_nombre_profesionista').val()=="" ||
+		    $('#apellido_p_profesionista').val()=="" || 
+		    $('#apellido_m_profesionista').val()=="" || 
+		    $('#email_profesionista').val()=="" || 
+		    $('#password_profesionista').val()==""|| 
+		    $('#confirm_password_profesionista').val()=="" || 
+		    $('#estado_profesionista').val()==""||
+		    $('#localidad_profesionista').val()==""||
+		    $('#imagen_profesionista').val()==""){
+		    Toastify({text: "Ingresa todos los datos.", duration: 2000, gravity: "bottom", position: "right"}).showToast();
+		  }else{
+		  	var archivo = $("#imagen_profesionista").val();
 				var extensiones = archivo.substring(archivo.lastIndexOf("."));
-		    	if(extensiones != ".jpg" || extensiones != ".png" || extensiones != "jpeg"){
-				    Toastify({text: "La imagen debe tener el formato: .png, .jpg", duration: 2000, gravity: "bottom", position: "right", style: {background: "linear-gradient(to right, #00b09b, #96c93d)"}}).showToast();
-				}else{
-			        if ($('#password_register').val() != $('#confirm_password_register').val()) {
-				    	Toastify({text: "Las contraseñas no coinciden", duration: 2000, gravity: "bottom", position: "right"}).showToast();
-				    }else{
-				        var Form = new FormData($('#formulario_register')[0]);
+		    if(extensiones===".jpg" || extensiones===".png" || extensiones==="jpeg"){
+		     	if ($('#password_register').val() != $('#confirm_password_register').val()) {
+				  	Toastify({text: "Las contraseñas no coinciden", duration: 2000, gravity: "bottom", position: "right"}).showToast();
+				  }else{
+				    var Form = new FormData($('#formulario_register')[0]);
+				    $.ajax({
+				      url: 'login/insert_user.php',
+				      type: 'POST',
+				      data: Form,
+				      processData: false,
+				      contentType: false,
+				    })
+				    .done(function(r) {
+				     	if (r==1) {
 				        $.ajax({
-				              url: 'login/insert_user.php',
-				              type: 'POST',
-				              data: Form,
-				              processData: false,
-				              contentType: false,
+				          url: 'login/enviar.php',
+				          type: 'POST',
+				          data: "correo="+$('#email_profesionista').val()+"&nombre="+$('#primer_nombre_profesionista').val(),
 				        })
 				        .done(function(r) {
-				               	if (r==1) {
-					                $.ajax({
-					                  url: 'login/enviar.php',
-					                  type: 'POST',
-					                  data: "correo="+$('#email_profesionista').val()+"&nombre="+$('#primer_nombre_profesionista').val(),
-					                })
-					                .done(function(r) {
-					                  if (r==1) {
-					                    Toastify({text:"Se envio un token a tu correo para confirmar tu correo.", duration: 5000}).showToast();
-					                    $('#carrera_profesionista').val("");
+				          if (r==1) {
+				            Toastify({text:"Se envio un token a tu correo para confirmar tu correo.", duration: 5000}).showToast();
+				            $('#carrera_profesionista').val("");
 										$('#primer_nombre_profesionista').val("");
-								        $('#apellido_p_profesionista').val(""); 
-								        $('#apellido_m_profesionista').val("");
-								        $('#email_profesionista').val("");
-								        $('#password_profesionista').val(""); 
-								        $('#confirm_password_profesionista').val(""); 
-								        $('#estado_profesionista').val("");
-								        $('#localidad_profesionista').val("");
-					                    cerrar_modal('#registrarse_modal');
-					                  }else if (r==2) {
-					                    console.log("Error al ingresar el numero");
-					                  }else if (r==0) {
-					                    console.log("Error al enviar el correo");
-					                  }else{
-					                    console.log("error");
-					                  }
-					                })
-					                .fail(function() {
-					                  console.log("error");
-					                })
-					                .always(function() {
-					                  console.log("complete");
-					                });
-				               }else if (r==2) {
-				                Toastify({text: "El correo ya esta registrado.", duration: 5000}).showToast();
-				               }else{
-				                Toastify({text: "Error al registrar.", duration: 5000}).showToast();
-				               }
-				        })
-				        .fail(function(r) {
-				        console.log(r);
-				        });
-				    }
+						        $('#apellido_p_profesionista').val(""); 
+						        $('#apellido_m_profesionista').val("");
+						        $('#email_profesionista').val("");
+						        $('#password_profesionista').val(""); 
+						        $('#confirm_password_profesionista').val(""); 
+						        $('#estado_profesionista').val("");
+						        $('#localidad_profesionista').val("");
+				            cerrar_modal('#registrarse_modal');
+				          }else if (r==2) {
+				            console.log("Error al ingresar el numero");
+					        }else if (r==0) {
+					          console.log("Error al enviar el correo");
+					        }else{
+					          console.log("error");
+					        }
+					      });
+				      }else if (r==2) {
+				        Toastify({text: "El correo ya esta registrado.", duration: 5000}).showToast();
+				      }else{
+				        Toastify({text: "Error al registrar.", duration: 5000}).showToast();
+				      }
+				   	})
+				    .fail(function(r) {
+				      console.log(r);
+				    });
+				  }
+				}else{
+				  Toastify({text: "La imagen debe tener el formato: .png, .jpg", duration: 2000, gravity: "bottom", position: "right", style: {background: "linear-gradient(to right, #00b09b, #96c93d)"}}).showToast();
 				}
 			}
 		});
