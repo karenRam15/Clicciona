@@ -41,166 +41,163 @@
   </header><!-- End Header -->
 
   <!-- Modal para Inicio de Sesion -->
-  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="acceso_modal" class="modal fade">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <img src="login/img/user.png" class="img-fluid" alt="icon" style="
-                      width: 30%;
-                      display: block;
-                      margin-left: auto;
-                      margin-right: auto;">
-        </div>
-        <div class="modal-body">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-mb-12 ">
-                <input name="email" id="email" type="email" class="form-control-lg" placeholder="Correo electrónico" autofocus>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-mb-12">
-                <input name="password" id="password" type="password" class="form-control-lg" placeholder="Contraseña"> 
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4"></div>
-              <div class="col-md-4">
-                <button class="btn" type="submit" id="login" name="login" style=" background-color: #1abc9c;
-                      color: #09052b;
-                      padding-bottom: 10px;
-                      padding-top: 10px;
-                      transition: background-color 300ms linear 0s;">Iniciar sesión</button>
-              </div>
-              <div class="col-md-4"></div>
-            </div>
-          </div>
-        </div>
-        <div class="form-footer">
-          <div class="container">
-            <div class="row">
-              <div class="col-xs-7 col-sm-7 col-md-7">
-                <i class="fa fa-lock"></i>
-                <a href="#" id="forget_password" name="forget_password" class="nav-link">¿Olvidó su contraseña?</a>
-              </div>
-              <div class="col-xs-5 col-sm-5 col-md-5">
-                <i class="fa fa-check"></i>
-                <a href="#" id="registrarse1" name="registrarse1" class="nav-link"> Registrarse </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal para resetear contraseña-->
-  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="forget_password_modal" class="modal fade">
-      <div class="modal-dialog">
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="acceso_modal" class="modal fade">
+      <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">¿Olvidaste tu contraseña?</h4>
+            <img src="login/img/user.png" class="img-fluid" alt="icon" style="
+                        width: 30%;
+                        display: block;
+                        margin-left: auto;
+                        margin-right: auto;">
           </div>
           <div class="modal-body">
-              <div class="container">
-                <div class="row">
-                  <p>Ingresa tu correo electronico para resetear tu contraseña.</p>
-                  <input type="text" placeholder="example@gmail.com" autocomplete="off" class="form-control placeholder-no-fix col-lg-12" id="email_reset_password" name="email_reset_password">
-                  <p style="color: red;">*Se enviara un token a tu correo registrado con las instrucciones para resetear tu contraseña.*</p>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-mb-12 ">
+                  <input name="email" id="email" type="email" class="form-control-lg" placeholder="Correo electrónico" autofocus>
                 </div>
               </div>
+              <div class="row">
+                <div class="col-mb-12">
+                  <input name="password" id="password" type="password" class="form-control-lg" placeholder="Contraseña"> 
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                  <button class="btn" type="submit" id="login" name="login" style=" background-color: #1abc9c;
+                        color: #09052b;
+                        padding-bottom: 10px;
+                        padding-top: 10px;
+                        transition: background-color 300ms linear 0s;">Iniciar sesión</button>
+                </div>
+                <div class="col-md-4"></div>
+              </div>
             </div>
-          <div class="modal-footer">
-            <button data-dismiss="modal" class="btn btn-default" type="button" id="cancel_reset" name="cancel_reset">Cancelar</button>
-            <button class="btn" style=" background-color: #1abc9c;
-              color: white;
-              padding-bottom: 10px;
-              padding-top: 10px;
-              transition: background-color 300ms linear 0s;" id="reset_password" name="reset_password">Recuperar</button>
           </div>
-        </div>
-      </div>
-  </div>
-
-  <!-- Modal para registrarse-->
-  <div class="modal fade" id="registrarse_modal" name="registrarse_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title text-center" id="staticBackdropLabel" style="color: black;">  Registro de cuenta Clicciona</h3>
-        </div>
-        <div class="modal-body">
-          <div class="container-fluid" style="background-color: #E2E2E2;">
-            <div class="row">
-              <div class="col-mb-12">
-                <br>
-                <div class="form-floating">
-                  <select class="form-select" id="tipo_usuario_register" name="tipo_usuario_register" aria-label="Floating label select example">
-                    <option value="">Opciones...</option>
-                    <option value="0">Profesionista</option> 
-                    <option value="1">Empresa/Contratante</option>
-                  </select>
-                  <label for="floatingSelect">Metodo de registro</label>
+          <div class="form-footer">
+            <div class="container">
+              <div class="row">
+                <div class="col-xs-7 col-sm-7 col-md-7">
+                  <i class="fa fa-lock"></i>
+                  <a href="#" id="forget_password" name="forget_password" class="nav-link">¿Olvidó su contraseña?</a>
+                </div>
+                <div class="col-xs-5 col-sm-5 col-md-5">
+                  <i class="fa fa-check"></i>
+                  <a href="#" id="registrarse1" name="registrarse1" class="nav-link"> Registrarse </a>
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-mb-12">
-                <div id="campos"></div>
-              </div>
-            </div>
-                <br>
-            </div>
-        </div>
-        <div class="modal-footer">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-3"></div>
-              <div class="col-lg-6">
-                <button type="button" class="btn" data-bs-dismiss="modal" style="background: #1abc9c;">Close</button>
-              </div>
-              <div class="col-lg-3"></div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <!--Modal para ingresar INE y Cedula profesional-->
-  <div class="modal fade" id="modal_registro_ine_cedula" data-backdrop="static" data-keyboard="false" tabindex="0" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
+  <!-- Modal para resetear contraseña-->
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="forget_password_modal" class="modal fade">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">¿Olvidaste tu contraseña?</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                  <div class="row">
+                    <p>Ingresa tu correo electronico para resetear tu contraseña.</p>
+                    <input type="text" placeholder="example@gmail.com" autocomplete="off" class="form-control placeholder-no-fix col-lg-12" id="email_reset_password" name="email_reset_password">
+                    <p style="color: red;">*Se enviara un token a tu correo registrado con las instrucciones para resetear tu contraseña.*</p>
+                  </div>
+                </div>
+              </div>
+            <div class="modal-footer">
+              <button data-dismiss="modal" class="btn btn-default" type="button" id="cancel_reset" name="cancel_reset">Cancelar</button>
+              <button class="btn" style=" background-color: #1abc9c;
+                color: white;
+                padding-bottom: 10px;
+                padding-top: 10px;
+                transition: background-color 300ms linear 0s;" id="reset_password" name="reset_password">Recuperar</button>
+            </div>
+          </div>
+        </div>
+    </div>
+  <!-- Modal para registrarse-->
+    <div class="modal fade" id="registrarse_modal" name="registrarse_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Revision de informacion</h5>
+            <h3 class="modal-title text-center" id="staticBackdropLabel" style="color: black;">  Registro de cuenta Clicciona</h3>
           </div>
-          <div class="modal-body" style="background-color: white;">
-            <h4 class="text-center"><b>Debemos verificar tu identidad, para garantizar tu seguridad y la de los demas, para esto deberas ingresar lo siguiente.</b></h4>
-            <form action="" id="form_data_ine_cedula" name="form_data_ine_cedula" style="background-color:white;">
-                <p>Los documentos deben ser enviados en formato PDF, donde se muestren todos los datos relevantes sin tachaduras y/o rayones, de igual manera la informacion debe ser legible y debe apreciarse de manera clara.</p>
-                <p style="color: red;">*En caso de haber algun problema sera contactado a traves del correo electronico que se registro.*</p>
-                <div class="form-group row">
-                  <label for="inputEmail3" class="col-sm-4 col-form-label text-center">Ingresa tu INE:</label>
-                  <div class="col-sm-8">
-                    <input accept="application/pdf" type="file" class="form-control" id="ine" name="ine">
+          <div class="modal-body">
+            <div class="container-fluid" style="background-color: #E2E2E2;">
+              <div class="row">
+                <div class="col-mb-12">
+                  <br>
+                  <div class="form-floating">
+                    <select class="form-select" id="tipo_usuario_register" name="tipo_usuario_register" aria-label="Floating label select example">
+                      <option value="">Opciones...</option>
+                      <option value="0">Profesionista</option> 
+                      <option value="1">Empresa/Contratante</option>
+                    </select>
+                    <label for="floatingSelect">Metodo de registro</label>
                   </div>
                 </div>
-                <div class="form-group row">
-                  <label for="inputEmail3" class="col-sm-4 col-form-label text-center">Cedula Profesional:</label>
-                  <div class="col-sm-8">
-                    <input accept="application/pdf" type="file" class="form-control" id="cedula" name="cedula">
-                  </div>
+              </div>
+              <div class="row">
+                <div class="col-mb-12">
+                  <div id="campos"></div>
                 </div>
-            </form>
+              </div>
+                  <br>
+              </div>
           </div>
           <div class="modal-footer">
-            <div class="col">
-              <button type="button" class="btn btn-primary" id="enviar_informacion">Enviar</button>
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6">
+                  <button type="button" class="btn" data-bs-dismiss="modal" style="background: #1abc9c;">Close</button>
+                </div>
+                <div class="col-lg-3"></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-  </div>
+    </div>
+  <!--Modal para ingresar INE y Cedula profesional-->
+    <div class="modal fade" id="modal_registro_ine_cedula" data-backdrop="static" data-keyboard="false" tabindex="0" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Revision de informacion</h5>
+            </div>
+            <div class="modal-body" style="background-color: white;">
+              <h4 class="text-center"><b>Debemos verificar tu identidad, para garantizar tu seguridad y la de los demas, para esto deberas ingresar lo siguiente.</b></h4>
+              <form action="" id="form_data_ine_cedula" name="form_data_ine_cedula" style="background-color:white;">
+                  <p>Los documentos deben ser enviados en formato PDF, donde se muestren todos los datos relevantes sin tachaduras y/o rayones, de igual manera la informacion debe ser legible y debe apreciarse de manera clara.</p>
+                  <p style="color: red;">*En caso de haber algun problema sera contactado a traves del correo electronico que se registro.*</p>
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-4 col-form-label text-center">Ingresa tu INE:</label>
+                    <div class="col-sm-8">
+                      <input accept="application/pdf" type="file" class="form-control" id="ine" name="ine">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-4 col-form-label text-center">Cedula Profesional:</label>
+                    <div class="col-sm-8">
+                      <input accept="application/pdf" type="file" class="form-control" id="cedula" name="cedula">
+                    </div>
+                  </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <div class="col">
+                <button type="button" class="btn btn-primary" id="enviar_informacion">Enviar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
     <div class="container">
