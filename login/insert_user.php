@@ -31,7 +31,7 @@ if(mysqli_num_rows($query)>0){
         $apellido_m_encargado = $_POST['apellido_m_encargado'];
         $correo = $_POST['correo_empresa'];
         $pass_empresa =  md5($_POST['password_empresa'], false);
-        $sql2 = "INSERT INTO empresas VALUES ('$correo', '$nombre_encargado_total', '$apellido_p_encargado', '$apellido_m_encargado','0', '$pass_empresa', '0','0', NULL,'0', NULL,'0', NULL,'0', NULL,'0', NULL,'0',NULL,'0', '1', NULL,'0', '0', '0', '0','$imagen_empresa','0')";
+        $sql2 = "INSERT INTO empresas VALUES ('$correo', '$nombre_encargado_total', '$apellido_p_encargado', '$apellido_m_encargado','0', '$pass_empresa', '0','0', NULL,'0', NULL,'0', NULL,'0', NULL,'0', NULL,'0',NULL,'0', NULL, NULL,'0', '0', '0', '0','$imagen_empresa','0')";
         $query2 = mysqli_query($con, $sql2) or die("Error al insertar en las empresas: " .mysqli_error($con));
         if($query2){
           $sql3 = "INSERT INTO documentos_e VALUES ('$correo', NULL, false, NULL, false, NULL, false, NULL, false, NULL,false,NULL,false)";
